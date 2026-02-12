@@ -1,439 +1,429 @@
 /**
- * Pink Parents Mini-Game
+ * Pink Parents Mini-Game (Asset-Based Sequential Flamingo Matching)
  *
  * Gameplay:
- * - A target pink color swatch is displayed prominently.
- * - 3 selectable buttons show different pink shades.
- * - One button matches the target exactly.
- * - Player taps the matching button.
- * - Correct: green feedback, score increments, new round after a brief delay.
- * - Wrong: red feedback, shake animation, prompt to try again.
- * - Rounds continue indefinitely; each round randomizes colors.
+ * - 3 color swatches displayed at the bottom as choices (always visible).
+ * - Flamingos appear ONE BY ONE at the center area.
+ * - The player clicks a color swatch to match it to the current flamingo.
+ * - Correct: toast shown, flamingo slides left, next flamingo slides in.
+ * - Wrong: try-again toast shown, player can try again.
+ * - Color swatches are NEVER disabled after a correct match.
+ * - All 3 matched: celebration and restart option.
  */
 
 import { BaseScene } from './BaseScene';
-import {
-  SceneKeys,
-  TEXT_STYLES,
-  GAME_WIDTH,
-  GAME_HEIGHT,
-  COLORS,
-  CounterHandle,
-} from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
-/** HSL representation for generating pink shades */
-interface HSL {
-  h: number;
-  s: number;
-  l: number;
+/* ------------------------------------------------------------------ */
+/*  Asset imports (resolved by Vite)                                   */
+/* ------------------------------------------------------------------ */
+
+import bgUrl from '../assets/images/PinkParents/background.png';
+import selectBgUrl from '../assets/images/PinkParents/background-selection.png';
+import correctUrl from '../assets/images/PinkParents/correct.png';
+import tryAgainUrl from '../assets/images/PinkParents/try-again.png';
+import flamingo1Url from '../assets/images/PinkParents/flamingo/flamingo-1.png';
+import flamingo2Url from '../assets/images/PinkParents/flamingo/flamingo-2.png';
+import flamingo3Url from '../assets/images/PinkParents/flamingo/flamingo-3.png';
+import color1Url from '../assets/images/PinkParents/color/pink-1.png';
+import color2Url from '../assets/images/PinkParents/color/pink-2.png';
+import color3Url from '../assets/images/PinkParents/color/pink-3.png';
+
+/* ------------------------------------------------------------------ */
+/*  Types                                                              */
+/* ------------------------------------------------------------------ */
+
+enum MatchState {
+  Idle,
+  Animating,
+  Finished,
 }
+
+type FlamingoId = '1' | '2' | '3';
+
+interface ColorSwatch {
+  id: FlamingoId;
+  sprite: Phaser.GameObjects.Image;
+}
+
+interface FlamingoEntry {
+  id: FlamingoId;
+  targetColorId: FlamingoId;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Constants                                                          */
+/* ------------------------------------------------------------------ */
+
+const FLAMINGO_IDS: readonly FlamingoId[] = ['1', '2', '3'];
+
+const FLAMINGO_URLS: Record<FlamingoId, string> = {
+  '1': flamingo1Url,
+  '2': flamingo2Url,
+  '3': flamingo3Url,
+};
+
+const COLOR_URLS: Record<FlamingoId, string> = {
+  '1': color1Url,
+  '2': color2Url,
+  '3': color3Url,
+};
+
+/* Texture keys */
+const TEX_BG = 'pp-bg';
+const TEX_SELECT_BG = 'pp-select-bg';
+const TEX_CORRECT = 'pp-correct';
+const TEX_TRY_AGAIN = 'pp-try-again';
+const TEX_FLAMINGO_PREFIX = 'pp-flamingo-';
+const TEX_COLOR_PREFIX = 'pp-color-';
+
+/* Layout */
+const FLAMINGO_SCALE = 0.25;
+const FLAMINGO_CENTER_Y = 450;
+const FLAMINGO_OFFSCREEN_PADDING = 150;
+const SELECT_BG_Y = 760;
+const SELECT_BG_DISPLAY_W = 337;
+const SELECT_BG_DISPLAY_H = 132;
+const SELECT_TEXT_Y = SELECT_BG_Y - 40;
+const COLOR_SCALE = 0.25;
+const COLOR_ROW_Y = SELECT_BG_Y + 20;
+const COLOR_MARGIN_X = 140;
+
+/* Depth layers (back → front) */
+const DEPTH_FLAMINGO = 30;
+
+/* Animation */
+const SLIDE_DURATION = 500;
+const SLIDE_EASE = 'Cubic.easeOut';
+const SLIDE_OUT_DELAY = 200;
+const TOAST_FLOAT_OFFSET = 40;
+const TOAST_DEPTH = 500;
+const TOAST_Y_OFFSET = 230;
+const CELEBRATION_STAR_COUNT = 8;
+const CELEBRATION_DURATION = 600;
+const CELEBRATION_DEPTH = 200;
+const FINISH_POPUP_DELAY = 1200;
+
+/* ------------------------------------------------------------------ */
+/*  Scene                                                              */
+/* ------------------------------------------------------------------ */
 
 export class PinkParentsScene extends BaseScene {
   protected get backgroundColor(): number {
     return 0xfce4ec;
   }
 
-  private score = 0;
-  private round = 0;
-  private counter!: CounterHandle;
-  private targetSwatchSprite!: Phaser.GameObjects.Sprite;
-  private optionButtons: Phaser.GameObjects.Container[] = [];
-  private correctIndex = 0;
-  private isRoundActive = false;
+  private matchState: MatchState = MatchState.Idle;
+  private colorSwatches: ColorSwatch[] = [];
+  private flamingoQueue: FlamingoEntry[] = [];
+  private activeFlamingoIndex = 0;
+  private activeFlamingoSprite: Phaser.GameObjects.Image | null = null;
 
   constructor() {
     super({ key: SceneKeys.PinkParents });
   }
 
+  /* ------------------------------------------------------------------ */
+  /*  Asset loading                                                      */
+  /* ------------------------------------------------------------------ */
+
+  preload(): void {
+    this.load.image(TEX_BG, bgUrl);
+    this.load.image(TEX_SELECT_BG, selectBgUrl);
+    this.load.image(TEX_CORRECT, correctUrl);
+    this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
+
+    for (const id of FLAMINGO_IDS) {
+      this.load.image(TEX_FLAMINGO_PREFIX + id, FLAMINGO_URLS[id]);
+      this.load.image(TEX_COLOR_PREFIX + id, COLOR_URLS[id]);
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Scene lifecycle                                                    */
+  /* ------------------------------------------------------------------ */
+
   create(): void {
     super.create();
+    this.initState();
+    this.createBackground();
+    this.createColorSwatches();
+    this.buildFlamingoQueue();
+    this.spawnNextFlamingo();
+  }
 
-    this.score = 0;
-    this.round = 0;
-    this.optionButtons = [];
-
-    this.createStaticUI();
-    this.startNewRound();
+  private initState(): void {
+    this.matchState = MatchState.Idle;
+    this.colorSwatches = [];
+    this.flamingoQueue = [];
+    this.activeFlamingoIndex = 0;
+    this.activeFlamingoSprite = null;
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Static UI                                                          */
+  /*  Background & static UI                                             */
   /* ------------------------------------------------------------------ */
 
-  private createStaticUI(): void {
+  private createBackground(): void {
+    const bg = this.add.image(0, 0, TEX_BG);
+    bg.setOrigin(0, 0);
+    bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+
     this.createInstructionUI(
-      'Pink Parents',
-      'Find the matching pink shade!',
+      'Find the Pink Parents',
+      'Click to match the correct shade of pink to each bird. ',
     );
 
-    // Score counter
-    this.counter = this.uiManager.createCounter(this.cx, GAME_HEIGHT - 50, 'Score', 0, 0);
-    this.counter.text.setStyle({
-      ...TEXT_STYLES.counter,
-      color: '#c2185b',
-      stroke: '#ffffff',
-      strokeThickness: 3,
-    });
-    this.updateScoreDisplay();
+    /* Selection area background */
+    const selectBg = this.add.image(this.cx, SELECT_BG_Y, TEX_SELECT_BG);
+    selectBg.setDisplaySize(SELECT_BG_DISPLAY_W, SELECT_BG_DISPLAY_H);
 
-    // "Target" label
+    /* Instruction text inside selection area */
     this.add
-      .text(this.cx, 130, 'TARGET', {
-        ...TEXT_STYLES.body,
-        fontSize: '16px',
-        color: '#ad1457',
-        stroke: '#ffffff',
-        strokeThickness: 2,
+      .text(this.cx, SELECT_TEXT_Y, 'Select the shade of pink below that matches\nthe bird\'s feather.', {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '13px',
+        color: '#ffffff',
+        align: 'center',
+        lineSpacing: 4,
       })
       .setOrigin(0.5);
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Round management                                                   */
+  /*  Color swatches (always-visible choices)                            */
   /* ------------------------------------------------------------------ */
 
-  private startNewRound(): void {
-    this.round++;
-    this.isRoundActive = true;
+  private createColorSwatches(): void {
+    const shuffled = Phaser.Utils.Array.Shuffle([...FLAMINGO_IDS]) as FlamingoId[];
 
-    // Clean up previous round's dynamic objects
-    this.cleanupRound();
+    const positions = [
+      { x: COLOR_MARGIN_X, y: COLOR_ROW_Y },
+      { x: GAME_WIDTH / 2, y: COLOR_ROW_Y },
+      { x: GAME_WIDTH - COLOR_MARGIN_X, y: COLOR_ROW_Y },
+    ];
 
-    // Generate target pink
-    const targetHSL = this.randomPink();
-    const targetColor = this.hslToHex(targetHSL);
+    this.colorSwatches = shuffled.map((id, i) => {
+      const pos = positions[i];
+      const sprite = this.add.image(pos.x, pos.y, TEX_COLOR_PREFIX + id);
+      sprite.setOrigin(0.5);
+      sprite.setScale(COLOR_SCALE);
+      sprite.setInteractive({ useHandCursor: true });
 
-    // Generate distractors (visibly different from target)
-    const options = this.generateOptions(targetHSL);
-    this.correctIndex = options.correctIndex;
+      const swatch: ColorSwatch = { id, sprite };
 
-    // Draw target swatch
-    const targetKey = `swatch-target-${this.round}`;
-    AssetLoader.generateSwatch(this, targetKey, targetColor, 160);
-    this.targetSwatchSprite = this.add.sprite(this.cx, 250, targetKey);
-    this.targetSwatchSprite.setOrigin(0.5);
+      sprite.on('pointerdown', () => {
+        this.handleColorClick(swatch);
+      });
 
-    // Shadow behind target
-    const shadow = this.add.graphics();
-    shadow.fillStyle(0x000000, 0.1);
-    shadow.fillRoundedRect(this.cx - 84, 166, 168, 168, 14);
-    shadow.setDepth(this.targetSwatchSprite.depth - 1);
-
-    // Entrance animation for target
-    this.targetSwatchSprite.setScale(0);
-    this.tweens.add({
-      targets: this.targetSwatchSprite,
-      scale: 1,
-      duration: 300,
-      ease: 'Back.easeOut',
+      return swatch;
     });
-
-    // Create option buttons
-    this.createOptionButtons(options.colors);
   }
 
-  private cleanupRound(): void {
-    // Remove previous target swatch
-    if (this.targetSwatchSprite && this.targetSwatchSprite.active) {
-      this.targetSwatchSprite.destroy();
+  /* ------------------------------------------------------------------ */
+  /*  Flamingo queue                                                     */
+  /* ------------------------------------------------------------------ */
+
+  private buildFlamingoQueue(): void {
+    const order = Phaser.Utils.Array.Shuffle([...FLAMINGO_IDS]) as FlamingoId[];
+
+    this.flamingoQueue = order.map((id) => ({
+      id,
+      targetColorId: id,
+    }));
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Flamingo spawning                                                  */
+  /* ------------------------------------------------------------------ */
+
+  private spawnNextFlamingo(): void {
+    if (this.activeFlamingoIndex >= FLAMINGO_IDS.length) {
+      this.handleAllMatched();
+      return;
     }
 
-    // Remove previous option buttons
-    this.optionButtons.forEach((btn) => {
-      if (btn.active) btn.destroy();
+    const flamingoData = this.flamingoQueue[this.activeFlamingoIndex];
+
+    this.matchState = MatchState.Animating;
+
+    const startX = GAME_WIDTH + FLAMINGO_OFFSCREEN_PADDING;
+
+    /* Flamingo: slides in from right */
+    const flamingoSprite = this.add.image(
+      startX,
+      FLAMINGO_CENTER_Y,
+      TEX_FLAMINGO_PREFIX + flamingoData.id,
+    );
+    flamingoSprite.setOrigin(0.5);
+    flamingoSprite.setScale(FLAMINGO_SCALE);
+    flamingoSprite.setDepth(DEPTH_FLAMINGO);
+    this.activeFlamingoSprite = flamingoSprite;
+
+    /* Slide in */
+    this.tweens.add({
+      targets: flamingoSprite,
+      x: this.cx,
+      duration: SLIDE_DURATION,
+      ease: SLIDE_EASE,
+      onComplete: () => {
+        this.matchState = MatchState.Idle;
+      },
     });
-    this.optionButtons = [];
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Option buttons                                                     */
+  /*  Click handling                                                     */
   /* ------------------------------------------------------------------ */
 
-  private createOptionButtons(colors: number[]): void {
-    const buttonWidth = 120;
-    const buttonHeight = 90;
-    const spacing = 20;
-    const totalWidth = colors.length * buttonWidth + (colors.length - 1) * spacing;
-    const startX = (GAME_WIDTH - totalWidth) / 2 + buttonWidth / 2;
-    const y = 500;
+  private handleColorClick(swatch: ColorSwatch): void {
+    if (this.matchState !== MatchState.Idle) return;
+    if (!this.activeFlamingoSprite) return;
 
-    // "Choose one:" label
-    const chooseLabel = this.add
-      .text(this.cx, y - 70, 'Which shade matches?', {
-        ...TEXT_STYLES.body,
-        color: '#880e4f',
-        stroke: '#ffffff',
-        strokeThickness: 2,
-      })
-      .setOrigin(0.5);
+    const flamingoData = this.flamingoQueue[this.activeFlamingoIndex];
 
-    colors.forEach((color, index) => {
-      const x = startX + index * (buttonWidth + spacing);
-      const container = this.createColorButton(x, y, buttonWidth, buttonHeight, color, index);
-      this.optionButtons.push(container);
+    if (swatch.id === flamingoData.targetColorId) {
+      this.handleCorrectMatch(swatch);
+    } else {
+      this.handleWrongMatch();
+    }
+  }
 
-      // Staggered entrance
-      container.setScale(0);
-      this.tweens.add({
-        targets: container,
-        scale: 1,
-        duration: 250,
-        delay: 100 + index * 80,
-        ease: 'Back.easeOut',
+  /* ------------------------------------------------------------------ */
+  /*  Match handlers                                                     */
+  /* ------------------------------------------------------------------ */
+
+  private handleCorrectMatch(swatch: ColorSwatch): void {
+    const flamingo = this.activeFlamingoSprite;
+    if (!flamingo) return;
+
+    this.matchState = MatchState.Animating;
+
+    /* 1. Toast */
+    this.showToast(TEX_CORRECT, flamingo.x, flamingo.y + TOAST_Y_OFFSET);
+
+    /* 2. Brief press feedback on the swatch */
+    this.tweens.add({
+      targets: swatch.sprite,
+      scale: COLOR_SCALE * 0.85,
+      duration: 80,
+      yoyo: true,
+      ease: 'Quad.easeInOut',
+    });
+
+    /* 3. Celebration */
+    this.spawnCelebration(flamingo.x, flamingo.y);
+
+    /* 4. Slide flamingo left */
+    this.tweens.add({
+      targets: flamingo,
+      x: -flamingo.displayWidth,
+      duration: SLIDE_DURATION,
+      ease: SLIDE_EASE,
+      delay: SLIDE_OUT_DELAY,
+      onComplete: () => {
+        this.destroyActiveFlamingo();
+        this.activeFlamingoIndex++;
+        this.spawnNextFlamingo();
+      },
+    });
+  }
+
+  private handleWrongMatch(): void {
+    if (!this.activeFlamingoSprite) return;
+
+    /* Toast */
+    this.showToast(
+      TEX_TRY_AGAIN,
+      this.activeFlamingoSprite.x,
+      this.activeFlamingoSprite.y + TOAST_Y_OFFSET,
+    );
+
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Cleanup helpers                                                    */
+  /* ------------------------------------------------------------------ */
+
+  private destroyActiveFlamingo(): void {
+    if (this.activeFlamingoSprite) {
+      this.activeFlamingoSprite.destroy();
+      this.activeFlamingoSprite = null;
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  All matched                                                        */
+  /* ------------------------------------------------------------------ */
+
+  private handleAllMatched(): void {
+    this.matchState = MatchState.Finished;
+
+    this.spawnCelebration(this.cx, this.h / 2);
+
+    this.time.delayedCall(FINISH_POPUP_DELAY, () => {
+      this.uiManager.showPopup({
+        title: 'Well Done!',
+        message: 'You matched all the flamingos!',
+        buttonText: 'Play Again',
+        onClose: () => this.scene.restart(),
       });
     });
   }
 
-  private createColorButton(
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    color: number,
-    index: number
-  ): Phaser.GameObjects.Container {
-    const container = this.add.container(x, y);
+  /* ------------------------------------------------------------------ */
+  /*  Toast                                                              */
+  /* ------------------------------------------------------------------ */
 
-    // Button background
-    const bg = this.add.graphics();
-    bg.fillStyle(color, 1);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
-    bg.lineStyle(3, 0xffffff, 0.8);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
-    container.add(bg);
+  private showToast(textureKey: string, x: number, y: number): void {
+    const toast = this.add.image(x, y, textureKey);
+    toast.setOrigin(0.5);
+    toast.setDisplaySize(109, 34);
+    toast.setDepth(TOAST_DEPTH);
 
-    // Option label (A, B, C)
-    const label = this.add
-      .text(0, height / 2 + 20, String.fromCharCode(65 + index), {
-        ...TEXT_STYLES.body,
-        fontSize: '20px',
-        color: '#880e4f',
-        stroke: '#ffffff',
-        strokeThickness: 2,
-        fontStyle: 'bold',
-      })
-      .setOrigin(0.5);
-    container.add(label);
-
-    // Interactive hit area
-    container.setSize(width, height + 30);
-    container.setInteractive(
-      new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height + 30),
-      Phaser.Geom.Rectangle.Contains
-    );
-
-    container.on('pointerdown', () => {
-      if (!this.isRoundActive) return;
-      container.setScale(0.93);
+    /* Phase 1: slide up */
+    this.tweens.add({
+      targets: toast,
+      y: y - TOAST_FLOAT_OFFSET,
+      duration: 250,
+      ease: 'Back.easeOut',
+      onComplete: () => {
+        /* Phase 2: hold, then fade out */
+        this.tweens.add({
+          targets: toast,
+          alpha: 0,
+          duration: 300,
+          delay: 600,
+          ease: 'Power2',
+          onComplete: () => toast.destroy(),
+        });
+      },
     });
-
-    container.on('pointerup', () => {
-      if (!this.isRoundActive) return;
-      container.setScale(1);
-      this.onOptionSelected(index, container, bg, width, height);
-    });
-
-    container.on('pointerout', () => {
-      container.setScale(1);
-    });
-
-    return container;
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Selection handling                                                  */
+  /*  Celebration                                                        */
   /* ------------------------------------------------------------------ */
 
-  private onOptionSelected(
-    index: number,
-    container: Phaser.GameObjects.Container,
-    bg: Phaser.GameObjects.Graphics,
-    width: number,
-    height: number
-  ): void {
-    if (!this.isRoundActive) return;
-    this.isRoundActive = false;
-
-    if (index === this.correctIndex) {
-      this.handleCorrectSelection(container, bg, width, height);
-    } else {
-      this.handleWrongSelection(container, bg, width, height);
-    }
-  }
-
-  private handleCorrectSelection(
-    container: Phaser.GameObjects.Container,
-    bg: Phaser.GameObjects.Graphics,
-    width: number,
-    height: number
-  ): void {
-    this.score++;
-    this.updateScoreDisplay();
-
-    // Green border feedback
-    bg.lineStyle(5, COLORS.successGreen, 1);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
-
-    this.showFloatingText(container.x, container.y - 60, 'Correct!', '#27ae60');
-
-    // Disable all buttons
-    this.optionButtons.forEach((btn) => btn.disableInteractive());
-
-    // Celebration sparkle on the correct button
+  private spawnCelebration(x: number, y: number): void {
     AssetLoader.generateStar(this, 'star');
-    for (let i = 0; i < 5; i++) {
-      const star = this.add.sprite(container.x, container.y, 'star');
-      star.setDepth(200);
-      const angle = (i / 5) * Math.PI * 2;
+
+    for (let i = 0; i < CELEBRATION_STAR_COUNT; i++) {
+      const star = this.add.sprite(x, y, 'star');
+      star.setDepth(CELEBRATION_DEPTH);
+      const angle = (i / CELEBRATION_STAR_COUNT) * Math.PI * 2;
+      const dist = Phaser.Math.Between(40, 90);
       this.tweens.add({
         targets: star,
-        x: container.x + Math.cos(angle) * 50,
-        y: container.y + Math.sin(angle) * 50,
+        x: x + Math.cos(angle) * dist,
+        y: y + Math.sin(angle) * dist,
         alpha: 0,
-        duration: 500,
+        scale: { from: 1.2, to: 0.3 },
+        duration: CELEBRATION_DURATION,
+        ease: 'Power2',
         onComplete: () => star.destroy(),
       });
     }
-
-    // Next round after a brief delay
-    this.time.delayedCall(1200, () => {
-      this.startNewRound();
-    });
-  }
-
-  private handleWrongSelection(
-    container: Phaser.GameObjects.Container,
-    bg: Phaser.GameObjects.Graphics,
-    width: number,
-    height: number
-  ): void {
-    // Red border feedback
-    bg.lineStyle(5, COLORS.errorRed, 1);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
-
-    this.shakeObject(container);
-    this.showFloatingText(container.x, container.y - 60, 'Try Again!', '#e74c3c');
-
-    // Re-enable after a brief delay
-    this.time.delayedCall(600, () => {
-      // Reset border
-      bg.lineStyle(3, 0xffffff, 0.8);
-      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
-      this.isRoundActive = true;
-    });
-  }
-
-  /* ------------------------------------------------------------------ */
-  /*  Color generation                                                   */
-  /* ------------------------------------------------------------------ */
-
-  private randomPink(): HSL {
-    return {
-      h: Phaser.Math.Between(320, 355),
-      s: Phaser.Math.Between(50, 100),
-      l: Phaser.Math.Between(40, 80),
-    };
-  }
-
-  private generateOptions(target: HSL): { colors: number[]; correctIndex: number } {
-    const correctColor = this.hslToHex(target);
-
-    // Generate two distractors that differ enough to be distinguishable
-    const distractors: number[] = [];
-    const minDiff = 12;
-
-    for (let attempt = 0; distractors.length < 2 && attempt < 50; attempt++) {
-      const hShift = Phaser.Math.Between(-20, 20);
-      const sShift = Phaser.Math.Between(-25, 25);
-      const lShift = Phaser.Math.Between(-20, 20);
-
-      const candidate: HSL = {
-        h: Phaser.Math.Clamp(target.h + hShift, 300, 360),
-        s: Phaser.Math.Clamp(target.s + sShift, 30, 100),
-        l: Phaser.Math.Clamp(target.l + lShift, 30, 85),
-      };
-
-      // Ensure it's visually different from target and other distractors
-      const diff = Math.abs(hShift) + Math.abs(sShift) + Math.abs(lShift);
-      if (diff < minDiff) continue;
-
-      const hex = this.hslToHex(candidate);
-      if (hex === correctColor) continue;
-
-      const tooSimilar = distractors.some(
-        (d) => Math.abs(d - hex) < 0x111111
-      );
-      if (tooSimilar) continue;
-
-      distractors.push(hex);
-    }
-
-    // Fallback distractors if generation was unlucky
-    while (distractors.length < 2) {
-      distractors.push(
-        this.hslToHex({
-          h: Phaser.Math.Between(300, 360),
-          s: Phaser.Math.Between(30, 100),
-          l: Phaser.Math.Between(30, 85),
-        })
-      );
-    }
-
-    // Build array with correct answer at a random position
-    const correctIndex = Phaser.Math.Between(0, 2);
-    const colors: number[] = [];
-
-    let dIdx = 0;
-    for (let i = 0; i < 3; i++) {
-      if (i === correctIndex) {
-        colors.push(correctColor);
-      } else {
-        colors.push(distractors[dIdx++]);
-      }
-    }
-
-    return { colors, correctIndex };
-  }
-
-  /** Convert HSL (h: 0-360, s: 0-100, l: 0-100) to a hex number */
-  private hslToHex(hsl: HSL): number {
-    const h = hsl.h / 360;
-    const s = hsl.s / 100;
-    const l = hsl.l / 100;
-
-    const hue2rgb = (p: number, q: number, t: number): number => {
-      let tt = t;
-      if (tt < 0) tt += 1;
-      if (tt > 1) tt -= 1;
-      if (tt < 1 / 6) return p + (q - p) * 6 * tt;
-      if (tt < 1 / 2) return q;
-      if (tt < 2 / 3) return p + (q - p) * (2 / 3 - tt) * 6;
-      return p;
-    };
-
-    let r: number;
-    let g: number;
-    let b: number;
-
-    if (s === 0) {
-      r = g = b = l;
-    } else {
-      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      const p = 2 * l - q;
-      r = hue2rgb(p, q, h + 1 / 3);
-      g = hue2rgb(p, q, h);
-      b = hue2rgb(p, q, h - 1 / 3);
-    }
-
-    const ri = Math.round(r * 255);
-    const gi = Math.round(g * 255);
-    const bi = Math.round(b * 255);
-
-    return (ri << 16) | (gi << 8) | bi;
-  }
-
-  private updateScoreDisplay(): void {
-    this.counter.text.setText(`Score: ${this.score}`);
   }
 }

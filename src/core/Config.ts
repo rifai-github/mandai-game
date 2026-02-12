@@ -233,14 +233,14 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
       title: {
         fontFamily: "'MandaiValueSerif'",
         fontSize: '32px',
-        color: '#333333',
+        color: '#00437B',
         fontStyle: 'bold',
       },
       instruction: {
         fontFamily: "'MandaiValueSerif'",
         fontSize: '16px',
-        color: '#333333',
-        wordWrap: { width: 320, useAdvancedWrap: true },
+        color: '#515151',
+        wordWrap: { width: 200, useAdvancedWrap: true },
         align: 'center',
       },
     },
