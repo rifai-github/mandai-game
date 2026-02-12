@@ -107,9 +107,13 @@ export const ROUTE_TABLE: readonly RouteEntry[] = [
   { path: RoutePaths.PinkParents, sceneKey: SceneKeys.PinkParents, label: 'Pink Parents' },
 ] as const;
 
-export const INSTRUCTION_Y_POSITION = {
-  title: 100,
-  instruction: 150
+/** Per-scene instruction layout (position + style overrides) */
+export interface InstructionConfig {
+  position: { title: number; instruction: number };
+  style: {
+    title: Phaser.Types.GameObjects.Text.TextStyle;
+    instruction: Phaser.Types.GameObjects.Text.TextStyle;
+  };
 }
 
 /** Shared text style defaults */
@@ -166,6 +170,82 @@ export const TEXT_STYLES = {
     strokeThickness: 3,
   } as Phaser.Types.GameObjects.Text.TextStyle,
 } as const;
+
+/** Per-scene instruction configs (position + style) */
+export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
+  [SceneKeys.MatchPenguin]: {
+    position: { title: 100, instruction: 150 },
+    style: {
+      title: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '32px',
+        color: '#333333',
+        fontStyle: 'bold',
+      },
+      instruction: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#333333',
+        wordWrap: { width: 320, useAdvancedWrap: true },
+        align: 'center',
+      },
+    },
+  },
+  [SceneKeys.CatchFish]: {
+    position: { title: 110, instruction: 140 },
+    style: {
+      title: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '32px',
+        color: '#00437B',
+        fontStyle: 'bold',
+      },
+      instruction: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#515151',
+        wordWrap: { width: 320, useAdvancedWrap: true },
+        align: 'center',
+      },
+    },
+  },
+  [SceneKeys.PaddleFood]: {
+    position: { title: 100, instruction: 150 },
+    style: {
+      title: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '32px',
+        color: '#00437B',
+        fontStyle: 'bold',
+      },
+      instruction: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#515151',
+        wordWrap: { width: 300, useAdvancedWrap: true },
+        align: 'center',
+      },
+    },
+  },
+  [SceneKeys.PinkParents]: {
+    position: { title: 100, instruction: 150 },
+    style: {
+      title: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '32px',
+        color: '#333333',
+        fontStyle: 'bold',
+      },
+      instruction: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#333333',
+        wordWrap: { width: 320, useAdvancedWrap: true },
+        align: 'center',
+      },
+    },
+  },
+};
 
 /** UI sizing constants for mobile-friendly touch targets */
 export const UI = {

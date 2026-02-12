@@ -14,7 +14,7 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, INSTRUCTION_Y_POSITION, TEXT_STYLES, GAME_WIDTH, GAME_HEIGHT } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
 /* ------------------------------------------------------------------ */
@@ -202,13 +202,10 @@ export class MatchPenguinScene extends BaseScene {
     bg.setOrigin(0, 0);
     bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
 
-    this.add
-      .text(this.cx, INSTRUCTION_Y_POSITION.title, 'Match the Parents', TEXT_STYLES.title)
-      .setOrigin(0.5);
-
-    this.add
-      .text(this.cx, INSTRUCTION_Y_POSITION.instruction, 'Match the penguin chick to the correct adult penguin. Drag the penguin chick onto the adult to create a match.', TEXT_STYLES.body)
-      .setOrigin(0.5);
+    this.createInstructionUI(
+      'Match the Parents',
+      'Match the penguin chick to the correct adult penguin. Drag the penguin chick onto the adult to create a match.',
+    );
 
     /* Ice platform: static, always centered */
     const ice = this.add.image(this.cx, ICE_CENTER_Y, TEX_ICE);

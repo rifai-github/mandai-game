@@ -9,7 +9,7 @@
  */
 
 import Phaser from 'phaser';
-import { GAME_WIDTH, GAME_HEIGHT, TEXT_STYLES } from '../core/Config';
+import { GAME_WIDTH, GAME_HEIGHT, TEXT_STYLES, SCENE_INSTRUCTIONS } from '../core/Config';
 import { UIManager } from '../systems/UIManager';
 import { InputManager } from '../systems/InputManager';
 
@@ -47,6 +47,24 @@ export abstract class BaseScene extends Phaser.Scene {
   /** Center-x convenience */
   protected get cx(): number {
     return GAME_WIDTH / 2;
+  }
+
+  /** Create title + instruction text using per-scene config from SCENE_INSTRUCTIONS */
+  protected createInstructionUI(
+    titleText: string,
+    instructionText: string,
+  ): { title: Phaser.GameObjects.Text; instruction: Phaser.GameObjects.Text } {
+    const config = SCENE_INSTRUCTIONS[this.scene.key];
+
+    const title = this.add
+      .text(this.cx, config.position.title, titleText, config.style.title)
+      .setOrigin(0.5);
+
+    const instruction = this.add
+      .text(this.cx, config.position.instruction, instructionText, config.style.instruction)
+      .setOrigin(0.5);
+
+    return { title, instruction };
   }
 
   /** Show a quick floating text feedback (e.g. "+1", "Correct!") */

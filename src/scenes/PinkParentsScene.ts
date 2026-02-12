@@ -62,25 +62,10 @@ export class PinkParentsScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createStaticUI(): void {
-    // Title
-    this.add
-      .text(this.cx, 40, 'Pink Parents', {
-        ...TEXT_STYLES.title,
-        color: '#c2185b',
-        stroke: '#ffffff',
-        strokeThickness: 4,
-      })
-      .setOrigin(0.5);
-
-    // Instruction
-    this.add
-      .text(this.cx, 85, 'Find the matching pink shade!', {
-        ...TEXT_STYLES.body,
-        color: '#880e4f',
-        stroke: '#ffffff',
-        strokeThickness: 2,
-      })
-      .setOrigin(0.5);
+    this.createInstructionUI(
+      'Pink Parents',
+      'Find the matching pink shade!',
+    );
 
     // Score counter
     this.counter = this.uiManager.createCounter(this.cx, GAME_HEIGHT - 50, 'Score', 0, 0);
