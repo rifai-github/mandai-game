@@ -91,6 +91,16 @@ export abstract class BaseScene extends Phaser.Scene {
     });
   }
 
+  /**
+   * Get query parameter value from URL
+   * @param param - The query parameter name to retrieve
+   * @returns The parameter value or null if not found
+   */
+  protected getQueryParam(param: string): string | null {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
   /** Create a tween that shakes an object horizontally */
   protected shakeObject(target: Phaser.GameObjects.GameObject): void {
     const t = target as unknown as Phaser.GameObjects.Components.Transform;

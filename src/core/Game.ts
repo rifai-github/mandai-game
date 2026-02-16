@@ -11,6 +11,7 @@ import { MatchPenguinScene } from '../scenes/MatchPenguinScene';
 import { CatchFishScene } from '../scenes/CatchFishScene';
 import { PaddleFoodScene } from '../scenes/PaddleFoodScene';
 import { PinkParentsScene } from '../scenes/PinkParentsScene';
+import { CountEggScene } from '../scenes/CountEggScene';
 import { RoutePaths } from './Config';
 
 /**
@@ -134,6 +135,7 @@ export class GameController {
     this.game.scene.add(SceneKeys.CatchFish, CatchFishScene);
     this.game.scene.add(SceneKeys.PaddleFood, PaddleFoodScene);
     this.game.scene.add(SceneKeys.PinkParents, PinkParentsScene);
+    this.game.scene.add(SceneKeys.CountEgg, CountEggScene);
   }
 
   private setupRouting(): void {

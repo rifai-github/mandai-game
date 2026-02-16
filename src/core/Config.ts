@@ -10,6 +10,7 @@ export enum SceneKeys {
   CatchFish = 'CatchFish',
   PaddleFood = 'PaddleFood',
   PinkParents = 'PinkParents',
+  CountEgg = 'CountEgg',
 }
 
 /** URL route paths mapped to each game */
@@ -18,6 +19,7 @@ export enum RoutePaths {
   CatchFish = '/catch-fish',
   PaddleFood = '/paddle-food',
   PinkParents = '/pink-parents',
+  CountEgg = '/count-egg',
 }
 
 /** Route-to-scene mapping entry */
@@ -105,6 +107,7 @@ export const ROUTE_TABLE: readonly RouteEntry[] = [
   { path: RoutePaths.CatchFish, sceneKey: SceneKeys.CatchFish, label: 'Catch Fish' },
   { path: RoutePaths.PaddleFood, sceneKey: SceneKeys.PaddleFood, label: 'Paddle Food' },
   { path: RoutePaths.PinkParents, sceneKey: SceneKeys.PinkParents, label: 'Pink Parents' },
+  { path: RoutePaths.CountEgg, sceneKey: SceneKeys.CountEgg, label: 'Count Egg' },
 ] as const;
 
 /** Per-scene instruction layout (position + style overrides) */
@@ -241,6 +244,24 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
         fontSize: '16px',
         color: '#515151',
         wordWrap: { width: 200, useAdvancedWrap: true },
+        align: 'center',
+      },
+    },
+  },
+  [SceneKeys.CountEgg]: {
+    position: { title: 100, instruction: 150 },
+    style: {
+      title: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '32px',
+        color: '#00437B',
+        fontStyle: 'bold',
+      },
+      instruction: {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#515151',
+        wordWrap: { width: 320, useAdvancedWrap: true },
         align: 'center',
       },
     },
