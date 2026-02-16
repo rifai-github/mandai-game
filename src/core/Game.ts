@@ -97,7 +97,7 @@ export class GameController {
     this.router = new Router();
 
     const config: Phaser.Types.Core.GameConfig = {
-      type: Phaser.AUTO,
+      type: Phaser.WEBGL,
       parent: 'game-container',
       width: GAME_WIDTH,
       height: GAME_HEIGHT,
@@ -113,8 +113,12 @@ export class GameController {
       },
       scene: [],
       render: {
-        pixelArt: false,
         antialias: true,
+        antialiasGL: true,
+        pixelArt: false,
+        roundPixels: false, // Disable untuk smooth rendering (tidak pixelated)
+        powerPreference: 'high-performance',
+        desynchronized: false
       },
     };
 
