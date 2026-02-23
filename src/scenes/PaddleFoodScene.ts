@@ -13,21 +13,21 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, ProgressBarHandle } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, ProgressBarHandle, scaleByHeight } from '../core/Config';
 
-import bgUrl from '../assets/images/PaddleFood/background.png';
-import duckIdleUrl from '../assets/images/PaddleFood/duck-idle.png';
-import duckSwimUrl from '../assets/images/PaddleFood/duck-swim.png';
-import duckFootUrl from '../assets/images/PaddleFood/duck-foot.png';
-import firstLandUrl from '../assets/images/PaddleFood/first-land.png';
-import asset1Url from '../assets/images/PaddleFood/asset1.png';
-import asset2Url from '../assets/images/PaddleFood/asset2.png';
-import finishSpotUrl from '../assets/images/PaddleFood/finish-spot.png';
+import bgVideoUrl from '../assets/videos/WingOfAsia/Background Gameplay.mp4';
+import duckIdleUrl from '../assets/images/WingOfAsia/duck-idle.png';
+import duckSwimUrl from '../assets/images/WingOfAsia/duck-swim.png';
+import duckFootUrl from '../assets/images/WingOfAsia/duck-foot.png';
+import firstLandUrl from '../assets/images/WingOfAsia/first-land.png';
+import asset1Url from '../assets/images/WingOfAsia/asset1.png';
+import asset2Url from '../assets/images/WingOfAsia/asset2.png';
+import finishSpotUrl from '../assets/images/WingOfAsia/finish-spot.png';
 
 /* ------------------------------------------------------------------ */
 /*  Texture keys                                                       */
 /* ------------------------------------------------------------------ */
-const TEX_BG = 'pf-bg';
+const VID_BG = 'pf-bg-video';
 const TEX_DUCK_IDLE = 'pf-duck-idle';
 const TEX_DUCK_SWIM = 'pf-duck-swim';
 const TEX_DUCK_FOOT = 'pf-duck-foot';
@@ -62,7 +62,7 @@ const FOOT_SCALE = 0.25;
 
 /** Duck is horizontally centred and vertically fixed */
 const DUCK_X = GAME_WIDTH / 2;
-const DUCK_Y = 430;
+const DUCK_Y = 460 * scaleByHeight;
 
 /** Height of the bottom tap-zone strip */
 const ZONE_HEIGHT = 180;
@@ -82,8 +82,9 @@ const SCROLL_PER_TAP = 50;
 const TOTAL_SCROLL = MAX_TAPS * SCROLL_PER_TAP;  // 1600 px
 
 /** Initial Y positions — tweak these to adjust spawn locations */
-const FINISH_Y0 = DUCK_Y - TOTAL_SCROLL;   // finish-spot start Y (scroll-math driven)
+const FINISH_Y0 = DUCK_Y - TOTAL_SCROLL + 20;   // finish-spot start Y (scroll-math driven)
 const FIRST_LAND_Y0 = DUCK_Y + 50;             // first-land start Y (just below duck)
+const FIRST_LAND_H = 380;                       // display height of first-land (adjust freely)
 const LANE_SPAWN_TOP = 200;                     // lane assets top-most spawn Y (≈ centre of screen)
 const LANE_SPAWN_BOT = DUCK_Y - 80;            // lane assets bottom-most spawn Y
 
@@ -95,11 +96,16 @@ const SCALE_Y_BOT = DUCK_Y;                  //  430  → full scale
 /** Lane assets (asset1/asset2) scale up to 1.2× the base scale */
 const LANE_MAX_SCALE = ASSET_SCALE * 1.2;         //  0.30
 
+/* Bottom overlay */
+const BOTTOM_OVERLAY_HEIGHT = 230 * scaleByHeight;
+const BOTTOM_OVERLAY_ALPHA = 0.5;
+
 /* Depth layers (back → front) ────────────────────────────────────── */
 const DEPTH_BG = 0;
+const DEPTH_OVERLAY = 7;
 const DEPTH_FIRST_LAND = 8;
-const DEPTH_ASSETS = 10;
-const DEPTH_FINISH = 12;
+const DEPTH_ASSETS = 5;
+const DEPTH_FINISH = 6;
 const DEPTH_DUCK = 20;
 const DEPTH_ZONE = 100;
 const DEPTH_FOOT = 101;
@@ -136,7 +142,8 @@ export class PaddleFoodScene extends BaseScene {
   /* ────────────────────────── preload ───────────────────────────── */
 
   preload(): void {
-    this.load.image(TEX_BG, bgUrl);
+    super.preload();
+    this.load.video(VID_BG, bgVideoUrl);
     this.load.image(TEX_DUCK_IDLE, duckIdleUrl);
     this.load.image(TEX_DUCK_SWIM, duckSwimUrl);
     this.load.image(TEX_DUCK_FOOT, duckFootUrl);
@@ -182,10 +189,19 @@ export class PaddleFoodScene extends BaseScene {
   /* ────────────────────────── background ────────────────────────── */
 
   private createBackground(): void {
-    const bg = this.add.image(0, 0, TEX_BG);
+    const bg = this.add.video(0, 0, VID_BG);
     bg.setOrigin(0, 0);
-    bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
     bg.setDepth(DEPTH_BG);
+    bg.setLoop(true);
+    bg.play();
+    bg.once('play', () => {
+      bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    });
+
+    const overlay = this.add.graphics();
+    overlay.fillStyle(0x000000, BOTTOM_OVERLAY_ALPHA);
+    overlay.fillRect(0, GAME_HEIGHT - BOTTOM_OVERLAY_HEIGHT, GAME_WIDTH, BOTTOM_OVERLAY_HEIGHT);
+    overlay.setDepth(DEPTH_OVERLAY);
   }
 
   /* ────────────────────────── track / lane assets ───────────────── */
@@ -196,9 +212,7 @@ export class PaddleFoodScene extends BaseScene {
     this.firstLand = this.add.image(DUCK_X, FIRST_LAND_Y0, TEX_FIRST_LAND);
     this.firstLand.setOrigin(0.5, 0);
     this.firstLand.setData('targetY', FIRST_LAND_Y0);
-    /* Scale uniformly so the image width equals the full game width */
-    const landScale = GAME_WIDTH / this.firstLand.width;
-    this.firstLand.setScale(landScale);
+    this.firstLand.setDisplaySize(GAME_WIDTH, FIRST_LAND_H);
     this.firstLand.setDepth(DEPTH_FIRST_LAND);
 
     /* finish-spot: centered X, tiny at game start, grows as it arrives */
@@ -282,7 +296,7 @@ export class PaddleFoodScene extends BaseScene {
   private createUI(): void {
     this.createInstructionUI('Paddle to the Food', 'Tap the screen to help the duck paddle towards the food.');
     this.progressBar = this.uiManager.createProgressBar({
-      x: 40, y: GAME_HEIGHT - ZONE_HEIGHT - 40, width: GAME_WIDTH - 80, height: 22,
+      x: 40, y: GAME_HEIGHT - ZONE_HEIGHT - 40, width: GAME_WIDTH - 80, height: 12,
     });
     this.progressBar.background.setDepth(DEPTH_FOOT + 1);
     this.progressBar.fill.setDepth(DEPTH_FOOT + 2);
@@ -482,13 +496,6 @@ export class PaddleFoodScene extends BaseScene {
       });
     }
 
-    this.time.delayedCall(950, () => {
-      this.uiManager.showPopup({
-        title: 'Well Done!',
-        message: 'The duck reached the food!',
-        buttonText: 'Play Again',
-        onClose: () => this.scene.restart(),
-      });
-    });
+    this.notifyGameCompleted(950);
   }
 }

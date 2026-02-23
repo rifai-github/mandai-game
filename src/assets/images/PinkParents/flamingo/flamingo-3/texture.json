@@ -1,0 +1,1279 @@
+{
+	"textures": [
+		{
+			"image": "texture",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "flamingo-3_00000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 952,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 1426,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 1900,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 2374,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 3322,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00008.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00009.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 792,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00010.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 1186,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00011.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 1580,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00012.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 1974,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00013.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 2368,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00014.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 2762,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00015.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 3156,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00016.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 3550,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00017.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00018.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 952,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00019.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 1426,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00020.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 1900,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00021.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2374,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00022.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00044.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 3322,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00045.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 792,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00046.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 1186,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00047.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 1580,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00048.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 1974,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00049.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 2368,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00050.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 2762,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00051.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 3156,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00052.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 3550,
+						"y": 478,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00053.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 792,
+						"y": 952,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00054.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00055.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00056.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00057.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00058.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00059.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00023.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00024.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00025.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00026.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00027.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00028.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00029.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00030.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00031.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00032.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00033.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00034.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00035.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00036.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00037.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00038.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00039.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00040.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00041.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00042.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				},
+				{
+					"filename": "flamingo-3_00043.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 386,
+						"h": 466
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 386,
+						"h": 466
+					},
+					"frame": {
+						"x": 398,
+						"y": 2848,
+						"w": 386,
+						"h": 466
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

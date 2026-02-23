@@ -97,9 +97,21 @@ export const FISH_COLORS: readonly number[] = [
   0xc490e4,
 ] as const;
 
-/** Game design resolution (portrait) */
-export const GAME_WIDTH = 480;
-export const GAME_HEIGHT = 854;
+export const multiplierResolution = 2;
+
+const DESIGN_WIDTH = 480 * multiplierResolution;
+const DESIGN_HEIGHT = 854 * multiplierResolution; //887
+
+// Calculate scale factor untuk memastikan game SELALU muat dalam viewport
+// Prioritaskan width mengikuti screen, height menyesuaikan
+export const GAME_WIDTH = window.innerWidth * multiplierResolution;
+export const GAME_HEIGHT = window.innerHeight * multiplierResolution;
+
+// Scale berdasarkan width agar full screen
+export const scaleByWidth = GAME_WIDTH / DESIGN_WIDTH * multiplierResolution;
+export const scaleByHeight = GAME_HEIGHT / DESIGN_HEIGHT * multiplierResolution;
+
+
 
 /** Route table used by the Router */
 export const ROUTE_TABLE: readonly RouteEntry[] = [
@@ -287,8 +299,8 @@ export const COLORS = {
   panelBackground: 0xffffff,
   overlayBlack: 0x000000,
   overlayAlpha: 0.6,
-  progressFill: 0x4caf50,
-  progressBackground: 0x333333,
+  progressFill: 0xFAD82C,
+  progressBackground: 0xFFFFFF,
   progressBorder: 0xffffff,
   successGreen: 0x27ae60,
   errorRed: 0xe74c3c,

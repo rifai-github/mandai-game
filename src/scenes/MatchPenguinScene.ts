@@ -14,17 +14,16 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, GAME_WIDTH, GAME_HEIGHT } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, scaleByHeight, multiplierResolution } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
 /* ------------------------------------------------------------------ */
 /*  Asset imports (resolved by Vite)                                   */
 /* ------------------------------------------------------------------ */
 
-import bgUrl from '../assets/images/MatchPenguin/background.png';
+import bgVideoUrl from '../assets/videos/MatchPenguin/Background Gameplay.mp4';
 import childSelectBgUrl from '../assets/images/MatchPenguin/background-selection-child.png';
 import dropAreaUrl from '../assets/images/MatchPenguin/drop-area.png';
-import iceUrl from '../assets/images/MatchPenguin/ice.png';
 import correctUrl from '../assets/images/MatchPenguin/correct.png';
 import tryAgainUrl from '../assets/images/MatchPenguin/try-again.png';
 import parentAUrl from '../assets/images/MatchPenguin/parent/Penguin-a.png';
@@ -82,31 +81,27 @@ const CHILD_URLS: Record<PenguinId, string> = {
 };
 
 /* Texture keys */
-const TEX_BG = 'mp-bg';
+const VID_BG = 'mp-bg-video';
 const TEX_CHILD_SELECT_BG = 'mp-child-select-bg';
 const TEX_DROP_AREA = 'mp-drop-area';
-const TEX_ICE = 'mp-ice';
 const TEX_CORRECT = 'mp-correct';
 const TEX_TRY_AGAIN = 'mp-try-again';
 const TEX_PARENT_PREFIX = 'mp-parent-';
 const TEX_CHILD_PREFIX = 'mp-child-';
 
 /* Layout */
-const PARENT_SCALE = 0.25;
-const PARENT_CENTER_Y = 360;
-const PARENT_OFFSCREEN_PADDING = 150;
-const DROP_AREA_SCALE = 0.35;
-const DROP_AREA_CENTER_Y = 520;
-const CHILD_SCALE = 0.25;
-const CHILD_ROW_Y = 740;
-const CHILD_MARGIN_X = 110;
-const CHILD_SELECT_BG_Y = 754;
-const CHILD_SELECT_BG_DISPLAY_H = 150;
-const ICE_SCALE = 0.35;
-const ICE_CENTER_Y = 480;
+const PARENT_SCALE = 0.25 * multiplierResolution;
+const PARENT_CENTER_Y = 380 * scaleByHeight;
+const PARENT_OFFSCREEN_PADDING = 150 * multiplierResolution;
+const DROP_AREA_SCALE = 0.35 * multiplierResolution;
+const DROP_AREA_CENTER_Y = 520 * scaleByHeight;
+const CHILD_SCALE = 0.25 * multiplierResolution;
+const CHILD_ROW_Y = 740 * scaleByHeight;
+const CHILD_MARGIN_X = 90 * multiplierResolution;
+const CHILD_SELECT_BG_Y = 754 * scaleByHeight;
+const CHILD_SELECT_BG_DISPLAY_H = 150 * scaleByHeight;
 
 /* Depth layers (back → front) */
-const DEPTH_ICE = 10;
 const DEPTH_DROP_AREA = 20;
 const DEPTH_PARENT = 30;
 const DEPTH_MATCHED_CHILD = 40;
@@ -120,12 +115,12 @@ const DRAGGING_ALPHA = 0.4;
 const MATCHED_ALPHA = 0.4;
 const TOAST_FLOAT_OFFSET = 40;
 const TOAST_DEPTH = 500;
-const TOAST_Y_OFFSET = -80;
+const TOAST_Y_OFFSET = PARENT_CENTER_Y - 480 * scaleByHeight;
 const CLONE_DEPTH = 100;
 const CELEBRATION_STAR_COUNT = 8;
 const CELEBRATION_DURATION = 600;
 const CELEBRATION_DEPTH = 200;
-const FINISH_POPUP_DELAY = 1200;
+
 
 /* ------------------------------------------------------------------ */
 /*  Scene                                                              */
@@ -155,10 +150,10 @@ export class MatchPenguinScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   preload(): void {
-    this.load.image(TEX_BG, bgUrl);
+    super.preload();
+    this.load.video(VID_BG, bgVideoUrl);
     this.load.image(TEX_CHILD_SELECT_BG, childSelectBgUrl);
     this.load.image(TEX_DROP_AREA, dropAreaUrl);
-    this.load.image(TEX_ICE, iceUrl);
     this.load.image(TEX_CORRECT, correctUrl);
     this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
 
@@ -198,20 +193,18 @@ export class MatchPenguinScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createBackground(): void {
-    const bg = this.add.image(0, 0, TEX_BG);
+    const bg = this.add.video(0, 0, VID_BG);
     bg.setOrigin(0, 0);
-    bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    bg.setLoop(true);
+    bg.play();
+    bg.once('play', () => {
+      bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    });
 
     this.createInstructionUI(
       'Match the Parents',
       'Match the penguin chick to the correct adult penguin. Drag the penguin chick onto the adult to create a match.',
     );
-
-    /* Ice platform: static, always centered */
-    const ice = this.add.image(this.cx, ICE_CENTER_Y, TEX_ICE);
-    ice.setOrigin(0.5);
-    ice.setScale(ICE_SCALE);
-    ice.setDepth(DEPTH_ICE);
 
     const selectBg = this.add.image(this.cx, CHILD_SELECT_BG_Y, TEX_CHILD_SELECT_BG);
     selectBg.setDisplaySize(GAME_WIDTH - 50, CHILD_SELECT_BG_DISPLAY_H);
@@ -497,14 +490,7 @@ export class MatchPenguinScene extends BaseScene {
     this.spawnCelebration(this.cx, this.h / 2);
     this.showFloatingText(this.cx, this.h / 2 - 40, 'All Matched!', '#ffffff');
 
-    this.time.delayedCall(FINISH_POPUP_DELAY, () => {
-      this.uiManager.showPopup({
-        title: 'Well Done!',
-        message: 'You matched all the penguins!',
-        buttonText: 'Play Again',
-        onClose: () => this.scene.restart(),
-      });
-    });
+    this.notifyGameCompleted();
   }
 
   /* ------------------------------------------------------------------ */
@@ -514,7 +500,7 @@ export class MatchPenguinScene extends BaseScene {
   private showToast(textureKey: string, x: number, y: number): void {
     const toast = this.add.image(x, y, textureKey);
     toast.setOrigin(0.5);
-    toast.setDisplaySize(109, 34);
+    toast.setDisplaySize(109 * multiplierResolution, 34 * multiplierResolution);
     toast.setDepth(TOAST_DEPTH);
 
     /* Phase 1: slide up */

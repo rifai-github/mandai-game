@@ -17,6 +17,9 @@ import {
   TEXT_STYLES,
   GAME_WIDTH,
   GAME_HEIGHT,
+  scaleByHeight,
+  scaleByWidth,
+  multiplierResolution,
 } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
@@ -24,21 +27,27 @@ import { AssetLoader } from '../systems/AssetLoader';
 /*  Asset imports (resolved by Vite)                                   */
 /* ------------------------------------------------------------------ */
 
-import birdUrl from '../assets/images/CatchFish/bird.png';
-import fishUrl from '../assets/images/CatchFish/fish.png';
-import increaseUrl from '../assets/images/CatchFish/increase.png';
-import progressBgUrl from '../assets/images/CatchFish/background-total.png';
-import bgUrl from '../assets/images/CatchFish/background.png';
+import birdUrl from '../assets/images/WingOfAsia/bird.png';
+import fishUrl from '../assets/images/WingOfAsia/fish.png';
+import increaseUrl from '../assets/images/WingOfAsia/increase.png';
+import progressBgUrl from '../assets/images/WingOfAsia/background-total.png';
+import bgVideoUrl from '../assets/videos/WingOfAsia/Background Gameplay.mp4';
+import asset1Url from '../assets/images/WingOfAsia/asset1.png';
+import asset2Url from '../assets/images/WingOfAsia/asset2.png';
+import asset3Url from '../assets/images/WingOfAsia/asset3.png';
 
 /* ------------------------------------------------------------------ */
 /*  Texture keys                                                       */
 /* ------------------------------------------------------------------ */
 
-const TEX_BG = 'cf-bg';
+const VID_BG = 'cf-bg-video';
 const TEX_BIRD = 'cf-bird';
 const TEX_FISH = 'cf-fish';
 const TEX_INCREASE = 'cf-increase';
 const TEX_PROGRESS_BG = 'cf-progress-bg';
+const TEX_ASSET1 = 'cf-asset1';
+const TEX_ASSET2 = 'cf-asset2';
+const TEX_ASSET3 = 'cf-asset3';
 
 /* ------------------------------------------------------------------ */
 /*  Layout                                                             */
@@ -46,23 +55,33 @@ const TEX_PROGRESS_BG = 'cf-progress-bg';
 
 /* Bird (player anchor, center of gameplay) */
 /* bird.png is 1196×604 → 0.18 yields ~215×109, ≈45% of game width (matches ice at ≈46%) */
-const BIRD_SCALE = 0.25;
-const BIRD_CENTER_Y = 480;
+const BIRD_SCALE = 0.25 * multiplierResolution;
+const BIRD_CENTER_Y = 480 * scaleByHeight;
 
 /* Fish spawning (relative to bird) */
 /* fish.png is 324×116 → 0.25 yields ~81×29 display */
-const FISH_SCALE = 0.25;
-const FISH_SPAWN_RADIUS_MIN = 100;
-const FISH_SPAWN_RADIUS_MAX = 200;
-const FISH_SPAWN_X_MARGIN = 60;
-const FISH_SPAWN_Y_MIN = 220;
+const FISH_SCALE = 0.25 * multiplierResolution;
+const FISH_SPAWN_RADIUS_MIN = 200;
+const FISH_SPAWN_RADIUS_MAX = 800;
+const FISH_SPAWN_X_MARGIN = 60 * scaleByWidth;
+const FISH_SPAWN_Y_MIN = 250 * scaleByHeight;
 const FISH_MIN_SPACING = 90;
 const FISH_SPAWN_MAX_ATTEMPTS = 15;
 
+/* Decorative assets */
+const DECOR_SCALE = 0.25 * multiplierResolution;
+const DECOR_DEPTH = 5;
+const ASSET1_X = 60 * scaleByWidth;
+const ASSET1_Y = 720 * scaleByHeight;
+const ASSET2_X = 100 * scaleByWidth;
+const ASSET2_Y = 200 * scaleByHeight;
+const ASSET3_X = 400 * scaleByWidth;
+const ASSET3_Y = 280 * scaleByHeight;
+
 /* Progress display (top-right) */
 /* background-total.png is 568×144 — use setDisplaySize for pixel-precise UI like MatchPenguin */
-const PROGRESS_BG_X = GAME_WIDTH - 100;
-const PROGRESS_BG_Y = 60;
+const PROGRESS_BG_X = GAME_WIDTH - 200;
+const PROGRESS_BG_Y = 50 * scaleByHeight;
 const PROGRESS_BG_DISPLAY_W = 137;
 const PROGRESS_BG_DISPLAY_H = 36;
 
@@ -71,7 +90,7 @@ const PROGRESS_BG_DISPLAY_H = 36;
 /* ------------------------------------------------------------------ */
 
 const DEPTH_BIRD = 20;
-const DEPTH_FISH = 10;
+const DEPTH_FISH = 4;
 const DEPTH_SPLASH = 50;
 const CELEBRATION_DEPTH = 200;
 const TOAST_DEPTH = 500;
@@ -80,9 +99,8 @@ const TOAST_DEPTH = 500;
 /*  Toast animation                                                    */
 /* ------------------------------------------------------------------ */
 
-const TOAST_FLOAT_OFFSET = 40;
-const TOAST_X_OFFSET = -80;
-const TOAST_Y_OFFSET = -30;
+const TOAST_FLOAT_OFFSET = 50;
+
 
 /* ------------------------------------------------------------------ */
 /*  Game constants                                                     */
@@ -92,7 +110,7 @@ const TARGET_CATCH = 10;
 const SPAWN_INTERVAL_MIN = 800;
 const SPAWN_INTERVAL_MAX = 1800;
 const FISH_LIFETIME = 3000;
-const FINISH_POPUP_DELAY = 1200;
+
 
 /* ------------------------------------------------------------------ */
 /*  Scene                                                              */
@@ -119,11 +137,15 @@ export class CatchFishScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   preload(): void {
-    this.load.image(TEX_BG, bgUrl);
+    super.preload();
+    this.load.video(VID_BG, bgVideoUrl);
     this.load.image(TEX_BIRD, birdUrl);
     this.load.image(TEX_FISH, fishUrl);
     this.load.image(TEX_INCREASE, increaseUrl);
     this.load.image(TEX_PROGRESS_BG, progressBgUrl);
+    this.load.image(TEX_ASSET1, asset1Url);
+    this.load.image(TEX_ASSET2, asset2Url);
+    this.load.image(TEX_ASSET3, asset3Url);
   }
 
   /* ------------------------------------------------------------------ */
@@ -139,6 +161,7 @@ export class CatchFishScene extends BaseScene {
 
     this.generateEffectAssets();
     this.drawBackground();
+    this.createDecorAssets();
     this.createUI();
     this.createBird();
     this.createProgress();
@@ -159,9 +182,42 @@ export class CatchFishScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private drawBackground(): void {
-    const bg = this.add.image(0, 0, TEX_BG);
+    const bg = this.add.video(0, 0, VID_BG);
     bg.setOrigin(0, 0);
-    bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    bg.setLoop(true);
+    bg.play();
+    bg.once('play', () => {
+      bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Decorative assets                                                  */
+  /* ------------------------------------------------------------------ */
+
+  private createDecorAssets(): void {
+    const defs = [
+      { key: TEX_ASSET1, x: ASSET1_X, y: ASSET1_Y },
+      { key: TEX_ASSET2, x: ASSET2_X, y: ASSET2_Y },
+      { key: TEX_ASSET3, x: ASSET3_X, y: ASSET3_Y },
+    ];
+
+    defs.forEach(({ key, x, y }, i) => {
+      const img = this.add.image(x, y, key);
+      img.setOrigin(0.5);
+      img.setScale(DECOR_SCALE);
+      img.setDepth(DECOR_DEPTH);
+
+      this.tweens.add({
+        targets: img,
+        y: y - 8,
+        duration: 2000,
+        ease: 'Sine.easeInOut',
+        yoyo: true,
+        repeat: -1,
+        delay: i * 400,
+      });
+    });
   }
 
   /* ------------------------------------------------------------------ */
@@ -193,7 +249,7 @@ export class CatchFishScene extends BaseScene {
   private createProgress(): void {
     const progressBg = this.add.image(PROGRESS_BG_X, PROGRESS_BG_Y, TEX_PROGRESS_BG);
     progressBg.setOrigin(0.5);
-    progressBg.setDisplaySize(PROGRESS_BG_DISPLAY_W, PROGRESS_BG_DISPLAY_H);
+    progressBg.setDisplaySize(PROGRESS_BG_DISPLAY_W * multiplierResolution, PROGRESS_BG_DISPLAY_H * multiplierResolution);
     progressBg.setDepth(1);
 
     this.progressText = this.add.text(
@@ -207,6 +263,7 @@ export class CatchFishScene extends BaseScene {
         fontStyle: 'bold',
       } as Phaser.Types.GameObjects.Text.TextStyle,
     );
+    this.progressText.setScale(multiplierResolution);
     this.progressText.setOrigin(0.5);
     this.progressText.setDepth(2);
   }
@@ -335,7 +392,7 @@ export class CatchFishScene extends BaseScene {
     this.caughtCount++;
     this.updateProgress();
 
-    this.showToast(TEX_INCREASE, this.birdSprite.x + TOAST_X_OFFSET, this.birdSprite.y + TOAST_Y_OFFSET);
+    this.showToast(TEX_INCREASE, fish.x, fish.y);
 
     if (this.caughtCount >= TARGET_CATCH) {
       this.handleWin();
@@ -371,7 +428,7 @@ export class CatchFishScene extends BaseScene {
   private showToast(textureKey: string, x: number, y: number): void {
     const toast = this.add.image(x, y, textureKey);
     toast.setOrigin(0.5);
-    toast.setDisplaySize(44, 44);
+    toast.setDisplaySize(30 * multiplierResolution, 30 * multiplierResolution);
     toast.setDepth(TOAST_DEPTH);
 
     this.tweens.add({
@@ -418,14 +475,7 @@ export class CatchFishScene extends BaseScene {
     this.spawnCelebration(this.birdSprite.x, this.birdSprite.y);
     this.showFloatingText(this.birdSprite.x, this.birdSprite.y - 40, 'All Caught!', '#ffffff');
 
-    this.time.delayedCall(FINISH_POPUP_DELAY, () => {
-      this.uiManager.showPopup({
-        title: 'Well Done!',
-        message: `You caught all ${TARGET_CATCH} fish!`,
-        buttonText: 'Play Again',
-        onClose: () => this.scene.restart(),
-      });
-    });
+    this.notifyGameCompleted();
   }
 
   /* ------------------------------------------------------------------ */

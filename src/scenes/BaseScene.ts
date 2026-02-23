@@ -9,9 +9,14 @@
  */
 
 import Phaser from 'phaser';
-import { GAME_WIDTH, GAME_HEIGHT, TEXT_STYLES, SCENE_INSTRUCTIONS } from '../core/Config';
+import { GAME_WIDTH, GAME_HEIGHT, TEXT_STYLES, SCENE_INSTRUCTIONS, scaleByHeight, scaleByWidth, multiplierResolution } from '../core/Config';
 import { UIManager } from '../systems/UIManager';
 import { InputManager } from '../systems/InputManager';
+
+import backButtonUrl from '../assets/images/back-button.png';
+
+const BACK_BTN_KEY = 'back-button';
+const BACK_BTN_DEPTH = 1000;
 
 export abstract class BaseScene extends Phaser.Scene {
   protected uiManager!: UIManager;
@@ -22,16 +27,36 @@ export abstract class BaseScene extends Phaser.Scene {
   /** Background color for the scene (override in subclass) */
   protected abstract get backgroundColor(): number;
 
+  preload(): void {
+    this.load.image(BACK_BTN_KEY, backButtonUrl);
+  }
+
   create(): void {
     this.cameras.main.setBackgroundColor(this.backgroundColor);
 
     this.uiManager = new UIManager(this);
     this.inputManager = new InputManager(this);
 
+    this.createBackButton();
     this.setupOrientationCheck();
 
     // Wire up shutdown cleanup
     this.events.on('shutdown', this.onShutdown, this);
+  }
+
+  private createBackButton(): void {
+    const x = 70 * scaleByWidth;
+    const y = 50 * scaleByHeight;
+
+    const btn = this.add.image(x, y, BACK_BTN_KEY);
+    btn.setOrigin(0.5);
+    btn.setDisplaySize(84 * multiplierResolution, 20 * multiplierResolution);
+    btn.setDepth(BACK_BTN_DEPTH);
+    btn.setInteractive({ useHandCursor: true });
+
+    btn.on('pointerdown', () => {
+      window.parent.postMessage({ type: 'BACK', timestamp: Date.now() }, '*');
+    });
   }
 
   /** Width of the game design canvas */
@@ -57,12 +82,15 @@ export abstract class BaseScene extends Phaser.Scene {
     const config = SCENE_INSTRUCTIONS[this.scene.key];
 
     const title = this.add
-      .text(this.cx, config.position.title, titleText, config.style.title)
-      .setOrigin(0.5);
-
+      .text(this.cx, config.position.title * scaleByHeight, titleText, config.style.title)
+      .setOrigin(0.5)
+      .setScale(multiplierResolution)
+      .setResolution(2);
     const instruction = this.add
-      .text(this.cx, config.position.instruction, instructionText, config.style.instruction)
-      .setOrigin(0.5);
+      .text(this.cx, config.position.instruction * scaleByHeight, instructionText, config.style.instruction)
+      .setOrigin(0.5)
+      .setScale(multiplierResolution)
+      .setResolution(2);
 
     return { title, instruction };
   }
@@ -99,6 +127,19 @@ export abstract class BaseScene extends Phaser.Scene {
   protected getQueryParam(param: string): string | null {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
+  }
+
+  /**
+   * Notify the parent frame that the game is completed.
+   * Waits `delay` ms (same timing as the old popup) before posting the message.
+   */
+  protected notifyGameCompleted(delay: number = 1000): void {
+    this.time.delayedCall(delay, () => {
+      window.parent.postMessage({
+        type: 'GAME_COMPLETED',
+        timestamp: Date.now(),
+      }, '*');
+    });
   }
 
   /** Create a tween that shakes an object horizontally */

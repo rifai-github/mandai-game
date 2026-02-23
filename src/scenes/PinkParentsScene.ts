@@ -12,20 +12,23 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, GAME_WIDTH, GAME_HEIGHT } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, scaleByWidth, scaleByHeight, multiplierResolution } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
 /* ------------------------------------------------------------------ */
 /*  Asset imports (resolved by Vite)                                   */
 /* ------------------------------------------------------------------ */
 
-import bgUrl from '../assets/images/PinkParents/background.png';
+import bgVideoUrl from '../assets/videos/PinkParents/Background Gameplay.mp4';
 import selectBgUrl from '../assets/images/PinkParents/background-selection.png';
 import correctUrl from '../assets/images/PinkParents/correct.png';
 import tryAgainUrl from '../assets/images/PinkParents/try-again.png';
-import flamingo1Url from '../assets/images/PinkParents/flamingo/flamingo-1.png';
-import flamingo2Url from '../assets/images/PinkParents/flamingo/flamingo-2.png';
-import flamingo3Url from '../assets/images/PinkParents/flamingo/flamingo-3.png';
+import flamingo1TextureUrl from '../assets/images/PinkParents/flamingo/flamingo-1/texture.png';
+import flamingo1Json from '../assets/images/PinkParents/flamingo/flamingo-1/texture.json';
+import flamingo2TextureUrl from '../assets/images/PinkParents/flamingo/flamingo-2/texture.png';
+import flamingo2Json from '../assets/images/PinkParents/flamingo/flamingo-2/texture.json';
+import flamingo3TextureUrl from '../assets/images/PinkParents/flamingo/flamingo-3/texture.png';
+import flamingo3Json from '../assets/images/PinkParents/flamingo/flamingo-3/texture.json';
 import color1Url from '../assets/images/PinkParents/color/pink-1.png';
 import color2Url from '../assets/images/PinkParents/color/pink-2.png';
 import color3Url from '../assets/images/PinkParents/color/pink-3.png';
@@ -58,10 +61,10 @@ interface FlamingoEntry {
 
 const FLAMINGO_IDS: readonly FlamingoId[] = ['1', '2', '3'];
 
-const FLAMINGO_URLS: Record<FlamingoId, string> = {
-  '1': flamingo1Url,
-  '2': flamingo2Url,
-  '3': flamingo3Url,
+const FLAMINGO_ATLAS: Record<FlamingoId, { texture: string; json: object }> = {
+  '1': { texture: flamingo1TextureUrl, json: flamingo1Json },
+  '2': { texture: flamingo2TextureUrl, json: flamingo2Json },
+  '3': { texture: flamingo3TextureUrl, json: flamingo3Json },
 };
 
 const COLOR_URLS: Record<FlamingoId, string> = {
@@ -71,7 +74,7 @@ const COLOR_URLS: Record<FlamingoId, string> = {
 };
 
 /* Texture keys */
-const TEX_BG = 'pp-bg';
+const VID_BG = 'pp-bg-video';
 const TEX_SELECT_BG = 'pp-select-bg';
 const TEX_CORRECT = 'pp-correct';
 const TEX_TRY_AGAIN = 'pp-try-again';
@@ -79,19 +82,26 @@ const TEX_FLAMINGO_PREFIX = 'pp-flamingo-';
 const TEX_COLOR_PREFIX = 'pp-color-';
 
 /* Layout */
-const FLAMINGO_SCALE = 0.25;
-const FLAMINGO_CENTER_Y = 450;
-const FLAMINGO_OFFSCREEN_PADDING = 150;
-const SELECT_BG_Y = 760;
-const SELECT_BG_DISPLAY_W = 337;
-const SELECT_BG_DISPLAY_H = 132;
-const SELECT_TEXT_Y = SELECT_BG_Y - 40;
-const COLOR_SCALE = 0.25;
-const COLOR_ROW_Y = SELECT_BG_Y + 20;
-const COLOR_MARGIN_X = 140;
+const FLAMINGO_SCALE = 0.66 * multiplierResolution;
+const FLAMINGO_CENTER_Y = 450 * scaleByHeight;
+const FLAMINGO_OFFSCREEN_PADDING = 150 * scaleByWidth;
+const SELECT_BG_Y = 760 * scaleByHeight;
+const SELECT_BG_DISPLAY_W = 337 * scaleByWidth;
+const SELECT_BG_DISPLAY_H = 132 * scaleByHeight;
+const SELECT_TEXT_Y = SELECT_BG_Y - 80;
+const COLOR_SCALE = 0.25 * multiplierResolution;
+const COLOR_ROW_Y = SELECT_BG_Y + 40;
+const COLOR_MARGIN_X = 140 * scaleByWidth;
 
 /* Depth layers (back → front) */
 const DEPTH_FLAMINGO = 30;
+
+/* Flamingo animation keys */
+const ANIM_FLAMINGO: Record<FlamingoId, string> = {
+  '1': 'pp-flamingo-1-idle',
+  '2': 'pp-flamingo-2-idle',
+  '3': 'pp-flamingo-3-idle',
+};
 
 /* Animation */
 const SLIDE_DURATION = 500;
@@ -99,11 +109,11 @@ const SLIDE_EASE = 'Cubic.easeOut';
 const SLIDE_OUT_DELAY = 200;
 const TOAST_FLOAT_OFFSET = 40;
 const TOAST_DEPTH = 500;
-const TOAST_Y_OFFSET = 230;
+const TOAST_Y_OFFSET = 230 * scaleByHeight;
 const CELEBRATION_STAR_COUNT = 8;
 const CELEBRATION_DURATION = 600;
 const CELEBRATION_DEPTH = 200;
-const FINISH_POPUP_DELAY = 1200;
+
 
 /* ------------------------------------------------------------------ */
 /*  Scene                                                              */
@@ -118,7 +128,7 @@ export class PinkParentsScene extends BaseScene {
   private colorSwatches: ColorSwatch[] = [];
   private flamingoQueue: FlamingoEntry[] = [];
   private activeFlamingoIndex = 0;
-  private activeFlamingoSprite: Phaser.GameObjects.Image | null = null;
+  private activeFlamingoSprite: Phaser.GameObjects.Sprite | null = null;
 
   constructor() {
     super({ key: SceneKeys.PinkParents });
@@ -129,13 +139,15 @@ export class PinkParentsScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   preload(): void {
-    this.load.image(TEX_BG, bgUrl);
+    super.preload();
+    this.load.video(VID_BG, bgVideoUrl);
     this.load.image(TEX_SELECT_BG, selectBgUrl);
     this.load.image(TEX_CORRECT, correctUrl);
     this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
 
     for (const id of FLAMINGO_IDS) {
-      this.load.image(TEX_FLAMINGO_PREFIX + id, FLAMINGO_URLS[id]);
+      const atlas = FLAMINGO_ATLAS[id];
+      this.load.atlas(TEX_FLAMINGO_PREFIX + id, atlas.texture, atlas.json as object);
       this.load.image(TEX_COLOR_PREFIX + id, COLOR_URLS[id]);
     }
   }
@@ -146,11 +158,30 @@ export class PinkParentsScene extends BaseScene {
 
   create(): void {
     super.create();
+    this.createFlamingoAnims();
     this.initState();
     this.createBackground();
     this.createColorSwatches();
     this.buildFlamingoQueue();
     this.spawnNextFlamingo();
+  }
+
+  private createFlamingoAnims(): void {
+    for (const id of FLAMINGO_IDS) {
+      if (this.anims.exists(ANIM_FLAMINGO[id])) continue;
+      this.anims.create({
+        key: ANIM_FLAMINGO[id],
+        frames: this.anims.generateFrameNames(TEX_FLAMINGO_PREFIX + id, {
+          prefix: `flamingo-${id}_`,
+          start: 0,
+          end: 59,
+          zeroPad: 5,
+          suffix: '.png',
+        }),
+        frameRate: 24,
+        repeat: -1,
+      });
+    }
   }
 
   private initState(): void {
@@ -166,9 +197,13 @@ export class PinkParentsScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createBackground(): void {
-    const bg = this.add.image(0, 0, TEX_BG);
+    const bg = this.add.video(0, 0, VID_BG);
     bg.setOrigin(0, 0);
-    bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    bg.setLoop(true);
+    bg.play();
+    bg.once('play', () => {
+      bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    });
 
     this.createInstructionUI(
       'Find the Pink Parents',
@@ -188,7 +223,9 @@ export class PinkParentsScene extends BaseScene {
         align: 'center',
         lineSpacing: 4,
       })
-      .setOrigin(0.5);
+      .setScale(2)
+      .setOrigin(0.5)
+      .setResolution(2);
   }
 
   /* ------------------------------------------------------------------ */
@@ -251,7 +288,7 @@ export class PinkParentsScene extends BaseScene {
     const startX = GAME_WIDTH + FLAMINGO_OFFSCREEN_PADDING;
 
     /* Flamingo: slides in from right */
-    const flamingoSprite = this.add.image(
+    const flamingoSprite = this.add.sprite(
       startX,
       FLAMINGO_CENTER_Y,
       TEX_FLAMINGO_PREFIX + flamingoData.id,
@@ -259,6 +296,7 @@ export class PinkParentsScene extends BaseScene {
     flamingoSprite.setOrigin(0.5);
     flamingoSprite.setScale(FLAMINGO_SCALE);
     flamingoSprite.setDepth(DEPTH_FLAMINGO);
+    flamingoSprite.play(ANIM_FLAMINGO[flamingoData.id]);
     this.activeFlamingoSprite = flamingoSprite;
 
     /* Slide in */
@@ -362,14 +400,7 @@ export class PinkParentsScene extends BaseScene {
 
     this.spawnCelebration(this.cx, this.h / 2);
 
-    this.time.delayedCall(FINISH_POPUP_DELAY, () => {
-      this.uiManager.showPopup({
-        title: 'Well Done!',
-        message: 'You matched all the flamingos!',
-        buttonText: 'Play Again',
-        onClose: () => this.scene.restart(),
-      });
-    });
+    this.notifyGameCompleted();
   }
 
   /* ------------------------------------------------------------------ */
@@ -379,7 +410,7 @@ export class PinkParentsScene extends BaseScene {
   private showToast(textureKey: string, x: number, y: number): void {
     const toast = this.add.image(x, y, textureKey);
     toast.setOrigin(0.5);
-    toast.setDisplaySize(109, 34);
+    toast.setDisplaySize(109 * multiplierResolution, 34 * multiplierResolution);
     toast.setDepth(TOAST_DEPTH);
 
     /* Phase 1: slide up */

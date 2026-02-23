@@ -112,6 +112,7 @@ export class CountEggScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   preload(): void {
+    super.preload();
     this.load.image(TEX_BG, bgUrl);
     this.load.image(TEX_BIRD, birdUrl);
     this.load.image(TEX_SUBMIT_BTN, submitBtnUrl);
@@ -563,14 +564,7 @@ export class CountEggScene extends BaseScene {
   private handleCorrectAnswer(): void {
     this.closeOverlay();
 
-    this.time.delayedCall(300, () => {
-      this.uiManager.showPopup({
-        title: 'Well Done!',
-        message: 'You counted the eggs correctly!',
-        buttonText: 'Play Again',
-        onClose: () => this.scene.restart(),
-      });
-    });
+    this.notifyGameCompleted(300);
   }
 
   private handleWrongAnswer(): void {

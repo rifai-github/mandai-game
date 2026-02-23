@@ -96,7 +96,7 @@ export class GameController {
   constructor() {
     this.router = new Router();
 
-    const config: Phaser.Types.Core.GameConfig = {
+    const config = {
       type: Phaser.WEBGL,
       parent: 'game-container',
       width: GAME_WIDTH,
@@ -107,6 +107,8 @@ export class GameController {
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: GAME_WIDTH,
         height: GAME_HEIGHT,
+        autoRound: false,
+        resolution: 2,
       },
       input: {
         activePointers: 2,
