@@ -13,7 +13,7 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, ProgressBarHandle, scaleByHeight } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, ProgressBarHandle, scaleByHeight, multiplierResolution } from '../core/Config';
 
 import bgVideoUrl from '../assets/videos/WingOfAsia/Background Gameplay.mp4';
 import duckIdleUrl from '../assets/images/WingOfAsia/duck-idle.png';
@@ -55,17 +55,17 @@ enum GameState {
 /* ------------------------------------------------------------------ */
 
 /** Base scale for all in-world sprites (duck, assets, finish, first-land) */
-const ASSET_SCALE = 0.25;
+const ASSET_SCALE = 0.25 * multiplierResolution;
 
 /** Foot button scale – left foot uses negative scaleX to mirror */
-const FOOT_SCALE = 0.25;
+const FOOT_SCALE = 0.25 * multiplierResolution;
 
 /** Duck is horizontally centred and vertically fixed */
 const DUCK_X = GAME_WIDTH / 2;
-const DUCK_Y = 460 * scaleByHeight;
+const DUCK_Y = 480 * scaleByHeight;
 
 /** Height of the bottom tap-zone strip */
-const ZONE_HEIGHT = 180;
+const ZONE_HEIGHT = 180 * multiplierResolution;
 
 /** Progress advances by BASE_STEP per correct tap */
 const BASE_STEP = 5;
@@ -78,15 +78,15 @@ const MAX_TAPS = MAX_PROGRESS / BASE_STEP;   // 20
  * finish-spot starts at DUCK_Y − (MAX_TAPS × SCROLL_PER_TAP),
  * so it arrives exactly at DUCK_Y on the winning tap.
  */
-const SCROLL_PER_TAP = 50;
+const SCROLL_PER_TAP = 50 * multiplierResolution;
 const TOTAL_SCROLL = MAX_TAPS * SCROLL_PER_TAP;  // 1600 px
 
 /** Initial Y positions — tweak these to adjust spawn locations */
 const FINISH_Y0 = DUCK_Y - TOTAL_SCROLL + 20;   // finish-spot start Y (scroll-math driven)
-const FIRST_LAND_Y0 = DUCK_Y + 50;             // first-land start Y (just below duck)
-const FIRST_LAND_H = 380;                       // display height of first-land (adjust freely)
-const LANE_SPAWN_TOP = 200;                     // lane assets top-most spawn Y (≈ centre of screen)
-const LANE_SPAWN_BOT = DUCK_Y - 80;            // lane assets bottom-most spawn Y
+const FIRST_LAND_Y0 = DUCK_Y + 100;             // first-land start Y (just below duck)
+const FIRST_LAND_H = 380 * multiplierResolution;                       // display height of first-land (adjust freely)
+const LANE_SPAWN_TOP = 500;                     // lane assets top-most spawn Y (≈ centre of screen)
+const LANE_SPAWN_BOT = DUCK_Y - 100;            // lane assets bottom-most spawn Y
 
 /* Pseudo-3D scale model ─────────────────────────────────────────── */
 /** scale = 0 at SCALE_Y_TOP, grows to max at SCALE_Y_BOT (duck level) */
@@ -97,7 +97,7 @@ const SCALE_Y_BOT = DUCK_Y;                  //  430  → full scale
 const LANE_MAX_SCALE = ASSET_SCALE * 1.2;         //  0.30
 
 /* Bottom overlay */
-const BOTTOM_OVERLAY_HEIGHT = 230 * scaleByHeight;
+const BOTTOM_OVERLAY_HEIGHT = 200 * scaleByHeight;
 const BOTTOM_OVERLAY_ALPHA = 0.5;
 
 /* Depth layers (back → front) ────────────────────────────────────── */
