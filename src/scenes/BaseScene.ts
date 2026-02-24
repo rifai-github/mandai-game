@@ -44,6 +44,8 @@ export abstract class BaseScene extends Phaser.Scene {
     this.events.on('shutdown', this.onShutdown, this);
   }
 
+  private backBtn: Phaser.GameObjects.Image | null = null;
+
   private createBackButton(): void {
     const x = 70 * scaleByWidth;
     const y = 50 * scaleByHeight;
@@ -57,6 +59,20 @@ export abstract class BaseScene extends Phaser.Scene {
     btn.on('pointerdown', () => {
       window.parent.postMessage({ type: 'BACK', timestamp: Date.now() }, '*');
     });
+
+    this.backBtn = btn;
+  }
+
+  /** Disable or re-enable the back button (use when showing a full-screen overlay). */
+  protected setBackButtonEnabled(enabled: boolean): void {
+    if (!this.backBtn) return;
+    if (enabled) {
+      this.backBtn.setInteractive({ useHandCursor: true });
+      this.backBtn.setAlpha(1);
+    } else {
+      this.backBtn.removeInteractive();
+      this.backBtn.setAlpha(0.3);
+    }
   }
 
   /** Width of the game design canvas */

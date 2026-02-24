@@ -271,7 +271,7 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
       },
       instruction: {
         fontFamily: "'MandaiValueSerif'",
-        fontSize: '16px',
+        fontSize: '13px',
         color: '#515151',
         wordWrap: { width: 320, useAdvancedWrap: true },
         align: 'center',
