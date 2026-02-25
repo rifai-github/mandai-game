@@ -211,6 +211,7 @@ export class CountEggScene extends BaseScene {
     const bg = this.add.video(0, 0, VID_BG);
     bg.setOrigin(0, 0);
     bg.setLoop(true);
+    if (bg.video) { bg.video.muted = true; bg.video.playsInline = true; }
     bg.play();
     bg.once('play', () => { bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT); });
 
@@ -270,11 +271,13 @@ export class CountEggScene extends BaseScene {
     container.setAlpha(0);
     this.tweens.add({
       targets: container, alpha: 1, duration: 200, ease: 'Power2',
-      onComplete: () => this.focusKbd(),
     });
 
     this.overlayContainer = container;
     this.attachKeyboard();
+    /* Focus immediately inside the user-gesture call stack (pointerup)
+       so mobile browsers allow the virtual keyboard to open. */
+    this.focusKbd();
   }
 
   private closeOverlay(): void {
@@ -422,9 +425,13 @@ export class CountEggScene extends BaseScene {
   private attachKeyboard(): void {
     const el = document.createElement('input');
     el.type = 'text';
+    el.autocomplete = 'off';
+    el.autocapitalize = 'characters';
     Object.assign(el.style, {
-      position: 'fixed', top: '-9999px', left: '-9999px',
-      opacity: '0', pointerEvents: 'none', zIndex: '-1',
+      position: 'fixed', bottom: '0', left: '50%',
+      width: '1px', height: '1px',
+      opacity: '0.01', zIndex: '-1',
+      fontSize: '16px',       // prevents iOS zoom on focus
     });
 
     /* Physical / desktop keyboard */

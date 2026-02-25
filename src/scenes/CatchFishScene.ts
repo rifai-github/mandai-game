@@ -185,6 +185,7 @@ export class CatchFishScene extends BaseScene {
     const bg = this.add.video(0, 0, VID_BG);
     bg.setOrigin(0, 0);
     bg.setLoop(true);
+    if (bg.video) { bg.video.muted = true; bg.video.playsInline = true; }
     bg.play();
     bg.once('play', () => {
       bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
