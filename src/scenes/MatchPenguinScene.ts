@@ -26,23 +26,15 @@ import childSelectBgUrl from '../assets/images/MatchPenguin/background-selection
 import dropAreaUrl from '../assets/images/MatchPenguin/drop-area.png';
 import correctUrl from '../assets/images/MatchPenguin/correct.png';
 import tryAgainUrl from '../assets/images/MatchPenguin/try-again.png';
-/* Parent atlas imports (3 atlases each, via glob) */
-const parentAPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-a/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
-const parentAJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-a/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
-const parentBPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-b/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
-const parentBJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-b/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
-const parentCPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-c/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
-const parentCJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-c/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+/* Parent atlas imports (2 combined atlases, mixed Penguin-a/b/c via glob) */
+const parentAtlasPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const parentAtlasJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
 
-/* Child atlas imports (1 atlas each) */
-import childAAtlasPng from '../assets/images/MatchPenguin/child/Sequence/Penguin-a/texture.png';
-import childAAtlasJson from '../assets/images/MatchPenguin/child/Sequence/Penguin-a/texture.json';
-import childBAtlasPng from '../assets/images/MatchPenguin/child/Sequence/Penguin-b/texture.png';
-import childBAtlasJson from '../assets/images/MatchPenguin/child/Sequence/Penguin-b/texture.json';
-import childCAtlasPng from '../assets/images/MatchPenguin/child/Sequence/Penguin-c/texture.png';
-import childCAtlasJson from '../assets/images/MatchPenguin/child/Sequence/Penguin-c/texture.json';
+/* Child atlas imports (1 combined atlas, mixed Penguin-a/b/c) */
+import childAtlasPng from '../assets/images/MatchPenguin/child/Sequence/texture.png';
+import childAtlasJson from '../assets/images/MatchPenguin/child/Sequence/texture.json';
 
-/* Helper: sort glob atlas pairs by texture index */
+/* Helper: sort glob-imported atlas pairs by texture index */
 function sortedAtlasPairs(
   pngs: Record<string, string>,
   jsons: Record<string, object>,
@@ -91,19 +83,8 @@ interface ActiveDrag {
 
 const PENGUIN_IDS: readonly PenguinId[] = ['a', 'b', 'c'];
 
-/* Sorted atlas pairs per parent variant */
-const PARENT_ATLAS_PAIRS: Record<PenguinId, { png: string; json: object }[]> = {
-  a: sortedAtlasPairs(parentAPngs, parentAJsons),
-  b: sortedAtlasPairs(parentBPngs, parentBJsons),
-  c: sortedAtlasPairs(parentCPngs, parentCJsons),
-};
-
-/* Child atlas data (single atlas each) */
-const CHILD_ATLAS_DATA: Record<PenguinId, { png: string; json: object }> = {
-  a: { png: childAAtlasPng, json: childAAtlasJson as object },
-  b: { png: childBAtlasPng, json: childBAtlasJson as object },
-  c: { png: childCAtlasPng, json: childCAtlasJson as object },
-};
+/* Sorted parent atlas pairs */
+const PARENT_ATLAS_PAIRS = sortedAtlasPairs(parentAtlasPngs, parentAtlasJsons);
 
 /* Texture keys */
 const VID_BG = 'mp-bg-video';
@@ -112,7 +93,7 @@ const TEX_DROP_AREA = 'mp-drop-area';
 const TEX_CORRECT = 'mp-correct';
 const TEX_TRY_AGAIN = 'mp-try-again';
 const TEX_PARENT_ATLAS_PREFIX = 'mp-parent-atlas-';
-const TEX_CHILD_ATLAS_PREFIX = 'mp-child-atlas-';
+const TEX_CHILD_ATLAS = 'mp-child-atlas';
 
 /* Animation keys */
 const ANIM_PARENT: Record<PenguinId, string> = { a: 'mp-anim-parent-a', b: 'mp-anim-parent-b', c: 'mp-anim-parent-c' };
@@ -120,12 +101,12 @@ const ANIM_CHILD: Record<PenguinId, string> = { a: 'mp-anim-child-a', b: 'mp-ani
 const PENGUIN_ANIM_FRAMERATE = 24;
 
 /* Layout */
-const PARENT_SCALE = 0.25 * multiplierResolution;
+const PARENT_SCALE = 0.5 * multiplierResolution;
 const PARENT_CENTER_Y = 380 * scaleByHeight;
 const PARENT_OFFSCREEN_PADDING = 150 * multiplierResolution;
 const DROP_AREA_SCALE = 0.35 * multiplierResolution;
 const DROP_AREA_CENTER_Y = 520 * scaleByHeight;
-const CHILD_SCALE = 0.25 * multiplierResolution;
+const CHILD_SCALE = 0.5 * multiplierResolution;
 const CHILD_ROW_Y = 740 * scaleByHeight;
 const CHILD_MARGIN_X = 90 * multiplierResolution;
 const CHILD_SELECT_BG_Y = 754 * scaleByHeight;
@@ -187,16 +168,12 @@ export class MatchPenguinScene extends BaseScene {
     this.load.image(TEX_CORRECT, correctUrl);
     this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
 
-    for (const id of PENGUIN_IDS) {
-      /* Parent atlases (3 per variant) */
-      const pairs = PARENT_ATLAS_PAIRS[id];
-      pairs.forEach((pair, i) => {
-        this.load.atlas(`${TEX_PARENT_ATLAS_PREFIX}${id}-${i}`, pair.png, pair.json);
-      });
-      /* Child atlas (1 per variant) */
-      const child = CHILD_ATLAS_DATA[id];
-      this.load.atlas(`${TEX_CHILD_ATLAS_PREFIX}${id}`, child.png, child.json);
-    }
+    /* Parent atlases (2 combined, mixed Penguin-a/b/c) */
+    PARENT_ATLAS_PAIRS.forEach((pair, i) => {
+      this.load.atlas(`${TEX_PARENT_ATLAS_PREFIX}${i}`, pair.png, pair.json);
+    });
+    /* Child atlas (1 combined, mixed Penguin-a/b/c) */
+    this.load.atlas(TEX_CHILD_ATLAS, childAtlasPng, childAtlasJson as object);
   }
 
   /* ------------------------------------------------------------------ */
@@ -252,31 +229,42 @@ export class MatchPenguinScene extends BaseScene {
   /*  Animations                                                         */
   /* ------------------------------------------------------------------ */
 
+  /** Collect frames from the combined parent atlases, filtered by name, sorted globally by frame number. */
+  private buildParentFrames(filter: string): Phaser.Types.Animations.AnimationFrame[] {
+    const collected: { key: string; frame: string }[] = [];
+    for (let i = 0; i < PARENT_ATLAS_PAIRS.length; i++) {
+      const key = `${TEX_PARENT_ATLAS_PREFIX}${i}`;
+      const names = this.textures.get(key).getFrameNames()
+        .filter((n) => n !== '__BASE' && n.includes(filter));
+      names.forEach((name) => collected.push({ key, frame: name }));
+    }
+    collected.sort((a, b) => {
+      const numA = parseInt(a.frame.match(/(\d+)\.png$/)?.[1] ?? '0', 10);
+      const numB = parseInt(b.frame.match(/(\d+)\.png$/)?.[1] ?? '0', 10);
+      return numA - numB;
+    });
+    return collected;
+  }
+
   private createAnims(): void {
     for (const id of PENGUIN_IDS) {
-      /* Parent animation (multi-atlas) */
-      const parentFrames: Phaser.Types.Animations.AnimationFrame[] = [];
-      const pairs = PARENT_ATLAS_PAIRS[id];
-      for (let i = 0; i < pairs.length; i++) {
-        const key = `${TEX_PARENT_ATLAS_PREFIX}${id}-${i}`;
-        const names = this.textures.get(key).getFrameNames()
-          .filter((n) => n !== '__BASE')
-          .sort();
-        names.forEach((name) => parentFrames.push({ key, frame: name }));
-      }
+      /* Parent animation (filtered from combined atlases) */
       this.anims.create({
         key: ANIM_PARENT[id],
-        frames: parentFrames,
+        frames: this.buildParentFrames(`Penguin-${id}`),
         frameRate: PENGUIN_ANIM_FRAMERATE,
         repeat: -1,
       });
 
-      /* Child animation (single atlas) */
-      const childKey = `${TEX_CHILD_ATLAS_PREFIX}${id}`;
-      const childNames = this.textures.get(childKey).getFrameNames()
-        .filter((n) => n !== '__BASE')
-        .sort();
-      const childFrames = childNames.map((name) => ({ key: childKey, frame: name }));
+      /* Child animation (filtered from combined atlas, sorted by frame number) */
+      const childNames = this.textures.get(TEX_CHILD_ATLAS).getFrameNames()
+        .filter((n) => n !== '__BASE' && n.includes(`Penguin-${id}`))
+        .sort((a, b) => {
+          const numA = parseInt(a.match(/(\d+)\.png$/)?.[1] ?? '0', 10);
+          const numB = parseInt(b.match(/(\d+)\.png$/)?.[1] ?? '0', 10);
+          return numA - numB;
+        });
+      const childFrames = childNames.map((name) => ({ key: TEX_CHILD_ATLAS, frame: name }));
       this.anims.create({
         key: ANIM_CHILD[id],
         frames: childFrames,
@@ -301,7 +289,7 @@ export class MatchPenguinScene extends BaseScene {
 
     this.babies = shuffled.map((id, i) => {
       const pos = positions[i];
-      const sprite = this.add.sprite(pos.x, pos.y, `${TEX_CHILD_ATLAS_PREFIX}${id}`);
+      const sprite = this.add.sprite(pos.x, pos.y, TEX_CHILD_ATLAS);
       sprite.setOrigin(0.5);
       sprite.setScale(CHILD_SCALE);
       sprite.setInteractive({ useHandCursor: true });
@@ -355,7 +343,7 @@ export class MatchPenguinScene extends BaseScene {
     this.dropAreaSprite = dropArea;
 
     /* Parent: slides in from right, stands on ice */
-    const parentSprite = this.add.sprite(startX, PARENT_CENTER_Y, `${TEX_PARENT_ATLAS_PREFIX}${parentData.id}-0`);
+    const parentSprite = this.add.sprite(startX, PARENT_CENTER_Y, `${TEX_PARENT_ATLAS_PREFIX}0`);
     parentSprite.setOrigin(0.5);
     parentSprite.setScale(PARENT_SCALE);
     parentSprite.setDepth(DEPTH_PARENT);
@@ -403,7 +391,7 @@ export class MatchPenguinScene extends BaseScene {
 
     baby.sprite.setAlpha(DRAGGING_ALPHA);
 
-    const clone = this.add.sprite(pointer.x, pointer.y, `${TEX_CHILD_ATLAS_PREFIX}${baby.id}`);
+    const clone = this.add.sprite(pointer.x, pointer.y, TEX_CHILD_ATLAS);
     clone.setOrigin(0.5);
     clone.setScale(CHILD_SCALE * 1.8);
     clone.setDepth(CLONE_DEPTH);

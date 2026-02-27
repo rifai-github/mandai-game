@@ -24,13 +24,13 @@ import asset1Url from '../assets/images/WingOfAsia/asset1.png';
 import asset2Url from '../assets/images/WingOfAsia/asset2.png';
 import finishSpotUrl from '../assets/images/WingOfAsia/finish-spot.png';
 
-/* Duck animation atlases (loaded via Vite glob — 15 atlas pairs, mixed Idle+Swim) */
+/* Duck animation atlases (loaded via Vite glob — 3 atlas pairs, mixed Idle+Swim) */
 const duckAtlasPngs = import.meta.glob(
-  '../assets/images/WingOfAsia/Sequence/Duck/texture-*.png',
+  '../assets/images/WingOfAsia/Sequence/duck_new/texture-*.png',
   { eager: true, import: 'default' },
 ) as Record<string, string>;
 const duckAtlasJsons = import.meta.glob(
-  '../assets/images/WingOfAsia/Sequence/Duck/texture-*.json',
+  '../assets/images/WingOfAsia/Sequence/duck_new/texture-*.json',
   { eager: true, import: 'default' },
 ) as Record<string, object>;
 
@@ -86,6 +86,7 @@ enum GameState {
 
 /** Base scale for all in-world sprites (duck, assets, finish, first-land) */
 const ASSET_SCALE = 0.25 * multiplierResolution;
+const DUCK_SCALE = 0.5 * multiplierResolution;
 
 /** Foot button scale – left foot uses negative scaleX to mirror */
 const FOOT_SCALE = 0.25 * multiplierResolution;
@@ -305,15 +306,20 @@ export class PaddleFoodScene extends BaseScene {
     const atlasCount = Object.keys(duckAtlasPngs).length;
 
     const buildFrames = (filter: string): Phaser.Types.Animations.AnimationFrame[] => {
-      const frames: Phaser.Types.Animations.AnimationFrame[] = [];
+      const collected: { key: string; frame: string }[] = [];
       for (let i = 0; i < atlasCount; i++) {
         const key = `${TEX_DUCK_ATLAS_PREFIX}${i}`;
         const names = this.textures.get(key).getFrameNames()
-          .filter((n) => n !== '__BASE' && n.includes(filter))
-          .sort();
-        names.forEach((name) => frames.push({ key, frame: name }));
+          .filter((n) => n !== '__BASE' && n.includes(filter));
+        names.forEach((name) => collected.push({ key, frame: name }));
       }
-      return frames;
+      /* Sort globally by the numeric suffix in the frame name */
+      collected.sort((a, b) => {
+        const numA = parseInt(a.frame.match(/(\d+)\.png$/)?.[1] ?? '0', 10);
+        const numB = parseInt(b.frame.match(/(\d+)\.png$/)?.[1] ?? '0', 10);
+        return numA - numB;
+      });
+      return collected;
     };
 
     if (!this.anims.exists(ANIM_DUCK_IDLE)) {
@@ -340,7 +346,7 @@ export class PaddleFoodScene extends BaseScene {
   private createDuck(): void {
     this.duck = this.add.sprite(DUCK_X, DUCK_Y, `${TEX_DUCK_ATLAS_PREFIX}0`);
     this.duck.setOrigin(0.5);
-    this.duck.setScale(ASSET_SCALE);
+    this.duck.setScale(DUCK_SCALE);
     this.duck.setDepth(DEPTH_DUCK);
     this.duck.play(ANIM_DUCK_IDLE);
   }

@@ -1,0 +1,355 @@
+{
+	"textures": [
+		{
+			"image": "texture-9",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Bird/Fly_00052.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00053.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 4,
+						"y": 929,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00054.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 4,
+						"y": 1854,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00055.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 4,
+						"y": 2779,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00056.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 929,
+						"y": 4,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00057.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 1854,
+						"y": 4,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00058.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 2779,
+						"y": 4,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00059.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 929,
+						"y": 929,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00060.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 929,
+						"y": 1854,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00061.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 929,
+						"y": 2779,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00062.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 1854,
+						"y": 929,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00063.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 2779,
+						"y": 929,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00064.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 1854,
+						"y": 1854,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00065.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 1854,
+						"y": 2779,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00066.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 2779,
+						"y": 1854,
+						"w": 917,
+						"h": 917
+					}
+				},
+				{
+					"filename": "Bird/Fly_00067.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 917,
+						"h": 917
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 917,
+						"h": 917
+					},
+					"frame": {
+						"x": 2779,
+						"y": 2779,
+						"w": 917,
+						"h": 917
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}
