@@ -40,6 +40,12 @@ export abstract class BaseScene extends Phaser.Scene {
     this.createBackButton();
     this.setupOrientationCheck();
 
+    // Notify parent that the game is ready (fires after subclass create() completes)
+    this.events.once('update', () => {
+      console.log('send message GAME_READY to parent');
+      window.parent.postMessage({ type: 'GAME_READY', timestamp: Date.now() }, '*');
+    });
+
     // Wire up shutdown cleanup
     this.events.on('shutdown', this.onShutdown, this);
   }

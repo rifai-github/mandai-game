@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "texture-7",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle28.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle29.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 4,
+						"y": 1466,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle30.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 1466,
+						"y": 4,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle31.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 1466,
+						"y": 1466,
+						"w": 1454,
+						"h": 1454
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

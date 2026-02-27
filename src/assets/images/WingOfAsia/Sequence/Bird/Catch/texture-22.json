@@ -1,0 +1,61 @@
+{
+	"textures": [
+		{
+			"image": "texture-22",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Bird-Catch/Bird-Catch88.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 2000,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 2000,
+						"h": 1835
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 2000,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Catch/Bird-Catch89.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 2000,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 2000,
+						"h": 1835
+					},
+					"frame": {
+						"x": 2012,
+						"y": 4,
+						"w": 2000,
+						"h": 1835
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

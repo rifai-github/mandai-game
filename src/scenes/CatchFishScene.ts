@@ -35,6 +35,39 @@ import bgVideoUrl from '../assets/videos/WingOfAsia/Background Gameplay.mp4';
 import asset1Url from '../assets/images/WingOfAsia/asset1.png';
 import asset2Url from '../assets/images/WingOfAsia/asset2.png';
 import asset3Url from '../assets/images/WingOfAsia/asset3.png';
+import waterUrl from '../assets/images/WingOfAsia/air.png';
+
+/* Fish animation atlases */
+import fishAtlasPng from '../assets/images/WingOfAsia/Sequence/Fish/texture.png';
+import fishAtlasJson from '../assets/images/WingOfAsia/Sequence/Fish/texture.json';
+import fish2Atlas0Png from '../assets/images/WingOfAsia/Sequence/Fish2/texture-0.png';
+import fish2Atlas0Json from '../assets/images/WingOfAsia/Sequence/Fish2/texture-0.json';
+import fish2Atlas1Png from '../assets/images/WingOfAsia/Sequence/Fish2/texture-1.png';
+import fish2Atlas1Json from '../assets/images/WingOfAsia/Sequence/Fish2/texture-1.json';
+import fish2Atlas2Png from '../assets/images/WingOfAsia/Sequence/Fish2/texture-2.png';
+import fish2Atlas2Json from '../assets/images/WingOfAsia/Sequence/Fish2/texture-2.json';
+
+/* Bird animation atlases (loaded via Vite glob — 48 atlas pairs) */
+const birdIdlePngs = import.meta.glob('../assets/images/WingOfAsia/Sequence/Bird/Idle/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const birdIdleJsons = import.meta.glob('../assets/images/WingOfAsia/Sequence/Bird/Idle/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+const birdCatchPngs = import.meta.glob('../assets/images/WingOfAsia/Sequence/Bird/Catch/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const birdCatchJsons = import.meta.glob('../assets/images/WingOfAsia/Sequence/Bird/Catch/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+const birdFlyPngs = import.meta.glob('../assets/images/WingOfAsia/Sequence/Bird/Fly/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const birdFlyJsons = import.meta.glob('../assets/images/WingOfAsia/Sequence/Bird/Fly/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+
+/** Sort glob-imported atlas pairs by texture index (texture-0, texture-1, …) */
+function sortedAtlasPairs(
+  pngs: Record<string, string>,
+  jsons: Record<string, object>,
+): Array<{ png: string; json: object }> {
+  const idx = (p: string) => parseInt(p.match(/texture-(\d+)\./)?.[1] ?? '0', 10);
+  return Object.keys(pngs)
+    .sort((a, b) => idx(a) - idx(b))
+    .map((pngPath) => ({
+      png: pngs[pngPath],
+      json: jsons[pngPath.replace('.png', '.json')],
+    }));
+}
 
 /* ------------------------------------------------------------------ */
 /*  Texture keys                                                       */
@@ -48,6 +81,24 @@ const TEX_PROGRESS_BG = 'cf-progress-bg';
 const TEX_ASSET1 = 'cf-asset1';
 const TEX_ASSET2 = 'cf-asset2';
 const TEX_ASSET3 = 'cf-asset3';
+const TEX_WATER = 'cf-water';
+
+/* Fish animation atlas keys */
+const TEX_FISH_ATLAS = 'cf-fish-atlas';
+const TEX_FISH2_ATLAS_0 = 'cf-fish2-atlas-0';
+const TEX_FISH2_ATLAS_1 = 'cf-fish2-atlas-1';
+const TEX_FISH2_ATLAS_2 = 'cf-fish2-atlas-2';
+const ANIM_FISH = 'cf-fish-swim';
+const ANIM_FISH2 = 'cf-fish2-swim';
+
+/* Bird animation atlas keys & anim keys */
+const TEX_BIRD_IDLE_PREFIX = 'cf-bird-idle-';
+const TEX_BIRD_CATCH_PREFIX = 'cf-bird-catch-';
+const TEX_BIRD_FLY_PREFIX = 'cf-bird-fly-';
+const ANIM_BIRD_IDLE = 'cf-bird-idle';
+const ANIM_BIRD_CATCH = 'cf-bird-catch';
+const ANIM_BIRD_FLY = 'cf-bird-fly';
+const BIRD_ANIM_FRAMERATE = 24;
 
 /* ------------------------------------------------------------------ */
 /*  Layout                                                             */
@@ -59,14 +110,24 @@ const BIRD_SCALE = 0.25 * multiplierResolution;
 const BIRD_CENTER_Y = 480 * scaleByHeight;
 
 /* Fish spawning (relative to bird) */
-/* fish.png is 324×116 → 0.25 yields ~81×29 display */
+/* Fish atlas frames are 335×120 → 0.25 yields ~84×30 display */
 const FISH_SCALE = 0.25 * multiplierResolution;
+/* Fish2 atlas frames are 600×623 → 0.14 yields ~84×87 display (comparable width) */
+const FISH2_SCALE = 0.20 * multiplierResolution;
+const FISH_ANIM_FRAMERATE = 24;
+/* Fish2 has 121 frames — use higher fps so full animation plays within FISH_LIFETIME (3s) */
+const FISH2_ANIM_FRAMERATE = 41;
 const FISH_SPAWN_RADIUS_MIN = 200;
 const FISH_SPAWN_RADIUS_MAX = 800;
 const FISH_SPAWN_X_MARGIN = 60 * scaleByWidth;
 const FISH_SPAWN_Y_MIN = 250 * scaleByHeight;
 const FISH_MIN_SPACING = 90;
 const FISH_SPAWN_MAX_ATTEMPTS = 15;
+
+/* Water surface (centered horizontally, adjustable Y) */
+const WATER_Y = 560 * scaleByHeight;
+const WATER_SCALE = 0.25 * multiplierResolution;
+const DEPTH_WATER = 25;
 
 /* Decorative assets */
 const DECOR_SCALE = 0.25 * multiplierResolution;
@@ -124,9 +185,9 @@ export class CatchFishScene extends BaseScene {
   private caughtCount = 0;
   private progressText!: Phaser.GameObjects.Text;
   private spawnTimer!: Phaser.Time.TimerEvent;
-  private activeFish: Phaser.GameObjects.Image[] = [];
+  private activeFish: Phaser.GameObjects.Sprite[] = [];
   private isGameOver = false;
-  private birdSprite!: Phaser.GameObjects.Image;
+  private birdSprite!: Phaser.GameObjects.Sprite;
 
   constructor() {
     super({ key: SceneKeys.CatchFish });
@@ -146,6 +207,23 @@ export class CatchFishScene extends BaseScene {
     this.load.image(TEX_ASSET1, asset1Url);
     this.load.image(TEX_ASSET2, asset2Url);
     this.load.image(TEX_ASSET3, asset3Url);
+    this.load.image(TEX_WATER, waterUrl);
+
+    /* Fish animation atlases */
+    this.load.atlas(TEX_FISH_ATLAS, fishAtlasPng, fishAtlasJson as object);
+    this.load.atlas(TEX_FISH2_ATLAS_0, fish2Atlas0Png, fish2Atlas0Json as object);
+    this.load.atlas(TEX_FISH2_ATLAS_1, fish2Atlas1Png, fish2Atlas1Json as object);
+    this.load.atlas(TEX_FISH2_ATLAS_2, fish2Atlas2Png, fish2Atlas2Json as object);
+
+    /* Bird animation atlases */
+    const loadAtlasPairs = (prefix: string, pngs: Record<string, string>, jsons: Record<string, object>) => {
+      sortedAtlasPairs(pngs, jsons).forEach((pair, i) => {
+        this.load.atlas(`${prefix}${i}`, pair.png, pair.json);
+      });
+    };
+    loadAtlasPairs(TEX_BIRD_IDLE_PREFIX, birdIdlePngs, birdIdleJsons);
+    loadAtlasPairs(TEX_BIRD_CATCH_PREFIX, birdCatchPngs, birdCatchJsons);
+    loadAtlasPairs(TEX_BIRD_FLY_PREFIX, birdFlyPngs, birdFlyJsons);
   }
 
   /* ------------------------------------------------------------------ */
@@ -160,7 +238,10 @@ export class CatchFishScene extends BaseScene {
     this.isGameOver = false;
 
     this.generateEffectAssets();
+    this.createFishAnims();
+    this.createBirdAnims();
     this.drawBackground();
+    this.createWater();
     this.createDecorAssets();
     this.createUI();
     this.createBird();
@@ -178,6 +259,114 @@ export class CatchFishScene extends BaseScene {
   }
 
   /* ------------------------------------------------------------------ */
+  /*  Fish sprite animations                                             */
+  /* ------------------------------------------------------------------ */
+
+  private createFishAnims(): void {
+    /* Fish (single atlas, 61 frames: Fish00–Fish60) */
+    if (!this.anims.exists(ANIM_FISH)) {
+      this.anims.create({
+        key: ANIM_FISH,
+        frames: this.anims.generateFrameNames(TEX_FISH_ATLAS, {
+          prefix: 'Fish',
+          start: 0,
+          end: 60,
+          zeroPad: 2,
+          suffix: '.png',
+        }),
+        frameRate: FISH_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+    }
+
+    /* Fish2 (3 atlases, 121 frames: Fish2000–Fish2120) */
+    if (!this.anims.exists(ANIM_FISH2)) {
+      const fish2Frames = [
+        ...this.anims.generateFrameNames(TEX_FISH2_ATLAS_0, {
+          prefix: 'Fish2',
+          start: 0,
+          end: 35,
+          zeroPad: 3,
+          suffix: '.png',
+        }),
+        ...this.anims.generateFrameNames(TEX_FISH2_ATLAS_1, {
+          prefix: 'Fish2',
+          start: 36,
+          end: 71,
+          zeroPad: 3,
+          suffix: '.png',
+        }),
+        ...this.anims.generateFrameNames(TEX_FISH2_ATLAS_2, {
+          prefix: 'Fish2',
+          start: 72,
+          end: 120,
+          zeroPad: 3,
+          suffix: '.png',
+        }),
+      ];
+      this.anims.create({
+        key: ANIM_FISH2,
+        frames: fish2Frames,
+        frameRate: FISH2_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Bird sprite animations                                             */
+  /* ------------------------------------------------------------------ */
+
+  /** Collect sorted frame names from a set of numbered atlases. */
+  private buildMultiAtlasFrames(
+    prefix: string,
+    count: number,
+  ): Phaser.Types.Animations.AnimationFrame[] {
+    const frames: Phaser.Types.Animations.AnimationFrame[] = [];
+    for (let i = 0; i < count; i++) {
+      const key = `${prefix}${i}`;
+      const names = this.textures.get(key).getFrameNames()
+        .filter((n) => n !== '__BASE')
+        .sort();
+      names.forEach((name) => frames.push({ key, frame: name }));
+    }
+    return frames;
+  }
+
+  private createBirdAnims(): void {
+    const idleCount = Object.keys(birdIdlePngs).length;
+    const catchCount = Object.keys(birdCatchPngs).length;
+    const flyCount = Object.keys(birdFlyPngs).length;
+
+    if (!this.anims.exists(ANIM_BIRD_IDLE)) {
+      this.anims.create({
+        key: ANIM_BIRD_IDLE,
+        frames: this.buildMultiAtlasFrames(TEX_BIRD_IDLE_PREFIX, idleCount),
+        frameRate: BIRD_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+    }
+
+    if (!this.anims.exists(ANIM_BIRD_CATCH)) {
+      this.anims.create({
+        key: ANIM_BIRD_CATCH,
+        frames: this.buildMultiAtlasFrames(TEX_BIRD_CATCH_PREFIX, catchCount),
+        frameRate: BIRD_ANIM_FRAMERATE,
+        repeat: 0,
+      });
+    }
+
+    if (!this.anims.exists(ANIM_BIRD_FLY)) {
+      this.anims.create({
+        key: ANIM_BIRD_FLY,
+        frames: this.buildMultiAtlasFrames(TEX_BIRD_FLY_PREFIX, flyCount),
+        frameRate: BIRD_ANIM_FRAMERATE,
+        repeat: 0,
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
   /*  Background                                                         */
   /* ------------------------------------------------------------------ */
 
@@ -190,6 +379,17 @@ export class CatchFishScene extends BaseScene {
     bg.once('play', () => {
       bg.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
     });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Water surface                                                      */
+  /* ------------------------------------------------------------------ */
+
+  private createWater(): void {
+    const water = this.add.image(this.cx, WATER_Y, TEX_WATER);
+    water.setOrigin(0.5);
+    water.setScale(WATER_SCALE);
+    water.setDepth(DEPTH_WATER);
   }
 
   /* ------------------------------------------------------------------ */
@@ -237,10 +437,11 @@ export class CatchFishScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createBird(): void {
-    this.birdSprite = this.add.image(this.cx, BIRD_CENTER_Y, TEX_BIRD);
+    this.birdSprite = this.add.sprite(this.cx, BIRD_CENTER_Y, `${TEX_BIRD_IDLE_PREFIX}0`);
     this.birdSprite.setOrigin(0.5);
     this.birdSprite.setScale(BIRD_SCALE);
     this.birdSprite.setDepth(DEPTH_BIRD);
+    this.birdSprite.play(ANIM_BIRD_IDLE);
   }
 
   /* ------------------------------------------------------------------ */
@@ -267,6 +468,7 @@ export class CatchFishScene extends BaseScene {
     this.progressText.setScale(multiplierResolution);
     this.progressText.setOrigin(0.5);
     this.progressText.setDepth(2);
+    this.progressText.setResolution(2);
   }
 
   private updateProgress(): void {
@@ -332,11 +534,18 @@ export class CatchFishScene extends BaseScene {
 
     if (!placed) return;
 
-    const fish = this.add.image(x, y, TEX_FISH);
+    /* Randomly pick Fish or Fish2 animation */
+    const useFish2 = Phaser.Math.Between(0, 1) === 1;
+    const animKey = useFish2 ? ANIM_FISH2 : ANIM_FISH;
+    const atlasKey = useFish2 ? TEX_FISH2_ATLAS_0 : TEX_FISH_ATLAS;
+    const targetScale = useFish2 ? FISH2_SCALE : FISH_SCALE;
+
+    const fish = this.add.sprite(x, y, atlasKey);
     fish.setOrigin(0.5);
     fish.setScale(0);
     fish.setDepth(DEPTH_FISH);
     fish.setInteractive({ useHandCursor: true });
+    fish.play(animKey);
 
     if (Phaser.Math.Between(0, 1) === 0) {
       fish.setFlipX(true);
@@ -344,7 +553,7 @@ export class CatchFishScene extends BaseScene {
 
     this.tweens.add({
       targets: fish,
-      scale: FISH_SCALE,
+      scale: targetScale,
       duration: 200,
       ease: 'Back.easeOut',
     });
@@ -366,7 +575,7 @@ export class CatchFishScene extends BaseScene {
   /*  Catch / escape                                                     */
   /* ------------------------------------------------------------------ */
 
-  private catchFish(fish: Phaser.GameObjects.Image): void {
+  private catchFish(fish: Phaser.GameObjects.Sprite): void {
     if (!fish.active || this.isGameOver) return;
 
     fish.disableInteractive();
@@ -395,12 +604,20 @@ export class CatchFishScene extends BaseScene {
 
     this.showToast(TEX_INCREASE, fish.x, fish.y);
 
+    /* Play bird catch animation, then return to idle */
+    this.birdSprite.play(ANIM_BIRD_CATCH);
+    this.birdSprite.once('animationcomplete', () => {
+      if (!this.isGameOver) {
+        this.birdSprite.play(ANIM_BIRD_IDLE);
+      }
+    });
+
     if (this.caughtCount >= TARGET_CATCH) {
       this.handleWin();
     }
   }
 
-  private escapeFish(fish: Phaser.GameObjects.Image): void {
+  private escapeFish(fish: Phaser.GameObjects.Sprite): void {
     if (!fish.active) return;
 
     fish.disableInteractive();
@@ -415,7 +632,7 @@ export class CatchFishScene extends BaseScene {
     });
   }
 
-  private removeFishFromActive(fish: Phaser.GameObjects.Image): void {
+  private removeFishFromActive(fish: Phaser.GameObjects.Sprite): void {
     const idx = this.activeFish.indexOf(fish);
     if (idx !== -1) {
       this.activeFish.splice(idx, 1);
@@ -476,7 +693,11 @@ export class CatchFishScene extends BaseScene {
     this.spawnCelebration(this.birdSprite.x, this.birdSprite.y);
     this.showFloatingText(this.birdSprite.x, this.birdSprite.y - 40, 'All Caught!', '#ffffff');
 
-    this.notifyGameCompleted();
+    /* Play fly animation, then notify game completed */
+    this.birdSprite.play(ANIM_BIRD_FLY);
+    this.birdSprite.once('animationcomplete', () => {
+      this.notifyGameCompleted();
+    });
   }
 
   /* ------------------------------------------------------------------ */

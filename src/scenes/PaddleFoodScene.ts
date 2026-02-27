@@ -24,6 +24,30 @@ import asset1Url from '../assets/images/WingOfAsia/asset1.png';
 import asset2Url from '../assets/images/WingOfAsia/asset2.png';
 import finishSpotUrl from '../assets/images/WingOfAsia/finish-spot.png';
 
+/* Duck animation atlases (loaded via Vite glob — 15 atlas pairs, mixed Idle+Swim) */
+const duckAtlasPngs = import.meta.glob(
+  '../assets/images/WingOfAsia/Sequence/Duck/texture-*.png',
+  { eager: true, import: 'default' },
+) as Record<string, string>;
+const duckAtlasJsons = import.meta.glob(
+  '../assets/images/WingOfAsia/Sequence/Duck/texture-*.json',
+  { eager: true, import: 'default' },
+) as Record<string, object>;
+
+/** Sort glob-imported atlas pairs by texture index (texture-0, texture-1, …) */
+function sortedAtlasPairs(
+  pngs: Record<string, string>,
+  jsons: Record<string, object>,
+): Array<{ png: string; json: object }> {
+  const idx = (p: string) => parseInt(p.match(/texture-(\d+)\./)?.[1] ?? '0', 10);
+  return Object.keys(pngs)
+    .sort((a, b) => idx(a) - idx(b))
+    .map((pngPath) => ({
+      png: pngs[pngPath],
+      json: jsons[pngPath.replace('.png', '.json')],
+    }));
+}
+
 /* ------------------------------------------------------------------ */
 /*  Texture keys                                                       */
 /* ------------------------------------------------------------------ */
@@ -35,6 +59,12 @@ const TEX_FIRST_LAND = 'pf-first-land';
 const TEX_ASSET1 = 'pf-asset1';
 const TEX_ASSET2 = 'pf-asset2';
 const TEX_FINISH = 'pf-finish';
+
+/* Duck animation atlas keys & anim keys */
+const TEX_DUCK_ATLAS_PREFIX = 'pf-duck-atlas-';
+const ANIM_DUCK_IDLE = 'pf-duck-idle-anim';
+const ANIM_DUCK_SWIM = 'pf-duck-swim-anim';
+const DUCK_ANIM_FRAMERATE = 24;
 
 /* ------------------------------------------------------------------ */
 /*  Enums                                                              */
@@ -125,7 +155,7 @@ export class PaddleFoodScene extends BaseScene {
   private tapCount = 0;
 
   /* ── Display objects ────────────────────────────────────────────── */
-  private duck!: Phaser.GameObjects.Image;
+  private duck!: Phaser.GameObjects.Sprite;
   private firstLand!: Phaser.GameObjects.Image;
   private finishSpot!: Phaser.GameObjects.Image;
   private laneAssets: Phaser.GameObjects.Image[] = [];
@@ -151,6 +181,11 @@ export class PaddleFoodScene extends BaseScene {
     this.load.image(TEX_ASSET1, asset1Url);
     this.load.image(TEX_ASSET2, asset2Url);
     this.load.image(TEX_FINISH, finishSpotUrl);
+
+    /* Duck animation atlases */
+    sortedAtlasPairs(duckAtlasPngs, duckAtlasJsons).forEach((pair, i) => {
+      this.load.atlas(`${TEX_DUCK_ATLAS_PREFIX}${i}`, pair.png, pair.json);
+    });
   }
 
   /* ────────────────────────── create ────────────────────────────── */
@@ -158,6 +193,7 @@ export class PaddleFoodScene extends BaseScene {
   create(): void {
     super.create();
     this.resetState();
+    this.createDuckAnims();
     this.createBackground();
     this.createTrack();
     this.createDuck();
@@ -263,18 +299,55 @@ export class PaddleFoodScene extends BaseScene {
     img.setScale(ASSET_MIN_SCALE + (maxScale - ASSET_MIN_SCALE) * t);
   }
 
+  /* ────────────────────────── duck animations ─────────────────── */
+
+  private createDuckAnims(): void {
+    const atlasCount = Object.keys(duckAtlasPngs).length;
+
+    const buildFrames = (filter: string): Phaser.Types.Animations.AnimationFrame[] => {
+      const frames: Phaser.Types.Animations.AnimationFrame[] = [];
+      for (let i = 0; i < atlasCount; i++) {
+        const key = `${TEX_DUCK_ATLAS_PREFIX}${i}`;
+        const names = this.textures.get(key).getFrameNames()
+          .filter((n) => n !== '__BASE' && n.includes(filter))
+          .sort();
+        names.forEach((name) => frames.push({ key, frame: name }));
+      }
+      return frames;
+    };
+
+    if (!this.anims.exists(ANIM_DUCK_IDLE)) {
+      this.anims.create({
+        key: ANIM_DUCK_IDLE,
+        frames: buildFrames('Duck-Idle'),
+        frameRate: DUCK_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+    }
+
+    if (!this.anims.exists(ANIM_DUCK_SWIM)) {
+      this.anims.create({
+        key: ANIM_DUCK_SWIM,
+        frames: buildFrames('Duck-Swim'),
+        frameRate: DUCK_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+    }
+  }
+
   /* ────────────────────────── duck ──────────────────────────────── */
 
   private createDuck(): void {
-    this.duck = this.add.image(DUCK_X, DUCK_Y, TEX_DUCK_IDLE);
+    this.duck = this.add.sprite(DUCK_X, DUCK_Y, `${TEX_DUCK_ATLAS_PREFIX}0`);
     this.duck.setOrigin(0.5);
     this.duck.setScale(ASSET_SCALE);
     this.duck.setDepth(DEPTH_DUCK);
+    this.duck.play(ANIM_DUCK_IDLE);
   }
 
   private startSwimming(): void {
     this.gameState = GameState.Swimming;
-    this.duck.setTexture(TEX_DUCK_SWIM);
+    this.duck.play(ANIM_DUCK_SWIM);
     this.bobTween = this.tweens.add({
       targets: this.duck,
       y: DUCK_Y + 7,
@@ -289,7 +362,7 @@ export class PaddleFoodScene extends BaseScene {
     this.bobTween?.stop();
     this.bobTween = null;
     this.duck.setY(DUCK_Y);
-    this.duck.setTexture(TEX_DUCK_IDLE);
+    this.duck.play(ANIM_DUCK_IDLE);
   }
 
   /* ────────────────────────── UI / progress bar ─────────────────── */

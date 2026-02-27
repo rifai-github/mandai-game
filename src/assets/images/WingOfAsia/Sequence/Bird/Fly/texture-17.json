@@ -1,0 +1,481 @@
+{
+	"textures": [
+		{
+			"image": "texture-17",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Bird-Fly/Bird-Fly68.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly69.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 4,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly70.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 4,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly71.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly72.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly73.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly74.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly75.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly76.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly77.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly78.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly79.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly80.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly81.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly82.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly83.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly84.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly85.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly86.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly87.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly88.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly89.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

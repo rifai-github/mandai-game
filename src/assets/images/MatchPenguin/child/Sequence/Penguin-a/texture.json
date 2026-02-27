@@ -1,0 +1,1279 @@
+{
+	"textures": [
+		{
+			"image": "texture",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Penguin 3B/Penguin 3B00.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 1450,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 1932,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B05.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 2414,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B06.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 2896,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B07.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 4,
+						"y": 3378,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B08.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B09.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 1450,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 1932,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 2414,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 2896,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 303,
+						"y": 3378,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B17.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B18.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B19.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1499,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B20.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1798,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B21.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2097,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B22.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2396,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B23.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2695,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B24.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2994,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B25.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 3293,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B26.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 3592,
+						"y": 4,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B27.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B28.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B29.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 1450,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B30.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 1932,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B31.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 2414,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B32.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 2896,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B33.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 602,
+						"y": 3378,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B34.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B35.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B36.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1499,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B37.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1798,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B38.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2097,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B39.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2396,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B40.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2695,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B41.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2994,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B42.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 3293,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B43.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 3592,
+						"y": 486,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B44.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B45.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 1450,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B46.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 1932,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B47.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 2414,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B48.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 2896,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B49.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 901,
+						"y": 3378,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B50.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B51.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 1450,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B52.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 1932,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B53.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 2414,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B54.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 2896,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B55.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1200,
+						"y": 3378,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B56.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1499,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B57.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 1798,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B58.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2097,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				},
+				{
+					"filename": "Penguin 3B/Penguin 3B59.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 291,
+						"h": 474
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 291,
+						"h": 474
+					},
+					"frame": {
+						"x": 2396,
+						"y": 968,
+						"w": 291,
+						"h": 474
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

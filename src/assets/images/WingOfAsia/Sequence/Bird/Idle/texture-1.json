@@ -1,0 +1,208 @@
+{
+	"textures": [
+		{
+			"image": "texture-1",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Bird-Idle/Bird-Idle09.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 4,
+						"y": 1208,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 4,
+						"y": 2412,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 1208,
+						"y": 4,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 2412,
+						"y": 4,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1208,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 1208,
+						"y": 2412,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 2412,
+						"y": 1208,
+						"w": 1196,
+						"h": 1196
+					}
+				},
+				{
+					"filename": "Bird-Idle/Bird-Idle17.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1196,
+						"h": 1196
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1196,
+						"h": 1196
+					},
+					"frame": {
+						"x": 2412,
+						"y": 2412,
+						"w": 1196,
+						"h": 1196
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

@@ -26,12 +26,35 @@ import childSelectBgUrl from '../assets/images/MatchPenguin/background-selection
 import dropAreaUrl from '../assets/images/MatchPenguin/drop-area.png';
 import correctUrl from '../assets/images/MatchPenguin/correct.png';
 import tryAgainUrl from '../assets/images/MatchPenguin/try-again.png';
-import parentAUrl from '../assets/images/MatchPenguin/parent/Penguin-a.png';
-import parentBUrl from '../assets/images/MatchPenguin/parent/Penguin-b.png';
-import parentCUrl from '../assets/images/MatchPenguin/parent/Penguin-c.png';
-import childAUrl from '../assets/images/MatchPenguin/child/Penguin-a.png';
-import childBUrl from '../assets/images/MatchPenguin/child/Penguin-b.png';
-import childCUrl from '../assets/images/MatchPenguin/child/Penguin-c.png';
+/* Parent atlas imports (3 atlases each, via glob) */
+const parentAPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-a/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const parentAJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-a/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+const parentBPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-b/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const parentBJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-b/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+const parentCPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-c/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
+const parentCJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/Penguin-c/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
+
+/* Child atlas imports (1 atlas each) */
+import childAAtlasPng from '../assets/images/MatchPenguin/child/Sequence/Penguin-a/texture.png';
+import childAAtlasJson from '../assets/images/MatchPenguin/child/Sequence/Penguin-a/texture.json';
+import childBAtlasPng from '../assets/images/MatchPenguin/child/Sequence/Penguin-b/texture.png';
+import childBAtlasJson from '../assets/images/MatchPenguin/child/Sequence/Penguin-b/texture.json';
+import childCAtlasPng from '../assets/images/MatchPenguin/child/Sequence/Penguin-c/texture.png';
+import childCAtlasJson from '../assets/images/MatchPenguin/child/Sequence/Penguin-c/texture.json';
+
+/* Helper: sort glob atlas pairs by texture index */
+function sortedAtlasPairs(
+  pngs: Record<string, string>,
+  jsons: Record<string, object>,
+): { png: string; json: object }[] {
+  const idx = (p: string) => {
+    const m = p.match(/texture-(\d+)/);
+    return m ? parseInt(m[1], 10) : 0;
+  };
+  const pngEntries = Object.entries(pngs).sort((a, b) => idx(a[0]) - idx(b[0]));
+  const jsonEntries = Object.entries(jsons).sort((a, b) => idx(a[0]) - idx(b[0]));
+  return pngEntries.map((e, i) => ({ png: e[1], json: jsonEntries[i][1] }));
+}
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -48,7 +71,7 @@ type PenguinId = 'a' | 'b' | 'c';
 
 interface BabyPenguin {
   id: PenguinId;
-  sprite: Phaser.GameObjects.Image;
+  sprite: Phaser.GameObjects.Sprite;
   matched: boolean;
 }
 
@@ -59,7 +82,7 @@ interface ParentPenguin {
 
 interface ActiveDrag {
   baby: BabyPenguin;
-  clone: Phaser.GameObjects.Image;
+  clone: Phaser.GameObjects.Sprite;
 }
 
 /* ------------------------------------------------------------------ */
@@ -68,16 +91,18 @@ interface ActiveDrag {
 
 const PENGUIN_IDS: readonly PenguinId[] = ['a', 'b', 'c'];
 
-const PARENT_URLS: Record<PenguinId, string> = {
-  a: parentAUrl,
-  b: parentBUrl,
-  c: parentCUrl,
+/* Sorted atlas pairs per parent variant */
+const PARENT_ATLAS_PAIRS: Record<PenguinId, { png: string; json: object }[]> = {
+  a: sortedAtlasPairs(parentAPngs, parentAJsons),
+  b: sortedAtlasPairs(parentBPngs, parentBJsons),
+  c: sortedAtlasPairs(parentCPngs, parentCJsons),
 };
 
-const CHILD_URLS: Record<PenguinId, string> = {
-  a: childAUrl,
-  b: childBUrl,
-  c: childCUrl,
+/* Child atlas data (single atlas each) */
+const CHILD_ATLAS_DATA: Record<PenguinId, { png: string; json: object }> = {
+  a: { png: childAAtlasPng, json: childAAtlasJson as object },
+  b: { png: childBAtlasPng, json: childBAtlasJson as object },
+  c: { png: childCAtlasPng, json: childCAtlasJson as object },
 };
 
 /* Texture keys */
@@ -86,8 +111,13 @@ const TEX_CHILD_SELECT_BG = 'mp-child-select-bg';
 const TEX_DROP_AREA = 'mp-drop-area';
 const TEX_CORRECT = 'mp-correct';
 const TEX_TRY_AGAIN = 'mp-try-again';
-const TEX_PARENT_PREFIX = 'mp-parent-';
-const TEX_CHILD_PREFIX = 'mp-child-';
+const TEX_PARENT_ATLAS_PREFIX = 'mp-parent-atlas-';
+const TEX_CHILD_ATLAS_PREFIX = 'mp-child-atlas-';
+
+/* Animation keys */
+const ANIM_PARENT: Record<PenguinId, string> = { a: 'mp-anim-parent-a', b: 'mp-anim-parent-b', c: 'mp-anim-parent-c' };
+const ANIM_CHILD: Record<PenguinId, string> = { a: 'mp-anim-child-a', b: 'mp-anim-child-b', c: 'mp-anim-child-c' };
+const PENGUIN_ANIM_FRAMERATE = 24;
 
 /* Layout */
 const PARENT_SCALE = 0.25 * multiplierResolution;
@@ -135,7 +165,7 @@ export class MatchPenguinScene extends BaseScene {
   private babies: BabyPenguin[] = [];
   private parentQueue: ParentPenguin[] = [];
   private activeParentIndex = 0;
-  private activeParentSprite: Phaser.GameObjects.Image | null = null;
+  private activeParentSprite: Phaser.GameObjects.Sprite | null = null;
   private dropAreaSprite: Phaser.GameObjects.Image | null = null;
   private activeDrag: ActiveDrag | null = null;
   private pointerMoveHandler: ((p: Phaser.Input.Pointer) => void) | null = null;
@@ -158,8 +188,14 @@ export class MatchPenguinScene extends BaseScene {
     this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
 
     for (const id of PENGUIN_IDS) {
-      this.load.image(TEX_PARENT_PREFIX + id, PARENT_URLS[id]);
-      this.load.image(TEX_CHILD_PREFIX + id, CHILD_URLS[id]);
+      /* Parent atlases (3 per variant) */
+      const pairs = PARENT_ATLAS_PAIRS[id];
+      pairs.forEach((pair, i) => {
+        this.load.atlas(`${TEX_PARENT_ATLAS_PREFIX}${id}-${i}`, pair.png, pair.json);
+      });
+      /* Child atlas (1 per variant) */
+      const child = CHILD_ATLAS_DATA[id];
+      this.load.atlas(`${TEX_CHILD_ATLAS_PREFIX}${id}`, child.png, child.json);
     }
   }
 
@@ -171,6 +207,7 @@ export class MatchPenguinScene extends BaseScene {
     super.create();
     this.initState();
     this.createBackground();
+    this.createAnims();
     this.createChildren();
     this.buildParentQueue();
     this.spawnNextParent();
@@ -212,6 +249,44 @@ export class MatchPenguinScene extends BaseScene {
   }
 
   /* ------------------------------------------------------------------ */
+  /*  Animations                                                         */
+  /* ------------------------------------------------------------------ */
+
+  private createAnims(): void {
+    for (const id of PENGUIN_IDS) {
+      /* Parent animation (multi-atlas) */
+      const parentFrames: Phaser.Types.Animations.AnimationFrame[] = [];
+      const pairs = PARENT_ATLAS_PAIRS[id];
+      for (let i = 0; i < pairs.length; i++) {
+        const key = `${TEX_PARENT_ATLAS_PREFIX}${id}-${i}`;
+        const names = this.textures.get(key).getFrameNames()
+          .filter((n) => n !== '__BASE')
+          .sort();
+        names.forEach((name) => parentFrames.push({ key, frame: name }));
+      }
+      this.anims.create({
+        key: ANIM_PARENT[id],
+        frames: parentFrames,
+        frameRate: PENGUIN_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+
+      /* Child animation (single atlas) */
+      const childKey = `${TEX_CHILD_ATLAS_PREFIX}${id}`;
+      const childNames = this.textures.get(childKey).getFrameNames()
+        .filter((n) => n !== '__BASE')
+        .sort();
+      const childFrames = childNames.map((name) => ({ key: childKey, frame: name }));
+      this.anims.create({
+        key: ANIM_CHILD[id],
+        frames: childFrames,
+        frameRate: PENGUIN_ANIM_FRAMERATE,
+        repeat: -1,
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
   /*  Children (always-visible choices)                                  */
   /* ------------------------------------------------------------------ */
 
@@ -226,10 +301,11 @@ export class MatchPenguinScene extends BaseScene {
 
     this.babies = shuffled.map((id, i) => {
       const pos = positions[i];
-      const sprite = this.add.image(pos.x, pos.y, TEX_CHILD_PREFIX + id);
+      const sprite = this.add.sprite(pos.x, pos.y, `${TEX_CHILD_ATLAS_PREFIX}${id}`);
       sprite.setOrigin(0.5);
       sprite.setScale(CHILD_SCALE);
       sprite.setInteractive({ useHandCursor: true });
+      sprite.play(ANIM_CHILD[id]);
 
       const baby: BabyPenguin = { id, sprite, matched: false };
 
@@ -279,10 +355,11 @@ export class MatchPenguinScene extends BaseScene {
     this.dropAreaSprite = dropArea;
 
     /* Parent: slides in from right, stands on ice */
-    const parentSprite = this.add.image(startX, PARENT_CENTER_Y, TEX_PARENT_PREFIX + parentData.id);
+    const parentSprite = this.add.sprite(startX, PARENT_CENTER_Y, `${TEX_PARENT_ATLAS_PREFIX}${parentData.id}-0`);
     parentSprite.setOrigin(0.5);
     parentSprite.setScale(PARENT_SCALE);
     parentSprite.setDepth(DEPTH_PARENT);
+    parentSprite.play(ANIM_PARENT[parentData.id]);
     this.activeParentSprite = parentSprite;
 
     /* Slide in parent */
@@ -326,10 +403,11 @@ export class MatchPenguinScene extends BaseScene {
 
     baby.sprite.setAlpha(DRAGGING_ALPHA);
 
-    const clone = this.add.image(pointer.x, pointer.y, baby.sprite.texture.key);
+    const clone = this.add.sprite(pointer.x, pointer.y, `${TEX_CHILD_ATLAS_PREFIX}${baby.id}`);
     clone.setOrigin(0.5);
     clone.setScale(CHILD_SCALE * 1.8);
     clone.setDepth(CLONE_DEPTH);
+    clone.play(ANIM_CHILD[baby.id]);
 
     this.activeDrag = { baby, clone };
 
@@ -394,7 +472,7 @@ export class MatchPenguinScene extends BaseScene {
 
   private handleCorrectMatch(
     baby: BabyPenguin,
-    clone: Phaser.GameObjects.Image
+    clone: Phaser.GameObjects.Sprite,
   ): void {
     const parent = this.activeParentSprite;
     if (!parent) return;
@@ -447,7 +525,7 @@ export class MatchPenguinScene extends BaseScene {
 
   private handleWrongMatch(
     baby: BabyPenguin,
-    clone: Phaser.GameObjects.Image
+    clone: Phaser.GameObjects.Sprite,
   ): void {
     baby.sprite.setAlpha(1);
     clone.destroy();
@@ -459,7 +537,7 @@ export class MatchPenguinScene extends BaseScene {
     }
   }
 
-  private handleMiss(baby: BabyPenguin, clone: Phaser.GameObjects.Image): void {
+  private handleMiss(baby: BabyPenguin, clone: Phaser.GameObjects.Sprite): void {
     baby.sprite.setAlpha(1);
     clone.destroy();
     this.activeDrag = null;

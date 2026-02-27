@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "texture-9",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Bird-Fly/Bird-Fly36.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly37.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 4,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly38.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 4,
+						"w": 1835,
+						"h": 1835
+					}
+				},
+				{
+					"filename": "Bird-Fly/Bird-Fly39.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1835,
+						"h": 1835
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1835,
+						"h": 1835
+					},
+					"frame": {
+						"x": 1847,
+						"y": 1847,
+						"w": 1835,
+						"h": 1835
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}

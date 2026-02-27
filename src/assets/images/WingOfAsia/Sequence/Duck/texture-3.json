@@ -1,0 +1,292 @@
+{
+	"textures": [
+		{
+			"image": "texture-3",
+			"format": "RGBA8888",
+			"size": {
+				"w": 4096,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 4,
+						"y": 4,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 4,
+						"y": 1466,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim27.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 4,
+						"y": 2928,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim28.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 752,
+						"y": 2928,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 1500,
+						"y": 4,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Idle/Duck-Idle15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 1454,
+						"h": 1454
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1454,
+						"h": 1454
+					},
+					"frame": {
+						"x": 1466,
+						"y": 1466,
+						"w": 1454,
+						"h": 1454
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim29.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 2962,
+						"y": 4,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim30.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 2962,
+						"y": 752,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim31.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 1500,
+						"y": 2928,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim32.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 2248,
+						"y": 2928,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim33.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 2996,
+						"y": 1500,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim34.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 2996,
+						"y": 2248,
+						"w": 740,
+						"h": 740
+					}
+				},
+				{
+					"filename": "Duck/Duck-Swim/Duck-Swim35.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 740,
+						"h": 740
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 740,
+						"h": 740
+					},
+					"frame": {
+						"x": 2996,
+						"y": 2996,
+						"w": 740,
+						"h": 740
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7"
+	}
+}
