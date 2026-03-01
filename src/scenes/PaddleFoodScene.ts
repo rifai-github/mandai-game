@@ -24,6 +24,7 @@ import asset1Url from '../assets/images/WingOfAsia/asset1.png';
 import asset2Url from '../assets/images/WingOfAsia/asset2.png';
 import finishSpotUrl from '../assets/images/WingOfAsia/finish-spot.png';
 import duckFinishUrl from '../assets/images/WingOfAsia/Duck-Finish.png';
+import wrongSfxUrl from '../assets/audio/Wrong-SFX.mp3';
 
 /* Duck animation atlases (loaded via Vite glob — 3 atlas pairs, mixed Idle+Swim) */
 const duckAtlasPngs = import.meta.glob(
@@ -61,6 +62,7 @@ const TEX_ASSET1 = 'pf-asset1';
 const TEX_ASSET2 = 'pf-asset2';
 const TEX_FINISH = 'pf-finish';
 const TEX_DUCK_FINISH = 'pf-duck-finish';
+const SFX_WRONG = 'pf-sfx-wrong';
 
 /* Duck animation atlas keys & anim keys */
 const TEX_DUCK_ATLAS_PREFIX = 'pf-duck-atlas-';
@@ -204,6 +206,7 @@ export class PaddleFoodScene extends BaseScene {
     this.load.image(TEX_ASSET2, asset2Url);
     this.load.image(TEX_FINISH, finishSpotUrl);
     this.load.image(TEX_DUCK_FINISH, duckFinishUrl);
+    this.load.audio(SFX_WRONG, wrongSfxUrl);
 
     /* Duck animation atlases */
     sortedAtlasPairs(duckAtlasPngs, duckAtlasJsons).forEach((pair, i) => {
@@ -481,6 +484,7 @@ export class PaddleFoodScene extends BaseScene {
       this.handleCorrectTap(side);
     } else {
       /* Wrong side – flash red only, no penalty */
+      this.sound.play(SFX_WRONG);
       this.flashZone(side, 0xe74c3c);
     }
 

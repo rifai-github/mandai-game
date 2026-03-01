@@ -23,6 +23,8 @@ import bgVideoUrl from '../assets/videos/PinkParents/Background Gameplay.mp4';
 import selectBgUrl from '../assets/images/PinkParents/background-selection.png';
 import correctUrl from '../assets/images/PinkParents/correct.png';
 import tryAgainUrl from '../assets/images/PinkParents/try-again.png';
+import correctSfxUrl from '../assets/audio/Correct-SFX.mp3';
+import wrongSfxUrl from '../assets/audio/Wrong-SFX.mp3';
 import flamingo1TextureUrl from '../assets/images/PinkParents/flamingo/flamingo-1/texture.png';
 import flamingo1Json from '../assets/images/PinkParents/flamingo/flamingo-1/texture.json';
 import flamingo2TextureUrl from '../assets/images/PinkParents/flamingo/flamingo-2/texture.png';
@@ -78,6 +80,8 @@ const VID_BG = 'pp-bg-video';
 const TEX_SELECT_BG = 'pp-select-bg';
 const TEX_CORRECT = 'pp-correct';
 const TEX_TRY_AGAIN = 'pp-try-again';
+const SFX_CORRECT = 'pp-sfx-correct';
+const SFX_WRONG = 'pp-sfx-wrong';
 const TEX_FLAMINGO_PREFIX = 'pp-flamingo-';
 const TEX_COLOR_PREFIX = 'pp-color-';
 
@@ -144,6 +148,8 @@ export class PinkParentsScene extends BaseScene {
     this.load.image(TEX_SELECT_BG, selectBgUrl);
     this.load.image(TEX_CORRECT, correctUrl);
     this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
+    this.load.audio(SFX_CORRECT, correctSfxUrl);
+    this.load.audio(SFX_WRONG, wrongSfxUrl);
 
     for (const id of FLAMINGO_IDS) {
       const atlas = FLAMINGO_ATLAS[id];
@@ -338,6 +344,7 @@ export class PinkParentsScene extends BaseScene {
     if (!flamingo) return;
 
     this.matchState = MatchState.Animating;
+    this.sound.play(SFX_CORRECT);
 
     /* 1. Toast */
     this.showToast(TEX_CORRECT, flamingo.x, flamingo.y + TOAST_Y_OFFSET);
@@ -371,6 +378,7 @@ export class PinkParentsScene extends BaseScene {
 
   private handleWrongMatch(): void {
     if (!this.activeFlamingoSprite) return;
+    this.sound.play(SFX_WRONG);
 
     /* Toast */
     this.showToast(

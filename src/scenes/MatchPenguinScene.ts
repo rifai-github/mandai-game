@@ -26,6 +26,8 @@ import childSelectBgUrl from '../assets/images/MatchPenguin/background-selection
 import dropAreaUrl from '../assets/images/MatchPenguin/drop-area.png';
 import correctUrl from '../assets/images/MatchPenguin/correct.png';
 import tryAgainUrl from '../assets/images/MatchPenguin/try-again.png';
+import correctSfxUrl from '../assets/audio/Correct-SFX.mp3';
+import wrongSfxUrl from '../assets/audio/Wrong-SFX.mp3';
 /* Parent atlas imports (2 combined atlases, mixed Penguin-a/b/c via glob) */
 const parentAtlasPngs = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/texture-*.png', { eager: true, import: 'default' }) as Record<string, string>;
 const parentAtlasJsons = import.meta.glob('../assets/images/MatchPenguin/parent/Sequence/texture-*.json', { eager: true, import: 'default' }) as Record<string, object>;
@@ -92,6 +94,8 @@ const TEX_CHILD_SELECT_BG = 'mp-child-select-bg';
 const TEX_DROP_AREA = 'mp-drop-area';
 const TEX_CORRECT = 'mp-correct';
 const TEX_TRY_AGAIN = 'mp-try-again';
+const SFX_CORRECT = 'mp-sfx-correct';
+const SFX_WRONG = 'mp-sfx-wrong';
 const TEX_PARENT_ATLAS_PREFIX = 'mp-parent-atlas-';
 const TEX_CHILD_ATLAS = 'mp-child-atlas';
 
@@ -167,6 +171,8 @@ export class MatchPenguinScene extends BaseScene {
     this.load.image(TEX_DROP_AREA, dropAreaUrl);
     this.load.image(TEX_CORRECT, correctUrl);
     this.load.image(TEX_TRY_AGAIN, tryAgainUrl);
+    this.load.audio(SFX_CORRECT, correctSfxUrl);
+    this.load.audio(SFX_WRONG, wrongSfxUrl);
 
     /* Parent atlases (2 combined, mixed Penguin-a/b/c) */
     PARENT_ATLAS_PAIRS.forEach((pair, i) => {
@@ -466,6 +472,7 @@ export class MatchPenguinScene extends BaseScene {
     if (!parent) return;
 
     this.matchState = MatchState.Animating;
+    this.sound.play(SFX_CORRECT);
     baby.matched = true;
     baby.sprite.setAlpha(MATCHED_ALPHA);
     baby.sprite.disableInteractive();
@@ -515,6 +522,7 @@ export class MatchPenguinScene extends BaseScene {
     baby: BabyPenguin,
     clone: Phaser.GameObjects.Sprite,
   ): void {
+    this.sound.play(SFX_WRONG);
     baby.sprite.setAlpha(1);
     clone.destroy();
     this.activeDrag = null;

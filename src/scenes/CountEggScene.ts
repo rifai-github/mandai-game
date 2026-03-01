@@ -28,6 +28,8 @@ import cancelBtnUrl from '../assets/images/CountEgg/input/cancel-button.png';
 import overlaySubmitUrl from '../assets/images/CountEgg/input/submit-button.png';
 import charHolderUrl from '../assets/images/CountEgg/input/character-holder.png';
 import headerInputUrl from '../assets/images/CountEgg/input/header-input.png';
+import correctSfxUrl from '../assets/audio/Correct-SFX.mp3';
+import wrongSfxUrl from '../assets/audio/Wrong-SFX.mp3';
 
 /* ------------------------------------------------------------------ */
 /*  Texture keys                                                        */
@@ -39,6 +41,8 @@ const TEX_CANCEL_BTN = 'ce-cancel-btn';
 const TEX_OVERLAY_SUBMIT = 'ce-overlay-submit';
 const TEX_CHAR_HOLDER = 'ce-char-holder';
 const TEX_HEADER_INPUT = 'ce-header-input';
+const SFX_CORRECT = 'ce-sfx-correct';
+const SFX_WRONG = 'ce-sfx-wrong';
 
 /* ------------------------------------------------------------------ */
 /*  Game data                                                           */
@@ -156,6 +160,8 @@ export class CountEggScene extends BaseScene {
     this.load.image(TEX_OVERLAY_SUBMIT, overlaySubmitUrl);
     this.load.image(TEX_CHAR_HOLDER, charHolderUrl);
     this.load.image(TEX_HEADER_INPUT, headerInputUrl);
+    this.load.audio(SFX_CORRECT, correctSfxUrl);
+    this.load.audio(SFX_WRONG, wrongSfxUrl);
   }
 
   create(): void {
@@ -575,6 +581,7 @@ export class CountEggScene extends BaseScene {
   }
 
   private handleCorrectAnswer(): void {
+    this.sound.play(SFX_CORRECT);
     /* All blocks → green, then close overlay and show "Well Done!" */
     this.paintAllBlocks(TINT_CORRECT);
     this.time.delayedCall(400, () => {
@@ -584,6 +591,7 @@ export class CountEggScene extends BaseScene {
   }
 
   private handleWrongAnswer(): void {
+    this.sound.play(SFX_WRONG);
     /* All blocks → red, then revert to normal and re-highlight cursor */
     this.paintAllBlocks(TINT_WRONG);
     this.time.delayedCall(700, () => {
