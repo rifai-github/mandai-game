@@ -10,171 +10,66 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "Bird/Catch_00000.png",
+					"filename": "Bird/Fly_00000.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"frame": {
 						"x": 4,
 						"y": 4,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					}
 				},
 				{
-					"filename": "Bird/Catch_00001.png",
+					"filename": "Bird/Fly_00001.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 1012,
-						"y": 4,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Catch_00002.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 2020,
-						"y": 4,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Catch_00003.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 3028,
-						"y": 4,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Catch_00004.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"frame": {
 						"x": 4,
-						"y": 929,
-						"w": 1000,
-						"h": 917
+						"y": 1263,
+						"w": 500,
+						"h": 1251
 					}
 				},
 				{
-					"filename": "Bird/Catch_00005.png",
+					"filename": "Bird/Fly_00002.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"frame": {
 						"x": 4,
-						"y": 1854,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Catch_00006.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 4,
-						"y": 2779,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00000.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 4,
-						"y": 3704,
-						"w": 300,
-						"h": 312
+						"y": 2522,
+						"w": 500,
+						"h": 1251
 					}
 				},
 				{
@@ -193,7 +88,7 @@
 					},
 					"frame": {
 						"x": 4,
-						"y": 4024,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -213,31 +108,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 180,
-						"y": 4024,
+						"x": 4,
+						"y": 3849,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 312,
-						"y": 3704,
-						"w": 300,
-						"h": 312
 					}
 				},
 				{
@@ -255,8 +129,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 356,
-						"y": 4024,
+						"x": 4,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -276,31 +150,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 532,
-						"y": 4024,
+						"x": 4,
+						"y": 3985,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00002.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 620,
-						"y": 3704,
-						"w": 300,
-						"h": 312
 					}
 				},
 				{
@@ -318,8 +171,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 708,
-						"y": 4024,
+						"x": 180,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -339,31 +192,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 884,
-						"y": 4024,
+						"x": 180,
+						"y": 3849,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00003.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 928,
-						"y": 3704,
-						"w": 300,
-						"h": 312
 					}
 				},
 				{
@@ -381,94 +213,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1060,
-						"y": 4024,
+						"x": 180,
+						"y": 3917,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Bird/Catch_00007.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 1012,
-						"y": 929,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Catch_00008.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 1012,
-						"y": 1854,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Catch_00009.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 1012,
-						"y": 2779,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00004.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 1236,
-						"y": 3704,
-						"w": 300,
-						"h": 312
 					}
 				},
 				{
@@ -486,8 +234,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1236,
-						"y": 4024,
+						"x": 180,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -507,31 +255,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1412,
-						"y": 4024,
+						"x": 356,
+						"y": 3781,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00005.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 1544,
-						"y": 3704,
-						"w": 300,
-						"h": 312
 					}
 				},
 				{
@@ -549,8 +276,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1588,
-						"y": 4024,
+						"x": 356,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -570,31 +297,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1764,
-						"y": 4024,
+						"x": 356,
+						"y": 3917,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00006.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 1852,
-						"y": 3704,
-						"w": 300,
-						"h": 312
 					}
 				},
 				{
@@ -612,10 +318,73 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1940,
-						"y": 4024,
+						"x": 356,
+						"y": 3985,
 						"w": 168,
 						"h": 60
+					}
+				},
+				{
+					"filename": "Bird/Fly_00003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 512,
+						"y": 4,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Fly_00004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 512,
+						"y": 1263,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Fly_00005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 512,
+						"y": 2522,
+						"w": 500,
+						"h": 1251
 					}
 				},
 				{
@@ -633,31 +402,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2116,
-						"y": 4024,
+						"x": 532,
+						"y": 3781,
 						"w": 168,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Bird/Catch_00010.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 2292,
-						"y": 929,
-						"w": 1000,
-						"h": 917
 					}
 				},
 				{
@@ -675,8 +423,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 929,
+						"x": 532,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -696,8 +444,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 997,
+						"x": 532,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -717,8 +465,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1065,
+						"x": 532,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -738,8 +486,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1133,
+						"x": 708,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -759,8 +507,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1201,
+						"x": 708,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -780,8 +528,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1269,
+						"x": 708,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -801,8 +549,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1337,
+						"x": 708,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -822,8 +570,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1405,
+						"x": 884,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -843,8 +591,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1473,
+						"x": 884,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -864,8 +612,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1541,
+						"x": 884,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -885,71 +633,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1609,
-						"w": 168,
-						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish_00024.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 168,
-						"h": 60
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 168,
-						"h": 60
-					},
-					"frame": {
-						"x": 2020,
-						"y": 1677,
-						"w": 168,
-						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish_00025.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 168,
-						"h": 60
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 168,
-						"h": 60
-					},
-					"frame": {
-						"x": 2020,
-						"y": 1745,
-						"w": 168,
-						"h": 60
-					}
-				},
-				{
-					"filename": "Fish/Fish_00026.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 168,
-						"h": 60
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 168,
-						"h": 60
-					},
-					"frame": {
-						"x": 2020,
-						"y": 1813,
+						"x": 884,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -969,10 +654,388 @@
 						"h": 598
 					},
 					"frame": {
-						"x": 3300,
-						"y": 929,
+						"x": 1060,
+						"y": 4,
 						"w": 598,
 						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Idle_00001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 1666,
+						"y": 4,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Idle_00002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 2272,
+						"y": 4,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Idle_00003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 2878,
+						"y": 4,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Idle_00004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 3484,
+						"y": 4,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Fly_00006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 1020,
+						"y": 610,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Fly_00007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 1020,
+						"y": 1869,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Idle_00005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 1020,
+						"y": 3128,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00000.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 1060,
+						"y": 3734,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 1368,
+						"y": 3734,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Fly_00008.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 1528,
+						"y": 610,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Fly_00009.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 1528,
+						"y": 1869,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Idle_00006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 1626,
+						"y": 3128,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 1676,
+						"y": 3734,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 1984,
+						"y": 3734,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Idle_00007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 2292,
+						"y": 610,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Fish/Fish_00024.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 168,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 168,
+						"h": 60
+					},
+					"frame": {
+						"x": 2036,
+						"y": 610,
+						"w": 168,
+						"h": 60
+					}
+				},
+				{
+					"filename": "Fish/Fish_00025.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 168,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 168,
+						"h": 60
+					},
+					"frame": {
+						"x": 2036,
+						"y": 678,
+						"w": 168,
+						"h": 60
+					}
+				},
+				{
+					"filename": "Fish/Fish_00026.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 168,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 168,
+						"h": 60
+					},
+					"frame": {
+						"x": 2036,
+						"y": 746,
+						"w": 168,
+						"h": 60
 					}
 				},
 				{
@@ -990,8 +1053,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 929,
+						"x": 2036,
+						"y": 814,
 						"w": 168,
 						"h": 60
 					}
@@ -1011,8 +1074,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 997,
+						"x": 2036,
+						"y": 882,
 						"w": 168,
 						"h": 60
 					}
@@ -1032,8 +1095,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 1065,
+						"x": 2036,
+						"y": 950,
 						"w": 168,
 						"h": 60
 					}
@@ -1053,14 +1116,14 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 1133,
+						"x": 2036,
+						"y": 1018,
 						"w": 168,
 						"h": 60
 					}
 				},
 				{
-					"filename": "Bird/Idle_00001.png",
+					"filename": "Bird/Idle_00008.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1074,52 +1137,220 @@
 						"h": 598
 					},
 					"frame": {
-						"x": 3300,
-						"y": 1535,
+						"x": 2898,
+						"y": 610,
 						"w": 598,
 						"h": 598
 					}
 				},
 				{
-					"filename": "Bird/Catch_00011.png",
+					"filename": "Bird/Fly_00010.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 3504,
+						"y": 610,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Fly_00011.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 2036,
+						"y": 1869,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Idle_00009.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 2232,
+						"y": 3128,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Fly_00012.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 2544,
+						"y": 1869,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
 					},
 					"frame": {
 						"x": 2292,
-						"y": 1854,
-						"w": 1000,
-						"h": 917
+						"y": 3734,
+						"w": 300,
+						"h": 312
 					}
 				},
 				{
-					"filename": "Bird/Catch_00012.png",
+					"filename": "Fish/Fish 2_00005.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 1000,
-						"h": 917
+						"w": 300,
+						"h": 312
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 1000,
-						"h": 917
+						"w": 300,
+						"h": 312
 					},
 					"frame": {
-						"x": 2020,
-						"y": 2779,
-						"w": 1000,
-						"h": 917
+						"x": 2600,
+						"y": 3734,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Idle_00010.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 598,
+						"h": 598
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 598,
+						"h": 598
+					},
+					"frame": {
+						"x": 2838,
+						"y": 3128,
+						"w": 598,
+						"h": 598
+					}
+				},
+				{
+					"filename": "Bird/Fly_00013.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 3052,
+						"y": 1869,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Bird/Fly_00014.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 1251
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 1251
+					},
+					"frame": {
+						"x": 3560,
+						"y": 1869,
+						"w": 500,
+						"h": 1251
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 2908,
+						"y": 3734,
+						"w": 300,
+						"h": 312
 					}
 				},
 				{
@@ -1137,35 +1368,14 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 2160,
-						"y": 3704,
+						"x": 3216,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
 				},
 				{
-					"filename": "Bird/Catch_00013.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 1000,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 1000,
-						"h": 917
-					},
-					"frame": {
-						"x": 3028,
-						"y": 2779,
-						"w": 1000,
-						"h": 917
-					}
-				},
-				{
-					"filename": "Bird/Idle_00002.png",
+					"filename": "Bird/Idle_00011.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -1179,8 +1389,8 @@
 						"h": 598
 					},
 					"frame": {
-						"x": 3300,
-						"y": 2141,
+						"x": 3444,
+						"y": 3128,
 						"w": 598,
 						"h": 598
 					}
@@ -1200,94 +1410,52 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 2468,
-						"y": 3704,
+						"x": 3524,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00009.png",
+					"filename": "Bird/Idle_00012.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 598,
+						"h": 598
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 598,
+						"h": 598
 					},
 					"frame": {
-						"x": 2776,
-						"y": 3704,
-						"w": 300,
-						"h": 312
+						"x": 2036,
+						"y": 1216,
+						"w": 598,
+						"h": 598
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00010.png",
+					"filename": "Bird/Idle_00013.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 598,
+						"h": 598
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 598,
+						"h": 598
 					},
 					"frame": {
-						"x": 3084,
-						"y": 3704,
-						"w": 300,
-						"h": 312
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00011.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 3392,
-						"y": 3704,
-						"w": 300,
-						"h": 312
-					}
-				},
-				{
-					"filename": "Fish/Fish 2_00012.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 312
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 312
-					},
-					"frame": {
-						"x": 3700,
-						"y": 3704,
-						"w": 300,
-						"h": 312
+						"x": 2642,
+						"y": 1216,
+						"w": 598,
+						"h": 598
 					}
 				},
 				{
@@ -1305,8 +1473,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1326,8 +1494,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1347,8 +1515,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1368,8 +1536,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1389,8 +1557,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1410,8 +1578,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1431,8 +1599,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1452,8 +1620,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1473,8 +1641,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1494,8 +1662,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1515,8 +1683,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1536,8 +1704,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1557,8 +1725,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1578,8 +1746,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1599,8 +1767,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1620,8 +1788,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 4,
-						"y": 3704,
+						"x": 1060,
+						"y": 3734,
 						"w": 300,
 						"h": 312
 					}
@@ -1642,7 +1810,7 @@
 					},
 					"frame": {
 						"x": 4,
-						"y": 4024,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -1662,8 +1830,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 180,
-						"y": 4024,
+						"x": 4,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -1683,8 +1851,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 356,
-						"y": 4024,
+						"x": 4,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -1704,8 +1872,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 532,
-						"y": 4024,
+						"x": 4,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -1725,8 +1893,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 708,
-						"y": 4024,
+						"x": 180,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -1746,8 +1914,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 884,
-						"y": 4024,
+						"x": 180,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -1767,8 +1935,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1060,
-						"y": 4024,
+						"x": 180,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -1788,8 +1956,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1236,
-						"y": 4024,
+						"x": 180,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -1809,8 +1977,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1412,
-						"y": 4024,
+						"x": 356,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -1830,8 +1998,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1588,
-						"y": 4024,
+						"x": 356,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -1851,8 +2019,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1764,
-						"y": 4024,
+						"x": 356,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -1872,8 +2040,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 1940,
-						"y": 4024,
+						"x": 356,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -1893,8 +2061,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2116,
-						"y": 4024,
+						"x": 532,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -1914,8 +2082,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 929,
+						"x": 532,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -1935,8 +2103,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 997,
+						"x": 532,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -1956,8 +2124,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1065,
+						"x": 532,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -1977,8 +2145,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1133,
+						"x": 708,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -1998,8 +2166,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1201,
+						"x": 708,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -2019,8 +2187,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1269,
+						"x": 708,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -2040,8 +2208,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1337,
+						"x": 708,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -2061,8 +2229,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1405,
+						"x": 884,
+						"y": 3781,
 						"w": 168,
 						"h": 60
 					}
@@ -2082,8 +2250,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1473,
+						"x": 884,
+						"y": 3849,
 						"w": 168,
 						"h": 60
 					}
@@ -2103,8 +2271,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1541,
+						"x": 884,
+						"y": 3917,
 						"w": 168,
 						"h": 60
 					}
@@ -2124,8 +2292,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1609,
+						"x": 884,
+						"y": 3985,
 						"w": 168,
 						"h": 60
 					}
@@ -2145,8 +2313,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1677,
+						"x": 2036,
+						"y": 610,
 						"w": 168,
 						"h": 60
 					}
@@ -2166,8 +2334,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1745,
+						"x": 2036,
+						"y": 678,
 						"w": 168,
 						"h": 60
 					}
@@ -2187,8 +2355,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 2020,
-						"y": 1813,
+						"x": 2036,
+						"y": 746,
 						"w": 168,
 						"h": 60
 					}
@@ -2208,8 +2376,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 929,
+						"x": 2036,
+						"y": 814,
 						"w": 168,
 						"h": 60
 					}
@@ -2229,8 +2397,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 997,
+						"x": 2036,
+						"y": 882,
 						"w": 168,
 						"h": 60
 					}
@@ -2250,8 +2418,8 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 3906,
-						"y": 1065,
+						"x": 2036,
+						"y": 950,
 						"w": 168,
 						"h": 60
 					}

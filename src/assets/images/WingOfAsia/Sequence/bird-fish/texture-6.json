@@ -10,255 +10,318 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "Bird/Catch_00089.png",
+					"filename": "Bird/Catch_00030.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
 						"x": 4,
 						"y": 4,
-						"w": 1000,
-						"h": 917
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00005.png",
+					"filename": "Bird/Catch_00031.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 1012,
+						"x": 512,
 						"y": 4,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00006.png",
+					"filename": "Bird/Catch_00032.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 1937,
+						"x": 1020,
 						"y": 4,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00007.png",
+					"filename": "Bird/Catch_00033.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 2862,
+						"x": 1528,
 						"y": 4,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00078.png",
+					"filename": "Bird/Catch_00034.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 3787,
+						"x": 2036,
 						"y": 4,
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00079.png",
+					"filename": "Bird/Catch_00035.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 3787,
-						"y": 324,
-						"w": 300,
-						"h": 312
+						"x": 2544,
+						"y": 4,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00080.png",
+					"filename": "Bird/Catch_00036.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 3787,
-						"y": 644,
-						"w": 300,
-						"h": 312
+						"x": 3052,
+						"y": 4,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00008.png",
+					"filename": "Bird/Catch_00037.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3560,
+						"y": 4,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00038.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
 						"x": 4,
-						"y": 964,
-						"w": 917,
-						"h": 917
+						"y": 471,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00009.png",
+					"filename": "Bird/Catch_00039.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
 						"x": 4,
-						"y": 1889,
-						"w": 917,
-						"h": 917
+						"y": 938,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00010.png",
+					"filename": "Bird/Catch_00040.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
 						"x": 4,
-						"y": 2814,
-						"w": 917,
-						"h": 917
+						"y": 1405,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00081.png",
+					"filename": "Bird/Catch_00041.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
 						"x": 4,
-						"y": 3739,
-						"w": 300,
-						"h": 312
+						"y": 1872,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Fish/Fish 2_00082.png",
+					"filename": "Bird/Catch_00042.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 300,
-						"h": 312
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 312,
-						"y": 3739,
-						"w": 300,
-						"h": 312
+						"x": 4,
+						"y": 2339,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00043.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 4,
+						"y": 2806,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00044.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 4,
+						"y": 3273,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -276,8 +339,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 620,
-						"y": 3739,
+						"x": 4,
+						"y": 3740,
 						"w": 300,
 						"h": 312
 					}
@@ -297,157 +360,157 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 928,
-						"y": 3739,
+						"x": 312,
+						"y": 3740,
 						"w": 300,
 						"h": 312
 					}
 				},
 				{
-					"filename": "Bird/Fly_00011.png",
+					"filename": "Bird/Catch_00045.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 1236,
-						"y": 929,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 471,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00012.png",
+					"filename": "Bird/Catch_00046.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 2161,
-						"y": 929,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 938,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00013.png",
+					"filename": "Bird/Catch_00047.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 3086,
-						"y": 964,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 1405,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00014.png",
+					"filename": "Bird/Catch_00048.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 3086,
-						"y": 1889,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 1872,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00015.png",
+					"filename": "Bird/Catch_00049.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 929,
-						"y": 2814,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 2339,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00016.png",
+					"filename": "Bird/Catch_00050.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 929,
-						"y": 1854,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 2806,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
-					"filename": "Bird/Fly_00017.png",
+					"filename": "Bird/Catch_00051.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 1854,
-						"y": 1854,
-						"w": 917,
-						"h": 917
+						"x": 512,
+						"y": 3273,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -465,8 +528,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 1236,
-						"y": 3739,
+						"x": 620,
+						"y": 3740,
 						"w": 300,
 						"h": 312
 					}
@@ -486,10 +549,115 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 1544,
-						"y": 3739,
+						"x": 928,
+						"y": 3740,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00052.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1236,
+						"y": 471,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00053.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1744,
+						"y": 471,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00054.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2252,
+						"y": 471,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00055.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2760,
+						"y": 471,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00056.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3268,
+						"y": 471,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -507,31 +675,10 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 1852,
-						"y": 3739,
+						"x": 3776,
+						"y": 471,
 						"w": 300,
 						"h": 312
-					}
-				},
-				{
-					"filename": "Bird/Fly_00018.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 917,
-						"h": 917
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 917,
-						"h": 917
-					},
-					"frame": {
-						"x": 1854,
-						"y": 2814,
-						"w": 917,
-						"h": 917
 					}
 				},
 				{
@@ -549,10 +696,115 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 2160,
-						"y": 3739,
+						"x": 3776,
+						"y": 791,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00057.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1236,
+						"y": 938,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00058.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1744,
+						"y": 938,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00059.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2252,
+						"y": 938,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00060.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2760,
+						"y": 938,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00061.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3268,
+						"y": 938,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -570,10 +822,94 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 2468,
-						"y": 3739,
+						"x": 3776,
+						"y": 1111,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00062.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1020,
+						"y": 1431,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00063.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1020,
+						"y": 1898,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00064.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1020,
+						"y": 2365,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00065.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1020,
+						"y": 2832,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -591,31 +927,31 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 2776,
-						"y": 3739,
+						"x": 1020,
+						"y": 3299,
 						"w": 300,
 						"h": 312
 					}
 				},
 				{
-					"filename": "Bird/Fly_00019.png",
+					"filename": "Bird/Catch_00066.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 917,
-						"h": 917
+						"w": 500,
+						"h": 459
 					},
 					"frame": {
-						"x": 2779,
-						"y": 2814,
-						"w": 917,
-						"h": 917
+						"x": 1236,
+						"y": 3619,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -633,10 +969,115 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 3084,
-						"y": 3739,
+						"x": 1328,
+						"y": 3299,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00067.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1528,
+						"y": 1431,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00068.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1528,
+						"y": 1898,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00069.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1528,
+						"y": 2365,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00070.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1528,
+						"y": 2832,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00071.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2036,
+						"y": 2832,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -654,10 +1095,31 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 3392,
-						"y": 3739,
+						"x": 1636,
+						"y": 3299,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00072.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 1744,
+						"y": 3619,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -675,10 +1137,31 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 3700,
-						"y": 3739,
+						"x": 1944,
+						"y": 3299,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00073.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2252,
+						"y": 3299,
+						"w": 500,
+						"h": 459
 					}
 				},
 				{
@@ -696,8 +1179,8 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 3704,
-						"y": 2814,
+						"x": 2252,
+						"y": 3766,
 						"w": 300,
 						"h": 312
 					}
@@ -717,10 +1200,451 @@
 						"h": 312
 					},
 					"frame": {
-						"x": 3704,
-						"y": 3134,
+						"x": 2560,
+						"y": 3766,
 						"w": 300,
 						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00074.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2868,
+						"y": 1405,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00096.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 2544,
+						"y": 1405,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00075.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2036,
+						"y": 1405,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00097.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 2544,
+						"y": 1725,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00076.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2036,
+						"y": 1872,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00077.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2036,
+						"y": 2339,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00098.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 3376,
+						"y": 1405,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00099.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 3684,
+						"y": 1431,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00100.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 3376,
+						"y": 1725,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00078.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2868,
+						"y": 1872,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00079.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2868,
+						"y": 2339,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00101.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 2544,
+						"y": 2045,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00102.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 2544,
+						"y": 2365,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00103.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 2544,
+						"y": 2685,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Fish/Fish 2_00104.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 300,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 300,
+						"h": 312
+					},
+					"frame": {
+						"x": 3684,
+						"y": 1751,
+						"w": 300,
+						"h": 312
+					}
+				},
+				{
+					"filename": "Bird/Catch_00080.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3376,
+						"y": 2071,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00081.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3376,
+						"y": 2538,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00082.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2868,
+						"y": 2806,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00083.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 2868,
+						"y": 3273,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00084.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3376,
+						"y": 3005,
+						"w": 500,
+						"h": 459
+					}
+				},
+				{
+					"filename": "Bird/Catch_00085.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 500,
+						"h": 459
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 500,
+						"h": 459
+					},
+					"frame": {
+						"x": 3376,
+						"y": 3472,
+						"w": 500,
+						"h": 459
 					}
 				}
 			]

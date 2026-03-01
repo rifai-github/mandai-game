@@ -79,9 +79,22 @@ const BIRD_ANIM_FRAMERATE = 24;
 /* ------------------------------------------------------------------ */
 
 /* Bird (player anchor, center of gameplay) */
-/* bird.png is 1196×604 → 0.18 yields ~215×109, ≈45% of game width (matches ice at ≈46%) */
-const BIRD_SCALE = 0.5 * multiplierResolution;
-const BIRD_CENTER_Y = 480 * scaleByHeight;
+/* Each bird state has its own game object so positions & scale can be tuned independently */
+
+/* Bird-idle */
+const BIRD_IDLE_SCALE = 0.5 * multiplierResolution;
+const BIRD_IDLE_X_OFFSET = 0;   // relative to this.cx
+const BIRD_IDLE_Y = GAME_HEIGHT / 2;
+
+/* Bird-catch */
+const BIRD_CATCH_SCALE = 1 * multiplierResolution;
+const BIRD_CATCH_X_OFFSET = -35;  // relative to this.cx
+const BIRD_CATCH_Y = GAME_HEIGHT / 2;
+
+/* Bird-fly */
+const BIRD_FLY_SCALE = 0.8 * multiplierResolution;
+const BIRD_FLY_X_OFFSET = 0;    // relative to this.cx
+const BIRD_FLY_Y = GAME_HEIGHT / 2;
 
 /* Fish spawning (relative to bird) */
 /* Fish atlas frames are 335×120 → 0.25 yields ~84×30 display */
@@ -99,7 +112,7 @@ const FISH_MIN_SPACING = 90;
 const FISH_SPAWN_MAX_ATTEMPTS = 15;
 
 /* Water surface (centered horizontally, adjustable Y) */
-const WATER_Y = 560 * scaleByHeight;
+const WATER_Y = (BIRD_IDLE_Y + 160);
 const WATER_SCALE = 0.25 * multiplierResolution;
 const DEPTH_WATER = 25;
 
@@ -161,7 +174,10 @@ export class CatchFishScene extends BaseScene {
   private spawnTimer!: Phaser.Time.TimerEvent;
   private activeFish: Phaser.GameObjects.Sprite[] = [];
   private isGameOver = false;
-  private birdSprite!: Phaser.GameObjects.Sprite;
+  private birdIdle!: Phaser.GameObjects.Sprite;
+  private birdCatch!: Phaser.GameObjects.Sprite;
+  private birdFly!: Phaser.GameObjects.Sprite;
+  private water!: Phaser.GameObjects.Image;
 
   constructor() {
     super({ key: SceneKeys.CatchFish });
@@ -311,10 +327,10 @@ export class CatchFishScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createWater(): void {
-    const water = this.add.image(this.cx, WATER_Y, TEX_WATER);
-    water.setOrigin(0.5);
-    water.setScale(WATER_SCALE);
-    water.setDepth(DEPTH_WATER);
+    this.water = this.add.image(this.cx, WATER_Y, TEX_WATER);
+    this.water.setOrigin(0.5);
+    this.water.setScale(WATER_SCALE);
+    this.water.setDepth(DEPTH_WATER);
   }
 
   /* ------------------------------------------------------------------ */
@@ -362,11 +378,28 @@ export class CatchFishScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createBird(): void {
-    this.birdSprite = this.add.sprite(this.cx, BIRD_CENTER_Y, `${TEX_BF_PREFIX}0`);
-    this.birdSprite.setOrigin(0.5);
-    this.birdSprite.setScale(BIRD_SCALE);
-    this.birdSprite.setDepth(DEPTH_BIRD);
-    this.birdSprite.play(ANIM_BIRD_IDLE);
+    const atlasKey = `${TEX_BF_PREFIX}0`;
+
+    /* Idle — visible by default */
+    this.birdIdle = this.add.sprite(this.cx + BIRD_IDLE_X_OFFSET, BIRD_IDLE_Y, atlasKey);
+    this.birdIdle.setOrigin(0.5);
+    this.birdIdle.setScale(BIRD_IDLE_SCALE);
+    this.birdIdle.setDepth(DEPTH_BIRD);
+    this.birdIdle.play(ANIM_BIRD_IDLE);
+
+    /* Catch — hidden until a fish is caught */
+    this.birdCatch = this.add.sprite(this.cx + BIRD_CATCH_X_OFFSET, BIRD_CATCH_Y, atlasKey);
+    this.birdCatch.setOrigin(0.5);
+    this.birdCatch.setScale(BIRD_CATCH_SCALE);
+    this.birdCatch.setDepth(DEPTH_BIRD);
+    this.birdCatch.setVisible(false);
+
+    /* Fly — hidden until win */
+    this.birdFly = this.add.sprite(this.cx + BIRD_FLY_X_OFFSET, BIRD_FLY_Y, atlasKey);
+    this.birdFly.setOrigin(0.5);
+    this.birdFly.setScale(BIRD_FLY_SCALE);
+    this.birdFly.setDepth(DEPTH_BIRD);
+    this.birdFly.setVisible(false);
   }
 
   /* ------------------------------------------------------------------ */
@@ -430,8 +463,8 @@ export class CatchFishScene extends BaseScene {
   private spawnFish(): void {
     if (this.isGameOver) return;
 
-    const birdX = this.birdSprite.x;
-    const birdY = this.birdSprite.y;
+    const birdX = this.birdIdle.x;
+    const birdY = this.birdIdle.y;
 
     let x = 0;
     let y = 0;
@@ -529,11 +562,16 @@ export class CatchFishScene extends BaseScene {
 
     this.showToast(TEX_INCREASE, fish.x, fish.y);
 
-    /* Play bird catch animation, then return to idle */
-    this.birdSprite.play(ANIM_BIRD_CATCH);
-    this.birdSprite.once('animationcomplete', () => {
+    /* Show bird-catch, hide bird-idle + water; on complete reverse */
+    this.birdIdle.setVisible(false);
+    this.water.setVisible(false);
+    this.birdCatch.setVisible(true);
+    this.birdCatch.play(ANIM_BIRD_CATCH);
+    this.birdCatch.once('animationcomplete', () => {
+      this.birdCatch.setVisible(false);
       if (!this.isGameOver) {
-        this.birdSprite.play(ANIM_BIRD_IDLE);
+        this.birdIdle.setVisible(true);
+        this.water.setVisible(true);
       }
     });
 
@@ -615,12 +653,16 @@ export class CatchFishScene extends BaseScene {
     });
     this.activeFish = [];
 
-    this.spawnCelebration(this.birdSprite.x, this.birdSprite.y);
-    this.showFloatingText(this.birdSprite.x, this.birdSprite.y - 40, 'All Caught!', '#ffffff');
+    this.spawnCelebration(this.birdFly.x, this.birdFly.y);
+    this.showFloatingText(this.birdFly.x, this.birdFly.y - 40, 'All Caught!', '#ffffff');
 
-    /* Play fly animation, then notify game completed */
-    this.birdSprite.play(ANIM_BIRD_FLY);
-    this.birdSprite.once('animationcomplete', () => {
+    /* Show bird-fly, hide the others + water; on complete notify */
+    this.birdIdle.setVisible(false);
+    this.water.setVisible(false);
+    this.birdCatch.setVisible(false);
+    this.birdFly.setVisible(true);
+    this.birdFly.play(ANIM_BIRD_FLY);
+    this.birdFly.once('animationcomplete', () => {
       this.notifyGameCompleted();
     });
   }
