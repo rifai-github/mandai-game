@@ -23,6 +23,7 @@ import firstLandUrl from '../assets/images/WingOfAsia/first-land.png';
 import asset1Url from '../assets/images/WingOfAsia/asset1.png';
 import asset2Url from '../assets/images/WingOfAsia/asset2.png';
 import finishSpotUrl from '../assets/images/WingOfAsia/finish-spot.png';
+import duckFinishUrl from '../assets/images/WingOfAsia/Duck-Finish.png';
 
 /* Duck animation atlases (loaded via Vite glob — 3 atlas pairs, mixed Idle+Swim) */
 const duckAtlasPngs = import.meta.glob(
@@ -59,6 +60,7 @@ const TEX_FIRST_LAND = 'pf-first-land';
 const TEX_ASSET1 = 'pf-asset1';
 const TEX_ASSET2 = 'pf-asset2';
 const TEX_FINISH = 'pf-finish';
+const TEX_DUCK_FINISH = 'pf-duck-finish';
 
 /* Duck animation atlas keys & anim keys */
 const TEX_DUCK_ATLAS_PREFIX = 'pf-duck-atlas-';
@@ -86,12 +88,27 @@ enum GameState {
 
 /** Base scale for all in-world sprites (duck, assets, finish, first-land) */
 const ASSET_SCALE = 0.25 * multiplierResolution;
-const DUCK_SCALE = 0.5 * multiplierResolution;
 
 /** Foot button scale – left foot uses negative scaleX to mirror */
 const FOOT_SCALE = 0.25 * multiplierResolution;
 
-/** Duck is horizontally centred and vertically fixed */
+/* Duck-idle */
+const DUCK_IDLE_SCALE = 0.5 * multiplierResolution;
+const DUCK_IDLE_X = GAME_WIDTH / 2;
+const DUCK_IDLE_Y = 480 * scaleByHeight;
+
+/* Duck-swim */
+const DUCK_SWIM_SCALE = 0.5 * multiplierResolution;
+const DUCK_SWIM_X = GAME_WIDTH / 2;
+const DUCK_SWIM_Y = 480 * scaleByHeight;
+
+/* Duck-finish (static image shown on win) */
+const DUCK_FINISH_SCALE = 0.7 * multiplierResolution;
+const DUCK_FINISH_X = (GAME_WIDTH / 2) - (GAME_WIDTH / 5);
+const DUCK_FINISH_Y = 480 * scaleByHeight;
+const DUCK_FINISH_BOB = 8;  // bob amplitude in px
+
+/** Shared duck X/Y used for track/scroll calculations */
 const DUCK_X = GAME_WIDTH / 2;
 const DUCK_Y = 480 * scaleByHeight;
 
@@ -112,8 +129,10 @@ const MAX_TAPS = MAX_PROGRESS / BASE_STEP;   // 20
 const SCROLL_PER_TAP = 50 * multiplierResolution;
 const TOTAL_SCROLL = MAX_TAPS * SCROLL_PER_TAP;  // 1600 px
 
-/** Initial Y positions — tweak these to adjust spawn locations */
-const FINISH_Y0 = DUCK_Y - TOTAL_SCROLL + 20;   // finish-spot start Y (scroll-math driven)
+/** Initial positions — tweak these to adjust spawn locations */
+const FINISH_SPOT_X = (GAME_WIDTH / 2) + (GAME_WIDTH / 5);                    // finish-spot X (adjustable)
+const FINISH_SPOT_Y_MARGIN = 150;               // lane assets within this Y distance from finish-spot are hidden
+const FINISH_Y0 = DUCK_Y - TOTAL_SCROLL - 50;   // finish-spot start Y (scroll-math driven)
 const FIRST_LAND_Y0 = DUCK_Y + 100;             // first-land start Y (just below duck)
 const FIRST_LAND_H = 380 * multiplierResolution;                       // display height of first-land (adjust freely)
 const LANE_SPAWN_TOP = 500;                     // lane assets top-most spawn Y (≈ centre of screen)
@@ -156,7 +175,9 @@ export class PaddleFoodScene extends BaseScene {
   private tapCount = 0;
 
   /* ── Display objects ────────────────────────────────────────────── */
-  private duck!: Phaser.GameObjects.Sprite;
+  private duckIdle!: Phaser.GameObjects.Sprite;
+  private duckSwim!: Phaser.GameObjects.Sprite;
+  private duckFinish!: Phaser.GameObjects.Image;
   private firstLand!: Phaser.GameObjects.Image;
   private finishSpot!: Phaser.GameObjects.Image;
   private laneAssets: Phaser.GameObjects.Image[] = [];
@@ -182,6 +203,7 @@ export class PaddleFoodScene extends BaseScene {
     this.load.image(TEX_ASSET1, asset1Url);
     this.load.image(TEX_ASSET2, asset2Url);
     this.load.image(TEX_FINISH, finishSpotUrl);
+    this.load.image(TEX_DUCK_FINISH, duckFinishUrl);
 
     /* Duck animation atlases */
     sortedAtlasPairs(duckAtlasPngs, duckAtlasJsons).forEach((pair, i) => {
@@ -205,9 +227,14 @@ export class PaddleFoodScene extends BaseScene {
   /* ────────────────────────── update ────────────────────────────── */
 
   update(): void {
-    /* Keep pseudo-3D depth scale in sync with each asset's live Y */
+    const finishY = this.finishSpot.y;
+
+    /* Keep pseudo-3D depth scale in sync with each asset's live Y,
+       and hide lane assets that are too close to the finish-spot */
     for (const img of this.laneAssets) {
       this.applyDepthScale(img, LANE_MAX_SCALE);
+      const tooClose = Math.abs(img.y - finishY) < FINISH_SPOT_Y_MARGIN;
+      img.setVisible(!tooClose);
     }
     this.applyDepthScale(this.finishSpot);
   }
@@ -254,7 +281,7 @@ export class PaddleFoodScene extends BaseScene {
     this.firstLand.setDepth(DEPTH_FIRST_LAND);
 
     /* finish-spot: centered X, tiny at game start, grows as it arrives */
-    this.finishSpot = this.add.image(DUCK_X, FINISH_Y0, TEX_FINISH);
+    this.finishSpot = this.add.image(FINISH_SPOT_X, FINISH_Y0, TEX_FINISH);
     this.finishSpot.setOrigin(0.5);
     this.finishSpot.setData('targetY', FINISH_Y0);
     this.finishSpot.setDepth(DEPTH_FINISH);
@@ -344,31 +371,43 @@ export class PaddleFoodScene extends BaseScene {
   /* ────────────────────────── duck ──────────────────────────────── */
 
   private createDuck(): void {
-    this.duck = this.add.sprite(DUCK_X, DUCK_Y, `${TEX_DUCK_ATLAS_PREFIX}0`);
-    this.duck.setOrigin(0.5);
-    this.duck.setScale(DUCK_SCALE);
-    this.duck.setDepth(DEPTH_DUCK);
-    this.duck.play(ANIM_DUCK_IDLE);
+    const atlasKey = `${TEX_DUCK_ATLAS_PREFIX}0`;
+
+    /* Idle — visible by default */
+    this.duckIdle = this.add.sprite(DUCK_IDLE_X, DUCK_IDLE_Y, atlasKey);
+    this.duckIdle.setOrigin(0.5);
+    this.duckIdle.setScale(DUCK_IDLE_SCALE);
+    this.duckIdle.setDepth(DEPTH_DUCK);
+    this.duckIdle.play(ANIM_DUCK_IDLE);
+
+    /* Swim — hidden until first tap */
+    this.duckSwim = this.add.sprite(DUCK_SWIM_X, DUCK_SWIM_Y, atlasKey);
+    this.duckSwim.setOrigin(0.5);
+    this.duckSwim.setScale(DUCK_SWIM_SCALE);
+    this.duckSwim.setDepth(DEPTH_DUCK);
+    this.duckSwim.setVisible(false);
+
+    /* Finish — hidden until win */
+    this.duckFinish = this.add.image(DUCK_FINISH_X, DUCK_FINISH_Y, TEX_DUCK_FINISH);
+    this.duckFinish.setOrigin(0.5);
+    this.duckFinish.setScale(DUCK_FINISH_SCALE);
+    this.duckFinish.setDepth(DEPTH_DUCK);
+    this.duckFinish.setVisible(false);
   }
 
   private startSwimming(): void {
     this.gameState = GameState.Swimming;
-    this.duck.play(ANIM_DUCK_SWIM);
+    this.duckIdle.setVisible(false);
+    this.duckSwim.setVisible(true);
+    this.duckSwim.play(ANIM_DUCK_SWIM);
     this.bobTween = this.tweens.add({
-      targets: this.duck,
-      y: DUCK_Y + 7,
+      targets: this.duckSwim,
+      y: DUCK_SWIM_Y + 7,
       duration: 700,
       yoyo: true,
       repeat: -1,
       ease: 'Sine.easeInOut',
     });
-  }
-
-  private stopSwimming(): void {
-    this.bobTween?.stop();
-    this.bobTween = null;
-    this.duck.setY(DUCK_Y);
-    this.duck.play(ANIM_DUCK_IDLE);
   }
 
   /* ────────────────────────── UI / progress bar ─────────────────── */
@@ -555,7 +594,23 @@ export class PaddleFoodScene extends BaseScene {
   /* ────────────────────────── win ───────────────────────────────── */
 
   private handleWin(): void {
-    this.stopSwimming();
+    /* Stop swim, show finish duck instead of idle */
+    this.bobTween?.stop();
+    this.bobTween = null;
+    this.duckSwim.setVisible(false);
+    this.duckSwim.setY(DUCK_SWIM_Y);
+    this.duckIdle.setVisible(false);
+    this.duckFinish.setVisible(true);
+
+    /* Bob animation on the finish duck */
+    this.tweens.add({
+      targets: this.duckFinish,
+      y: DUCK_FINISH_Y - DUCK_FINISH_BOB,
+      duration: 800,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut',
+    });
 
     /* Colourful celebration burst */
     const colors = [0xffd700, 0xff6b6b, 0x6bcb77, 0x4d96ff, 0xff6f91, 0xc490e4];
