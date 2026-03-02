@@ -324,7 +324,7 @@ export class CountEggScene extends BaseScene {
           align: 'center',
           lineSpacing: 6,
         },
-      ).setOrigin(0.5).setScale(multiplierResolution),
+      ).setOrigin(0.5).setScale(multiplierResolution).setResolution(2),
     );
   }
 
