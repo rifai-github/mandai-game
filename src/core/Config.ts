@@ -111,6 +111,8 @@ export const GAME_HEIGHT = window.innerHeight * multiplierResolution;
 export const scaleByWidth = GAME_WIDTH / DESIGN_WIDTH * multiplierResolution;
 export const scaleByHeight = GAME_HEIGHT / DESIGN_HEIGHT * multiplierResolution;
 
+export const GAME_RATIO = GAME_WIDTH / GAME_HEIGHT;
+
 
 
 /** Route table used by the Router */
@@ -124,7 +126,7 @@ export const ROUTE_TABLE: readonly RouteEntry[] = [
 
 /** Per-scene instruction layout (position + style overrides) */
 export interface InstructionConfig {
-  position: { title: number; instruction: number };
+  position: number;
   style: {
     title: Phaser.Types.GameObjects.Text.TextStyle;
     instruction: Phaser.Types.GameObjects.Text.TextStyle;
@@ -189,7 +191,7 @@ export const TEXT_STYLES = {
 /** Per-scene instruction configs (position + style) */
 export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
   [SceneKeys.MatchPenguin]: {
-    position: { title: 100, instruction: 150 },
+    position: 100,
     style: {
       title: {
         fontFamily: "'MandaiValueSerif'",
@@ -207,7 +209,7 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
     },
   },
   [SceneKeys.CatchFish]: {
-    position: { title: 110, instruction: 140 },
+    position: 100,
     style: {
       title: {
         fontFamily: "'MandaiValueSerif'",
@@ -225,7 +227,7 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
     },
   },
   [SceneKeys.PaddleFood]: {
-    position: { title: 100, instruction: 150 },
+    position: 100,
     style: {
       title: {
         fontFamily: "'MandaiValueSerif'",
@@ -243,7 +245,7 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
     },
   },
   [SceneKeys.PinkParents]: {
-    position: { title: 100, instruction: 150 },
+    position: 100,
     style: {
       title: {
         fontFamily: "'MandaiValueSerif'",
@@ -261,7 +263,7 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
     },
   },
   [SceneKeys.CountEgg]: {
-    position: { title: 100, instruction: 150 },
+    position: 100,
     style: {
       title: {
         fontFamily: "'MandaiValueSerif'",
@@ -271,9 +273,9 @@ export const SCENE_INSTRUCTIONS: Record<string, InstructionConfig> = {
       },
       instruction: {
         fontFamily: "'MandaiValueSerif'",
-        fontSize: '13px',
+        fontSize: '16px',
         color: '#515151',
-        wordWrap: { width: 320, useAdvancedWrap: true },
+        wordWrap: { width: 330, useAdvancedWrap: true },
         align: 'center',
       },
     },

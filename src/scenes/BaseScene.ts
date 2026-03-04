@@ -58,7 +58,7 @@ export abstract class BaseScene extends Phaser.Scene {
 
     const btn = this.add.image(x, y, BACK_BTN_KEY);
     btn.setOrigin(0.5);
-    btn.setDisplaySize(84 * multiplierResolution, 20 * multiplierResolution);
+    btn.setDisplaySize(84 * scaleByHeight, 20 * scaleByHeight);
     btn.setDepth(BACK_BTN_DEPTH);
     btn.setInteractive({ useHandCursor: true });
 
@@ -104,14 +104,14 @@ export abstract class BaseScene extends Phaser.Scene {
     const config = SCENE_INSTRUCTIONS[this.scene.key];
 
     const title = this.add
-      .text(this.cx, config.position.title * scaleByHeight, titleText, config.style.title)
-      .setOrigin(0.5)
-      .setScale(multiplierResolution)
+      .text(this.cx, config.position * scaleByHeight, titleText, config.style.title)
+      .setOrigin(0.5, 0)
+      .setScale(scaleByHeight)
       .setResolution(2);
     const instruction = this.add
-      .text(this.cx, config.position.instruction * scaleByHeight, instructionText, config.style.instruction)
-      .setOrigin(0.5)
-      .setScale(multiplierResolution)
+      .text(this.cx, title.displayHeight + (config.position * scaleByHeight) + 10, instructionText, config.style.instruction)
+      .setOrigin(0.5, 0)
+      .setScale(scaleByHeight)
       .setResolution(2);
 
     return { title, instruction };

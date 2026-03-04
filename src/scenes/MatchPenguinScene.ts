@@ -85,6 +85,12 @@ interface ActiveDrag {
 
 const PENGUIN_IDS: readonly PenguinId[] = ['a', 'b', 'c'];
 
+const PENGUIN_NAMES: Record<PenguinId, string> = {
+  a: 'King Penguin',
+  b: 'Northern Rockhopper',
+  c: 'Gentoo Penguin',
+};
+
 /* Sorted parent atlas pairs */
 const PARENT_ATLAS_PAIRS = sortedAtlasPairs(parentAtlasPngs, parentAtlasJsons);
 
@@ -105,14 +111,14 @@ const ANIM_CHILD: Record<PenguinId, string> = { a: 'mp-anim-child-a', b: 'mp-ani
 const PENGUIN_ANIM_FRAMERATE = 24;
 
 /* Layout */
-const PARENT_SCALE = 0.5 * multiplierResolution;
+const PARENT_SCALE = 0.5 * scaleByHeight;
 const PARENT_CENTER_Y = 380 * scaleByHeight;
-const PARENT_OFFSCREEN_PADDING = 150 * multiplierResolution;
-const DROP_AREA_SCALE = 0.35 * multiplierResolution;
+const PARENT_OFFSCREEN_PADDING = 150 * scaleByHeight;
+const DROP_AREA_SCALE = 0.35 * scaleByHeight;
 const DROP_AREA_CENTER_Y = 520 * scaleByHeight;
-const CHILD_SCALE = 0.5 * multiplierResolution;
+const CHILD_SCALE = 0.5 * scaleByHeight;
 const CHILD_ROW_Y = 740 * scaleByHeight;
-const CHILD_MARGIN_X = 90 * multiplierResolution;
+const CHILD_MARGIN_X = 90 * scaleByHeight;
 const CHILD_SELECT_BG_Y = 754 * scaleByHeight;
 const CHILD_SELECT_BG_DISPLAY_H = 150 * scaleByHeight;
 
@@ -124,7 +130,7 @@ const DEPTH_MATCHED_CHILD = 40;
 /* Animation */
 const SLIDE_DURATION = 500;
 const SLIDE_EASE = 'Cubic.easeOut';
-const SLIDE_OUT_DELAY = 200;
+const SLIDE_OUT_DELAY = 1500;
 const SNAP_DURATION = 150;
 const DRAGGING_ALPHA = 0.4;
 const MATCHED_ALPHA = 0.4;
@@ -151,6 +157,7 @@ export class MatchPenguinScene extends BaseScene {
   private parentQueue: ParentPenguin[] = [];
   private activeParentIndex = 0;
   private activeParentSprite: Phaser.GameObjects.Sprite | null = null;
+  private activeParentName: Phaser.GameObjects.Text | null = null;
   private dropAreaSprite: Phaser.GameObjects.Image | null = null;
   private activeDrag: ActiveDrag | null = null;
   private pointerMoveHandler: ((p: Phaser.Input.Pointer) => void) | null = null;
@@ -482,10 +489,28 @@ export class MatchPenguinScene extends BaseScene {
     if (this.dropAreaSprite) {
       this.dropAreaSprite.setVisible(false);
     }
-    /* 2. Toast */
+    /* 2. Show name label */
+    const parentData = this.parentQueue[this.activeParentIndex];
+    const nameText = this.add.text(
+      this.cx,
+      DROP_AREA_CENTER_Y + (120 * scaleByHeight),
+      PENGUIN_NAMES[parentData.id],
+      {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#000000',
+        align: 'center',
+      },
+    )
+      .setOrigin(0.5)
+      .setScale(scaleByHeight)
+      .setResolution(2);
+    this.activeParentName = nameText;
+
+    /* 3. Toast */
     this.showToast(TEX_CORRECT, parent.x, parent.y + TOAST_Y_OFFSET);
 
-    /* 3. Snap clone to drop-area position at 1.8× child scale */
+    /* 4. Snap clone to drop-area position at 1.8× child scale */
     clone.setScale(CHILD_SCALE * 1.8);
     clone.setDepth(DEPTH_MATCHED_CHILD);
 
@@ -499,7 +524,17 @@ export class MatchPenguinScene extends BaseScene {
         /* 4. Celebration */
         this.spawnCelebration(parent.x, parent.y);
 
-        /* 5. Slide parent + matched child left */
+        /* 5. Fade out name label */
+        if (this.activeParentName) {
+          this.tweens.add({
+            targets: this.activeParentName,
+            alpha: 0,
+            duration: 200,
+            delay: SLIDE_OUT_DELAY,
+          });
+        }
+
+        /* 6. Slide parent + matched child left */
         this.tweens.add({
           targets: [parent, clone],
           x: -parent.displayWidth,
@@ -545,6 +580,10 @@ export class MatchPenguinScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private destroyActiveParent(): void {
+    if (this.activeParentName) {
+      this.activeParentName.destroy();
+      this.activeParentName = null;
+    }
     if (this.activeParentSprite) {
       this.activeParentSprite.destroy();
       this.activeParentSprite = null;
@@ -575,7 +614,7 @@ export class MatchPenguinScene extends BaseScene {
   private showToast(textureKey: string, x: number, y: number): void {
     const toast = this.add.image(x, y, textureKey);
     toast.setOrigin(0.5);
-    toast.setDisplaySize(109 * multiplierResolution, 34 * multiplierResolution);
+    toast.setDisplaySize(109 * scaleByHeight, 34 * scaleByHeight);
     toast.setDepth(TOAST_DEPTH);
 
     /* Phase 1: slide up */

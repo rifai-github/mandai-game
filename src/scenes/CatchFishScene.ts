@@ -19,7 +19,6 @@ import {
   GAME_HEIGHT,
   scaleByHeight,
   scaleByWidth,
-  multiplierResolution,
 } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
@@ -82,25 +81,25 @@ const BIRD_ANIM_FRAMERATE = 24;
 /* Each bird state has its own game object so positions & scale can be tuned independently */
 
 /* Bird-idle */
-const BIRD_IDLE_SCALE = 0.5 * multiplierResolution;
+const BIRD_IDLE_SCALE = 0.5 * scaleByHeight;
 const BIRD_IDLE_X_OFFSET = 0;   // relative to this.cx
 const BIRD_IDLE_Y = GAME_HEIGHT / 2;
 
 /* Bird-catch */
-const BIRD_CATCH_SCALE = 1 * multiplierResolution;
+const BIRD_CATCH_SCALE = 1 * scaleByHeight;
 const BIRD_CATCH_X_OFFSET = -35;  // relative to this.cx
 const BIRD_CATCH_Y = GAME_HEIGHT / 2;
 
 /* Bird-fly */
-const BIRD_FLY_SCALE = 0.8 * multiplierResolution;
+const BIRD_FLY_SCALE = 0.8 * scaleByHeight;
 const BIRD_FLY_X_OFFSET = 0;    // relative to this.cx
 const BIRD_FLY_Y = GAME_HEIGHT / 2;
 
 /* Fish spawning (relative to bird) */
 /* Fish atlas frames are 335×120 → 0.25 yields ~84×30 display */
-const FISH_SCALE = 0.5 * multiplierResolution;
+const FISH_SCALE = 0.5 * scaleByHeight;
 /* Fish2 atlas frames are 600×623 → 0.14 yields ~84×87 display (comparable width) */
-const FISH2_SCALE = 0.40 * multiplierResolution;
+const FISH2_SCALE = 0.40 * scaleByHeight;
 const FISH_ANIM_FRAMERATE = 24;
 /* Fish2 has 121 frames — use higher fps so full animation plays within FISH_LIFETIME (3s) */
 const FISH2_ANIM_FRAMERATE = 41;
@@ -113,11 +112,11 @@ const FISH_SPAWN_MAX_ATTEMPTS = 15;
 
 /* Water surface (centered horizontally, adjustable Y) */
 const WATER_Y = (BIRD_IDLE_Y + 160);
-const WATER_SCALE = 0.25 * multiplierResolution;
+const WATER_SCALE = 0.25 * scaleByHeight;
 const DEPTH_WATER = 25;
 
 /* Decorative assets */
-const DECOR_SCALE = 0.25 * multiplierResolution;
+const DECOR_SCALE = 0.25 * scaleByHeight;
 const DECOR_DEPTH = 5;
 const ASSET1_X = 60 * scaleByWidth;
 const ASSET1_Y = 720 * scaleByHeight;
@@ -128,7 +127,7 @@ const ASSET3_Y = 280 * scaleByHeight;
 
 /* Progress display (top-right) */
 /* background-total.png is 568×144 — use setDisplaySize for pixel-precise UI like MatchPenguin */
-const PROGRESS_BG_X = GAME_WIDTH - 200;
+const PROGRESS_BG_X = GAME_WIDTH - (100 * scaleByWidth);
 const PROGRESS_BG_Y = 50 * scaleByHeight;
 const PROGRESS_BG_DISPLAY_W = 137;
 const PROGRESS_BG_DISPLAY_H = 36;
@@ -409,7 +408,7 @@ export class CatchFishScene extends BaseScene {
   private createProgress(): void {
     const progressBg = this.add.image(PROGRESS_BG_X, PROGRESS_BG_Y, TEX_PROGRESS_BG);
     progressBg.setOrigin(0.5);
-    progressBg.setDisplaySize(PROGRESS_BG_DISPLAY_W * multiplierResolution, PROGRESS_BG_DISPLAY_H * multiplierResolution);
+    progressBg.setDisplaySize(PROGRESS_BG_DISPLAY_W * scaleByHeight, PROGRESS_BG_DISPLAY_H * scaleByHeight);
     progressBg.setDepth(1);
 
     this.progressText = this.add.text(
@@ -423,7 +422,7 @@ export class CatchFishScene extends BaseScene {
         fontStyle: 'bold',
       } as Phaser.Types.GameObjects.Text.TextStyle,
     );
-    this.progressText.setScale(multiplierResolution);
+    this.progressText.setScale(scaleByHeight);
     this.progressText.setOrigin(0.5);
     this.progressText.setDepth(2);
     this.progressText.setResolution(2);
@@ -609,7 +608,7 @@ export class CatchFishScene extends BaseScene {
   private showToast(textureKey: string, x: number, y: number): void {
     const toast = this.add.image(x, y, textureKey);
     toast.setOrigin(0.5);
-    toast.setDisplaySize(30 * multiplierResolution, 30 * multiplierResolution);
+    toast.setDisplaySize(30 * scaleByHeight, 30 * scaleByHeight);
     toast.setDepth(TOAST_DEPTH);
 
     this.tweens.add({

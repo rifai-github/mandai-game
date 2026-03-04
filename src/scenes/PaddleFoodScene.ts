@@ -89,23 +89,23 @@ enum GameState {
 /* ------------------------------------------------------------------ */
 
 /** Base scale for all in-world sprites (duck, assets, finish, first-land) */
-const ASSET_SCALE = 0.25 * multiplierResolution;
+const ASSET_SCALE = 0.25 * scaleByHeight;
 
 /** Foot button scale – left foot uses negative scaleX to mirror */
-const FOOT_SCALE = 0.25 * multiplierResolution;
+const FOOT_SCALE = 0.25 * scaleByHeight;
 
 /* Duck-idle */
-const DUCK_IDLE_SCALE = 0.5 * multiplierResolution;
+const DUCK_IDLE_SCALE = 0.5 * scaleByHeight;
 const DUCK_IDLE_X = GAME_WIDTH / 2;
 const DUCK_IDLE_Y = 480 * scaleByHeight;
 
 /* Duck-swim */
-const DUCK_SWIM_SCALE = 0.5 * multiplierResolution;
+const DUCK_SWIM_SCALE = 0.5 * scaleByHeight;
 const DUCK_SWIM_X = GAME_WIDTH / 2;
 const DUCK_SWIM_Y = 480 * scaleByHeight;
 
 /* Duck-finish (static image shown on win) */
-const DUCK_FINISH_SCALE = 0.7 * multiplierResolution;
+const DUCK_FINISH_SCALE = 0.7 * scaleByHeight;
 const DUCK_FINISH_X = (GAME_WIDTH / 2) - (GAME_WIDTH / 5);
 const DUCK_FINISH_Y = 480 * scaleByHeight;
 const DUCK_FINISH_BOB = 8;  // bob amplitude in px
@@ -115,7 +115,7 @@ const DUCK_X = GAME_WIDTH / 2;
 const DUCK_Y = 480 * scaleByHeight;
 
 /** Height of the bottom tap-zone strip */
-const ZONE_HEIGHT = 180 * multiplierResolution;
+const ZONE_HEIGHT = 180 * scaleByHeight;
 
 /** Progress advances by BASE_STEP per correct tap */
 const BASE_STEP = 5;
@@ -128,7 +128,7 @@ const MAX_TAPS = MAX_PROGRESS / BASE_STEP;   // 20
  * finish-spot starts at DUCK_Y − (MAX_TAPS × SCROLL_PER_TAP),
  * so it arrives exactly at DUCK_Y on the winning tap.
  */
-const SCROLL_PER_TAP = 50 * multiplierResolution;
+const SCROLL_PER_TAP = 50 * scaleByHeight;
 const TOTAL_SCROLL = MAX_TAPS * SCROLL_PER_TAP;  // 1600 px
 
 /** Initial positions — tweak these to adjust spawn locations */
@@ -136,8 +136,8 @@ const FINISH_SPOT_X = (GAME_WIDTH / 2) + (GAME_WIDTH / 5);                    //
 const FINISH_SPOT_Y_MARGIN = 150;               // lane assets within this Y distance from finish-spot are hidden
 const FINISH_Y0 = DUCK_Y - TOTAL_SCROLL - 50;   // finish-spot start Y (scroll-math driven)
 const FIRST_LAND_Y0 = DUCK_Y + 100;             // first-land start Y (just below duck)
-const FIRST_LAND_H = 380 * multiplierResolution;                       // display height of first-land (adjust freely)
-const LANE_SPAWN_TOP = 500;                     // lane assets top-most spawn Y (≈ centre of screen)
+const FIRST_LAND_H = 380 * scaleByHeight;                       // display height of first-land (adjust freely)
+const LANE_SPAWN_TOP = GAME_HEIGHT / multiplierResolution / 2;                     // lane assets top-most spawn Y (≈ centre of screen)
 const LANE_SPAWN_BOT = DUCK_Y - 100;            // lane assets bottom-most spawn Y
 
 /* Pseudo-3D scale model ─────────────────────────────────────────── */
@@ -149,7 +149,7 @@ const SCALE_Y_BOT = DUCK_Y;                  //  430  → full scale
 const LANE_MAX_SCALE = ASSET_SCALE * 1.2;         //  0.30
 
 /* Bottom overlay */
-const BOTTOM_OVERLAY_HEIGHT = 200 * scaleByHeight;
+const BOTTOM_OVERLAY_HEIGHT = (ZONE_HEIGHT + (40 * scaleByHeight))
 const BOTTOM_OVERLAY_ALPHA = 0.5;
 
 /* Depth layers (back → front) ────────────────────────────────────── */

@@ -12,7 +12,7 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, scaleByWidth, scaleByHeight, multiplierResolution } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, scaleByWidth, scaleByHeight } from '../core/Config';
 import { AssetLoader } from '../systems/AssetLoader';
 
 /* ------------------------------------------------------------------ */
@@ -86,19 +86,25 @@ const TEX_FLAMINGO_PREFIX = 'pp-flamingo-';
 const TEX_COLOR_PREFIX = 'pp-color-';
 
 /* Layout */
-const FLAMINGO_SCALE = 0.66 * multiplierResolution;
+const FLAMINGO_SCALE = 0.66 * scaleByHeight;
 const FLAMINGO_CENTER_Y = 450 * scaleByHeight;
 const FLAMINGO_OFFSCREEN_PADDING = 150 * scaleByWidth;
-const SELECT_BG_Y = 760 * scaleByHeight;
+const SELECT_BG_Y = GAME_HEIGHT - 150;
 const SELECT_BG_DISPLAY_W = 337 * scaleByWidth;
 const SELECT_BG_DISPLAY_H = 132 * scaleByHeight;
-const SELECT_TEXT_Y = SELECT_BG_Y - 80;
-const COLOR_SCALE = 0.25 * multiplierResolution;
-const COLOR_ROW_Y = SELECT_BG_Y + 40;
+const SELECT_TEXT_Y = SELECT_BG_Y - SELECT_BG_DISPLAY_H / 2 + 45;
+const COLOR_SCALE = 0.25 * scaleByHeight;
+const COLOR_ROW_Y = SELECT_BG_Y + SELECT_BG_DISPLAY_H * 0.15;
 const COLOR_MARGIN_X = 140 * scaleByWidth;
 
 /* Depth layers (back → front) */
 const DEPTH_FLAMINGO = 30;
+
+const FLAMINGO_NAMES: Record<FlamingoId, string> = {
+  '1': 'Scarlet ibis',
+  '2': 'Roseate spoonbill',
+  '3': 'American flamingo',
+};
 
 /* Flamingo animation keys */
 const ANIM_FLAMINGO: Record<FlamingoId, string> = {
@@ -110,7 +116,7 @@ const ANIM_FLAMINGO: Record<FlamingoId, string> = {
 /* Animation */
 const SLIDE_DURATION = 500;
 const SLIDE_EASE = 'Cubic.easeOut';
-const SLIDE_OUT_DELAY = 200;
+const SLIDE_OUT_DELAY = 1500;
 const TOAST_FLOAT_OFFSET = 40;
 const TOAST_DEPTH = 500;
 const TOAST_Y_OFFSET = 230 * scaleByHeight;
@@ -133,6 +139,7 @@ export class PinkParentsScene extends BaseScene {
   private flamingoQueue: FlamingoEntry[] = [];
   private activeFlamingoIndex = 0;
   private activeFlamingoSprite: Phaser.GameObjects.Sprite | null = null;
+  private activeFlamingoName: Phaser.GameObjects.Text | null = null;
 
   constructor() {
     super({ key: SceneKeys.PinkParents });
@@ -220,17 +227,16 @@ export class PinkParentsScene extends BaseScene {
     /* Selection area background */
     const selectBg = this.add.image(this.cx, SELECT_BG_Y, TEX_SELECT_BG);
     selectBg.setDisplaySize(SELECT_BG_DISPLAY_W, SELECT_BG_DISPLAY_H);
-
-    /* Instruction text inside selection area */
     this.add
-      .text(this.cx, SELECT_TEXT_Y, 'Select the shade of pink below that matches\nthe bird\'s feather.', {
+      .text(this.cx, SELECT_TEXT_Y, 'Select the shade of pink below that matches the bird\'s feather.', {
         fontFamily: "'MandaiValueSerif'",
-        fontSize: '13px',
+        fontSize: `${13}px`,
         color: '#ffffff',
         align: 'center',
         lineSpacing: 4,
+        wordWrap: { width: SELECT_BG_DISPLAY_W / scaleByHeight - 20 },
       })
-      .setScale(2)
+      .setScale(scaleByHeight)
       .setOrigin(0.5)
       .setResolution(2);
   }
@@ -346,10 +352,28 @@ export class PinkParentsScene extends BaseScene {
     this.matchState = MatchState.Animating;
     this.sound.play(SFX_CORRECT);
 
-    /* 1. Toast */
+    /* 1. Show name label */
+    const flamingoData = this.flamingoQueue[this.activeFlamingoIndex];
+    const nameText = this.add.text(
+      this.cx,
+      FLAMINGO_CENTER_Y + (150 * scaleByHeight),
+      FLAMINGO_NAMES[flamingoData.id],
+      {
+        fontFamily: "'MandaiValueSerif'",
+        fontSize: '16px',
+        color: '#000000',
+        align: 'center',
+      },
+    )
+      .setOrigin(0.5)
+      .setScale(scaleByHeight)
+      .setResolution(2);
+    this.activeFlamingoName = nameText;
+
+    /* 2. Toast */
     this.showToast(TEX_CORRECT, flamingo.x, flamingo.y + TOAST_Y_OFFSET);
 
-    /* 2. Brief press feedback on the swatch */
+    /* 3. Brief press feedback on the swatch */
     this.tweens.add({
       targets: swatch.sprite,
       scale: COLOR_SCALE * 0.85,
@@ -361,7 +385,17 @@ export class PinkParentsScene extends BaseScene {
     /* 3. Celebration */
     this.spawnCelebration(flamingo.x, flamingo.y);
 
-    /* 4. Slide flamingo left */
+    /* 4. Fade out name label */
+    if (this.activeFlamingoName) {
+      this.tweens.add({
+        targets: this.activeFlamingoName,
+        alpha: 0,
+        duration: 200,
+        delay: SLIDE_OUT_DELAY,
+      });
+    }
+
+    /* 5. Slide flamingo left */
     this.tweens.add({
       targets: flamingo,
       x: -flamingo.displayWidth,
@@ -394,6 +428,10 @@ export class PinkParentsScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private destroyActiveFlamingo(): void {
+    if (this.activeFlamingoName) {
+      this.activeFlamingoName.destroy();
+      this.activeFlamingoName = null;
+    }
     if (this.activeFlamingoSprite) {
       this.activeFlamingoSprite.destroy();
       this.activeFlamingoSprite = null;
@@ -419,7 +457,7 @@ export class PinkParentsScene extends BaseScene {
   private showToast(textureKey: string, x: number, y: number): void {
     const toast = this.add.image(x, y, textureKey);
     toast.setOrigin(0.5);
-    toast.setDisplaySize(109 * multiplierResolution, 34 * multiplierResolution);
+    toast.setDisplaySize(109 * scaleByHeight, 34 * scaleByHeight);
     toast.setDepth(TOAST_DEPTH);
 
     /* Phase 1: slide up */

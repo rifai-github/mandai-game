@@ -16,7 +16,7 @@
  */
 
 import { BaseScene } from './BaseScene';
-import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, multiplierResolution } from '../core/Config';
+import { SceneKeys, GAME_WIDTH, GAME_HEIGHT, scaleByHeight } from '../core/Config';
 
 /* ------------------------------------------------------------------ */
 /*  Asset imports                                                       */
@@ -70,17 +70,17 @@ const DEFAULT_CORRECT_ANSWER = "BEE HUMMINGBIRD";
 /* ------------------------------------------------------------------ */
 
 /* Bird (main screen) */
-const BIRD_SCALE = 0.25 * multiplierResolution;
-const BIRD_CENTER_Y = 420 * multiplierResolution;
+const BIRD_SCALE = 0.25 * scaleByHeight;
+const BIRD_CENTER_Y = 420 * scaleByHeight;
 
 /* "Submit Answer" button (main screen) */
-const SUBMIT_BTN_SCALE = 0.25 * multiplierResolution;
+const SUBMIT_BTN_SCALE = 0.25 * scaleByHeight;
 const SUBMIT_BTN_Y = GAME_HEIGHT - 100;
 
 /* Overlay */
 const OVERLAY_DEPTH = 900;
 const HEADER_Y = 100;
-const HEADER_SCALE = 0.30 * multiplierResolution;
+const HEADER_SCALE = 0.30 * scaleByHeight;
 
 /* Block grid — auto-sized so MAX_ROW_BLOCKS fit in one row */
 const MAX_ROW_BLOCKS = 11;
@@ -98,9 +98,9 @@ const OVERLAY_ROW1_Y = Math.floor(GAME_HEIGHT * 0.35);
 const OVERLAY_ROW2_Y = OVERLAY_ROW1_Y + BLOCK_HEIGHT + BLOCK_ROW_GAP;
 
 /* Cancel / Submit buttons inside the overlay */
-const ACTION_BTN_SCALE = 0.25 * multiplierResolution;
+const ACTION_BTN_SCALE = 0.25 * scaleByHeight;
 const ACTION_BTN_Y = OVERLAY_ROW2_Y + Math.floor(BLOCK_HEIGHT * 0.5) + 90;
-const ACTION_BTN_GAP = 20 * multiplierResolution;
+const ACTION_BTN_GAP = 20 * scaleByHeight;
 
 /* Tints */
 const TINT_USER = 0xFFE066; // yellow — user-typed
@@ -324,7 +324,7 @@ export class CountEggScene extends BaseScene {
           align: 'center',
           lineSpacing: 6,
         },
-      ).setOrigin(0.5).setScale(multiplierResolution).setResolution(2),
+      ).setOrigin(0.5).setScale(scaleByHeight).setResolution(2),
     );
   }
 
