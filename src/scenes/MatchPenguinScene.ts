@@ -130,7 +130,7 @@ const DEPTH_MATCHED_CHILD = 40;
 /* Animation */
 const SLIDE_DURATION = 500;
 const SLIDE_EASE = 'Cubic.easeOut';
-const SLIDE_OUT_DELAY = 1500;
+const SLIDE_OUT_DELAY = 3000;
 const SNAP_DURATION = 150;
 const DRAGGING_ALPHA = 0.4;
 const MATCHED_ALPHA = 0.4;

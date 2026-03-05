@@ -116,7 +116,7 @@ const ANIM_FLAMINGO: Record<FlamingoId, string> = {
 /* Animation */
 const SLIDE_DURATION = 500;
 const SLIDE_EASE = 'Cubic.easeOut';
-const SLIDE_OUT_DELAY = 1500;
+const SLIDE_OUT_DELAY = 3000;
 const TOAST_FLOAT_OFFSET = 40;
 const TOAST_DEPTH = 500;
 const TOAST_Y_OFFSET = 230 * scaleByHeight;
