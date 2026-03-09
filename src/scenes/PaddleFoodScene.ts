@@ -119,7 +119,7 @@ const ZONE_HEIGHT = 180 * scaleByHeight;
 
 /** Progress advances by BASE_STEP per correct tap */
 const BASE_STEP = 5;
-const MAX_PROGRESS = 200;
+const MAX_PROGRESS = 400;
 /** Total correct taps required to win */
 const MAX_TAPS = MAX_PROGRESS / BASE_STEP;   // 20
 
