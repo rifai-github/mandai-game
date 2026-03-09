@@ -132,6 +132,9 @@ export class CountEggScene extends BaseScene {
   private overlayContainer: Phaser.GameObjects.Container | null = null;
   private overlaySubmitBtn: Phaser.GameObjects.Image | null = null;
 
+  /* Main screen submit button */
+  private submitBtn: Phaser.GameObjects.Image | null = null;
+
   /* Resolved game config (from query params or defaults) */
   private resolvedBlocks: string[][] = DEFAULT_BLOCKS;
   private resolvedAnswer: string = DEFAULT_CORRECT_ANSWER;
@@ -227,7 +230,7 @@ export class CountEggScene extends BaseScene {
     );
 
     /* "Submit Answer" button */
-    this.createImageButton(
+    this.submitBtn = this.createImageButton(
       this.cx, SUBMIT_BTN_Y,
       TEX_SUBMIT_BTN, SUBMIT_BTN_SCALE,
       () => this.openOverlay(),
@@ -265,6 +268,7 @@ export class CountEggScene extends BaseScene {
     );
 
     this.setBackButtonEnabled(false);
+    if (this.submitBtn) this.submitBtn.setVisible(false);
 
     this.createOverlayHeader(container);
     this.buildBlockGrid(container);
@@ -290,6 +294,7 @@ export class CountEggScene extends BaseScene {
     if (!this.overlayContainer) return;
 
     this.setBackButtonEnabled(true);
+    if (this.submitBtn) this.submitBtn.setVisible(true);
     this.removeKeyboard();
 
     const container = this.overlayContainer;
