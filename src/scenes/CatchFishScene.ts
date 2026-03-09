@@ -59,9 +59,6 @@ function sortedAtlasPairs(
 const VID_BG = 'cf-bg-video';
 const TEX_INCREASE = 'cf-increase';
 const TEX_PROGRESS_BG = 'cf-progress-bg';
-const TEX_ASSET1 = 'cf-asset1';
-const TEX_ASSET2 = 'cf-asset2';
-const TEX_ASSET3 = 'cf-asset3';
 const TEX_WATER = 'cf-water';
 
 /* Combined bird-fish atlas key prefix (7 atlases) */
@@ -95,7 +92,7 @@ const BIRD_FLY_SCALE = 0.8 * scaleByHeight;
 const BIRD_FLY_X_OFFSET = 0;    // relative to this.cx
 const BIRD_FLY_Y = GAME_HEIGHT / 2;
 
-/* Fish spawning (relative to bird) */
+/* Fish spawning (spread across game area) */
 /* Fish atlas frames are 335×120 → 0.25 yields ~84×30 display */
 const FISH_SCALE = 0.5 * scaleByHeight;
 /* Fish2 atlas frames are 600×623 → 0.14 yields ~84×87 display (comparable width) */
@@ -103,10 +100,10 @@ const FISH2_SCALE = 0.40 * scaleByHeight;
 const FISH_ANIM_FRAMERATE = 24;
 /* Fish2 has 121 frames — use higher fps so full animation plays within FISH_LIFETIME (3s) */
 const FISH2_ANIM_FRAMERATE = 41;
-const FISH_SPAWN_RADIUS_MIN = 200;
-const FISH_SPAWN_RADIUS_MAX = 800;
-const FISH_SPAWN_X_MARGIN = 60 * scaleByWidth;
-const FISH_SPAWN_Y_MIN = 250 * scaleByHeight;
+const FISH_SPAWN_RADIUS = 80;
+const FISH_SPAWN_X_MARGIN = 40 * scaleByWidth;
+const FISH_SPAWN_Y_MIN = 350 * scaleByHeight;
+const FISH_SPAWN_Y_MAX = GAME_HEIGHT - 60 * scaleByHeight;
 const FISH_MIN_SPACING = 90;
 const FISH_SPAWN_MAX_ATTEMPTS = 15;
 
@@ -118,12 +115,17 @@ const DEPTH_WATER = 25;
 /* Decorative assets */
 const DECOR_SCALE = 0.25 * scaleByHeight;
 const DECOR_DEPTH = 5;
-const ASSET1_X = 60 * scaleByWidth;
-const ASSET1_Y = 720 * scaleByHeight;
-const ASSET2_X = 100 * scaleByWidth;
-const ASSET2_Y = 200 * scaleByHeight;
-const ASSET3_X = 400 * scaleByWidth;
-const ASSET3_Y = 280 * scaleByHeight;
+const DECOR_POSITIONS = [
+  { key: 'cf-asset1-1', x: 60 * scaleByWidth, y: 720 * scaleByHeight },
+  { key: 'cf-asset1-2', x: 420 * scaleByWidth, y: 750 * scaleByHeight },
+  { key: 'cf-asset1-3', x: 240 * scaleByWidth, y: 680 * scaleByHeight },
+  { key: 'cf-asset2-1', x: 100 * scaleByWidth, y: 200 * scaleByHeight },
+  { key: 'cf-asset2-2', x: 380 * scaleByWidth, y: 270 * scaleByHeight },
+  { key: 'cf-asset2-3', x: 50 * scaleByWidth, y: 400 * scaleByHeight },
+  { key: 'cf-asset3-1', x: 400 * scaleByWidth, y: 370 * scaleByHeight },
+  { key: 'cf-asset3-2', x: 440 * scaleByWidth, y: 500 * scaleByHeight },
+  { key: 'cf-asset3-3', x: 30 * scaleByWidth, y: 550 * scaleByHeight },
+];
 
 /* Progress display (top-right) */
 /* background-total.png is 568×144 — use setDisplaySize for pixel-precise UI like MatchPenguin */
@@ -191,9 +193,12 @@ export class CatchFishScene extends BaseScene {
     this.load.video(VID_BG, bgVideoUrl);
     this.load.image(TEX_INCREASE, increaseUrl);
     this.load.image(TEX_PROGRESS_BG, progressBgUrl);
-    this.load.image(TEX_ASSET1, asset1Url);
-    this.load.image(TEX_ASSET2, asset2Url);
-    this.load.image(TEX_ASSET3, asset3Url);
+    const assetUrls: Record<string, string> = {
+      'cf-asset1-1': asset1Url, 'cf-asset1-2': asset1Url, 'cf-asset1-3': asset1Url,
+      'cf-asset2-1': asset2Url, 'cf-asset2-2': asset2Url, 'cf-asset2-3': asset2Url,
+      'cf-asset3-1': asset3Url, 'cf-asset3-2': asset3Url, 'cf-asset3-3': asset3Url,
+    };
+    DECOR_POSITIONS.forEach(({ key }) => this.load.image(key, assetUrls[key]));
     this.load.image(TEX_WATER, waterUrl);
 
     /* Bird + Fish combined atlases */
@@ -337,13 +342,7 @@ export class CatchFishScene extends BaseScene {
   /* ------------------------------------------------------------------ */
 
   private createDecorAssets(): void {
-    const defs = [
-      { key: TEX_ASSET1, x: ASSET1_X, y: ASSET1_Y },
-      { key: TEX_ASSET2, x: ASSET2_X, y: ASSET2_Y },
-      { key: TEX_ASSET3, x: ASSET3_X, y: ASSET3_Y },
-    ];
-
-    defs.forEach(({ key, x, y }, i) => {
+    DECOR_POSITIONS.forEach(({ key, x, y }, i) => {
       const img = this.add.image(x, y, key);
       img.setOrigin(0.5);
       img.setScale(DECOR_SCALE);
@@ -462,25 +461,21 @@ export class CatchFishScene extends BaseScene {
   private spawnFish(): void {
     if (this.isGameOver) return;
 
-    const birdX = this.birdIdle.x;
-    const birdY = this.birdIdle.y;
-
     let x = 0;
     let y = 0;
     let placed = false;
 
     for (let attempt = 0; attempt < FISH_SPAWN_MAX_ATTEMPTS; attempt++) {
-      const angle = Phaser.Math.FloatBetween(0, Math.PI * 2);
-      const dist = Phaser.Math.Between(FISH_SPAWN_RADIUS_MIN, FISH_SPAWN_RADIUS_MAX);
+      const decor = Phaser.Math.RND.pick(DECOR_POSITIONS);
       x = Phaser.Math.Clamp(
-        birdX + Math.cos(angle) * dist,
+        decor.x + Phaser.Math.Between(-FISH_SPAWN_RADIUS, FISH_SPAWN_RADIUS),
         FISH_SPAWN_X_MARGIN,
         GAME_WIDTH - FISH_SPAWN_X_MARGIN,
       );
       y = Phaser.Math.Clamp(
-        birdY + Math.sin(angle) * dist,
+        decor.y + Phaser.Math.Between(-FISH_SPAWN_RADIUS, FISH_SPAWN_RADIUS),
         FISH_SPAWN_Y_MIN,
-        GAME_HEIGHT - 60,
+        FISH_SPAWN_Y_MAX,
       );
 
       if (!this.isOverlappingFish(x, y)) {
