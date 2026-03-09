@@ -98,8 +98,8 @@ const FISH_SCALE = 0.5 * scaleByHeight;
 /* Fish2 atlas frames are 600×623 → 0.14 yields ~84×87 display (comparable width) */
 const FISH2_SCALE = 0.40 * scaleByHeight;
 const FISH_ANIM_FRAMERATE = 24;
-/* Fish2 has 121 frames — use higher fps so full animation plays within FISH_LIFETIME (3s) */
-const FISH2_ANIM_FRAMERATE = 41;
+/* Fish2 has 121 frames — use higher fps so full animation plays within FISH_LIFETIME (1.5s) */
+const FISH2_ANIM_FRAMERATE = 81;
 const FISH_SPAWN_RADIUS = 80;
 const FISH_SPAWN_X_MARGIN = 40 * scaleByWidth;
 const FISH_SPAWN_Y_MIN = 350 * scaleByHeight;
@@ -157,8 +157,8 @@ const TOAST_FLOAT_OFFSET = 50;
 
 const TARGET_CATCH = 10;
 const SPAWN_INTERVAL_MIN = 800;
-const SPAWN_INTERVAL_MAX = 1800;
-const FISH_LIFETIME = 3000;
+const SPAWN_INTERVAL_MAX = 2000;
+const FISH_LIFETIME = 1500;
 
 
 /* ------------------------------------------------------------------ */
@@ -466,17 +466,8 @@ export class CatchFishScene extends BaseScene {
     let placed = false;
 
     for (let attempt = 0; attempt < FISH_SPAWN_MAX_ATTEMPTS; attempt++) {
-      const decor = Phaser.Math.RND.pick(DECOR_POSITIONS);
-      x = Phaser.Math.Clamp(
-        decor.x + Phaser.Math.Between(-FISH_SPAWN_RADIUS, FISH_SPAWN_RADIUS),
-        FISH_SPAWN_X_MARGIN,
-        GAME_WIDTH - FISH_SPAWN_X_MARGIN,
-      );
-      y = Phaser.Math.Clamp(
-        decor.y + Phaser.Math.Between(-FISH_SPAWN_RADIUS, FISH_SPAWN_RADIUS),
-        FISH_SPAWN_Y_MIN,
-        FISH_SPAWN_Y_MAX,
-      );
+      x = Phaser.Math.Between(FISH_SPAWN_X_MARGIN, GAME_WIDTH - FISH_SPAWN_X_MARGIN);
+      y = Phaser.Math.Between(FISH_SPAWN_Y_MIN, FISH_SPAWN_Y_MAX);
 
       if (!this.isOverlappingFish(x, y)) {
         placed = true;
